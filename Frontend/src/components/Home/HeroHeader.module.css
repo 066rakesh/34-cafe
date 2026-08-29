@@ -1,0 +1,169 @@
+.header {
+  width: min(92%, 1300px);
+  margin: 2.5rem auto;
+  height: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.brand {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.brand:hover {
+  opacity: 0.9;
+}
+
+.brand .number {
+  color: var(--text-on-dark);
+  font-size: 2.8rem;
+  font-weight: 800;
+  border-radius: 1.3rem;
+  padding: 0.3rem 1rem;
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.brand .text {
+  color: var(--text-on-dark);
+  letter-spacing: 0.2rem;
+  font-weight: 700;
+  font-size: clamp(1.4rem, 3.5vw, 1.8rem);
+  padding-left: 0.8rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+}
+
+.menuItems {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.8rem, 3vw, 3.2rem);
+}
+
+.menuItems a {
+  color: var(--text-on-dark);
+  opacity: 0.85;
+  text-decoration: none;
+  font-size: 1.8rem;
+  font-weight: 600;
+  transition:
+    opacity 0.3s ease,
+    color 0.3s ease;
+}
+
+.menuItems a:hover {
+  color: var(--color-primary-tint);
+  opacity: 1;
+}
+
+.btn {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: clamp(1.6rem, 2.5vw, 2.8rem);
+}
+
+.btn a {
+  color: var(--text-on-dark);
+  text-decoration: none;
+  font-size: clamp(1.5rem, 3.5vw, 1.6rem);
+  font-weight: 600;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+.btn a:hover {
+  opacity: 1;
+}
+
+.signBtn {
+  padding: 1.1rem 2.2rem;
+  border: none;
+  outline: none;
+  color: var(--color-primary-dark);
+  background: #fff;
+  font-weight: 600;
+  letter-spacing: 0.02rem;
+  border-radius: 1rem;
+  font-size: clamp(1.5rem, 3.5vw, 1.6rem);
+  cursor: pointer;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.08);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    colo 0.25s ease;
+}
+
+.signBtn:hover {
+  color: var(--color-primary-darker);
+  transform: translateY(-1px);
+  box-shadow: 0 0.6rem 1.6rem rgba(0, 0, 0, 0.15);
+}
+
+.signBtn:active {
+  transform: translateY(0);
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  height: 4.4rem;
+  width: 4.4rem;
+  outline: none;
+  flex-shrink: 0;
+  border-radius: 50%;
+  color: var(--text-on-dark);
+  background: rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition:
+    background 0.3s ease,
+    transform 0.25s ease;
+}
+
+.user svg {
+  font-size: 2.2rem;
+}
+
+@media (max-width: 1024px) {
+  .menuItems {
+    gap: 2rem;
+  }
+
+  .menuItems a {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    width: 94%;
+    height: 5.5rem;
+    gap: 1.2rem;
+    margin: 1.5rem auto;
+  }
+
+  .menuItems {
+    display: none;
+  }
+
+  .btn {
+    gap: 1.4rem;
+  }
+}
+
+@media (max-width: 425px) {
+  .brand .text {
+    display: none;
+  }
+}

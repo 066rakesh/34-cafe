@@ -1,0 +1,149 @@
+.foods {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
+  gap: 2.5rem;
+}
+
+.card {
+  border: 1px solid #eee;
+  border-radius: 1.4rem;
+  background: #fff;
+  overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.imageWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/11;
+}
+
+.image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.vegDot {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 1.8rem;
+  height: 1.8rem;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.4rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--color-success);
+}
+
+.vegDot span {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  background: var(--color-success);
+}
+
+.discountBadge {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(90deg, #be123c, #f97316);
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-align: center;
+  padding: 0.4rem 0;
+}
+
+.content {
+  padding: 1.3rem 1.4rem 1.5rem;
+}
+
+.topRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-bottom: 0.6rem;
+}
+
+.name {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-heading);
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  flex-shrink: 0;
+  background: var(--color-success);
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 0.3rem 0.7rem;
+  border-radius: 2rem;
+}
+
+.description {
+  font-size: 1.3rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  margin-bottom: 1.2rem;
+}
+
+.category {
+  font-size: 1.3rem;
+  color: var(--text-muted);
+  padding-left: 1.6rem;
+  border-left: 1px solid #eee;
+}
+
+.prepTime,
+.reviewCount {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 1.3rem;
+  color: var(--text-muted);
+}
+
+.priceBlock {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+}
+
+.price {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-heading);
+}
+
+.originalPrice {
+  font-size: 1.3rem;
+  color: var(--text-muted);
+  text-decoration: line-through;
+}

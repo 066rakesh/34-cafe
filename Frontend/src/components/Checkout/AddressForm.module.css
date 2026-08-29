@@ -1,0 +1,234 @@
+.addressField {
+  margin: 5rem 0 2rem;
+  padding: 2rem 1.5rem;
+  background: #fff;
+  border: 1px solid #eeeeee;
+  border-radius: 1.2rem;
+  /* box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2); */
+}
+
+.addressField .field {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.mapBox .field {
+  border: 1px solid #eeeeee;
+  border-top: none;
+  border-bottom-left-radius: 1.2rem;
+  border-bottom-right-radius: 1.2rem;
+  /* box-shadow: 0 3px 15px -3px rgba(0, 0, 0, 0.2); */
+}
+
+.mapBox .field input,
+.addressField .field input {
+  width: 100%;
+  height: 5rem;
+  padding: 0 2rem;
+  border: 0.1rem solid #d4d5d9;
+  outline: none;
+  font-size: 1.4rem;
+  background: #fff;
+  color: var(--text-heading);
+}
+
+.mapBox .field input {
+  border-bottom-left-radius: 1.2rem;
+  border-bottom-right-radius: 1.2rem;
+  padding: 0 1rem;
+}
+
+.addressField .field input {
+  border-radius: 0.8rem;
+}
+
+.mapBox .field input {
+  border: none;
+}
+
+.mapBox .field label,
+.addressField .field label {
+  position: absolute;
+  left: 1.6rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-body);
+  font-size: 1.4rem;
+  background: #fff;
+  padding: 0 0.4rem;
+  pointer-events: none;
+  transition: all 0.25s ease;
+}
+
+.field input:focus + label,
+.field input:not(:placeholder-shown) + label {
+  top: 0;
+  color: var(--color-primary-dark);
+}
+
+.field input:focus {
+  border-color: var(--color-primary-dark);
+}
+
+.deliveryError {
+  position: relative;
+  padding: 1.5rem 2rem;
+  background: #dc2626;
+  color: #fff;
+}
+
+.deliveryError::before {
+  content: "";
+  position: absolute;
+  top: -1rem;
+  width: 2rem;
+  height: 1rem;
+  background: #dc2626;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+.deliveryError p,
+.deliveryError p strong {
+  font-size: 1.3rem;
+  line-height: 1.55;
+}
+
+.addressTypes {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.addressType {
+  flex: 1;
+  height: 4rem;
+  border: 1px solid #d4d5d9;
+  border-radius: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.addressType input {
+  display: none;
+}
+
+.addressType svg {
+  flex-shrink: 0;
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+}
+
+.addressType span {
+  color: var(--text-muted);
+  font-size: 1.3rem;
+  transition: color 0.2s ease;
+}
+
+.addressType:has(input:checked) {
+  border-color: var(--color-primary-dark);
+  background: var(--color-primary-tint);
+}
+
+.addressType:has(input:checked) svg,
+.addressType:has(input:checked) span {
+  color: var(--color-primary-dark);
+}
+
+.defaultAddress {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.defaultAddress input {
+  accent-color: var(--color-primary-dark);
+  cursor: pointer;
+}
+
+.defaultAddress span {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+}
+
+.error {
+  color: #dc2626;
+  font-size: 1.3rem;
+  margin-top: -1rem;
+  margin-bottom: 2rem;
+}
+
+.proceedBtn {
+  margin-top: 4rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 4.6rem;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 500;
+  background: var(--color-theme);
+  border-radius: 0.8rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.proceedBtn:active {
+  transform: scale(0.98);
+}
+
+.proceedBtn:disabled {
+  background: #eeeeee;
+  color: var(--text-muted);
+  transform: none;
+}
+
+.loadingDots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.loadingDots span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+    animation: dotBounce 1.2s infinite ease-in-out;
+}
+
+.loadingDots span:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.loadingDots span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.loadingDots span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes dotBounce {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+
+  30% {
+    transform: translateY(-5px);
+    opacity: 1;
+  }
+}

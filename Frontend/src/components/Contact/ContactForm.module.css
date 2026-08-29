@@ -1,0 +1,174 @@
+.contactForm {
+  padding: 25px;
+  background: #fff;
+  border-radius: 18px;
+  border: 1px solid #ececec;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.title span:first-child svg {
+  color: rgb(255, 82, 0);
+  font-size: 2.3rem;
+}
+
+.title span:last-child {
+  font-size: clamp(2rem, 3vw, 2.8rem);
+}
+
+.inputBox {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.formGroup {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.formGroup input,
+.formGroup select {
+  height: clamp(38px, 15vw, 50px);
+  width: 100%;
+  padding: 0 clamp(10px, 3vw, 20px);
+  border: 1px solid #e5e7eb;
+  outline: none;
+  border-radius: 10px;
+  font-size: 1.4rem; 
+  background: #fff;
+}
+
+.formGroup select + label {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  padding: 0 5px;
+  transform: translateY(-50%);
+  background: #fff;
+  color: #666;
+  pointer-events: none;
+  transition: 0.25s ease;
+  font-size: 14px;
+}
+
+.formGroup select:focus + label {
+  top: 0px;
+  transform: translateY(-50%);
+  font-size: 12px;
+}
+
+.formGroup label {
+  display: flex;
+  gap: 8px;
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  padding: 0 5px;
+  transform: translateY(-50%);
+  background: #fff;
+  color: #666;
+  pointer-events: none;
+  transition: 0.25s ease;
+  font-size: 14px;
+}
+
+.labelIcon {
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  color: rgb(255, 82, 0);
+}
+
+.formGroup option {
+  font-size: 1.4rem;
+}
+
+.formGroup textarea + label {
+  top: 15px;
+  transform: none;
+}
+
+.formGroup select:valid + label {
+  top: 0;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: rgb(255, 82, 0);
+}
+
+.formGroup input:focus + label,
+.formGroup input:not(:placeholder-shown) + label {
+  top: -8px;
+  transform: translateY(0);
+  font-size: 12px;
+  color: rgb(255, 82, 0);
+}
+
+.formGroup textarea:focus + label,
+.formGroup textarea:valid + label {
+  top: -3px;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: rgb(255, 82, 0);
+}
+
+.inputBox textarea {
+  padding: 12px;
+  width: 100%;
+  outline: none;
+  resize: none;
+  border-radius: 10px;
+  font-size: clamp(1.4rem, 2vw, 1.6rem); 
+  border: 1px solid #e5e7eb;
+}
+
+.fullWidth {
+  grid-column: 1/-1;
+}
+
+.inputBox input:focus,
+.inputBox select:focus,
+.inputBox textarea:focus {
+  border-color: rgb(255, 82, 0);
+}
+
+.btn {
+  height: clamp(4rem, 7vw, 5rem);
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  outline: none;
+  width: fit-content;
+  grid-column: 1/-1;
+  color: #fff;
+  background: rgb(255, 82, 0);
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.btn span:first-child svg {
+  font-size: 2.3rem
+}
+
+.btn span:last-child {
+  font-weight: 500;
+  font-size: 1.7rem;
+}
+
+@media(max-width: 425px) {
+  .contactForm {
+    padding: 18px;
+  }
+
+  .inputBox {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

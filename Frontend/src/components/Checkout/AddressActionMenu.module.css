@@ -1,0 +1,33 @@
+.container {
+  position: absolute;
+  top: 4rem;
+  right: 1.5rem;
+  background: #eeeeee;
+  border-radius: 1rem;
+  min-width: 12rem;
+}
+
+.actionMenuCard {
+  display: flex;
+  flex-direction: column;
+}
+
+.actionMenu {
+  border: none;
+  outline: none;
+  background: inherit;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.2rem 1.6rem;
+  cursor: pointer;
+}
+
+.actionMenu span {
+  font-size: 1.4rem;
+  color: var(--color-warning);
+}
+
+.actionMenu svg {
+  color: var(--color-warning);
+}

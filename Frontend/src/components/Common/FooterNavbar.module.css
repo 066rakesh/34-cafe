@@ -1,0 +1,88 @@
+.navbar {
+  min-height: clamp(6rem, 14vw, 8rem);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.6rem 0.8;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background: #fff;
+  z-index: 1000;
+  border-top: 1px solid #f0f0f0;
+  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.06);
+  padding-bottom: max(0.6rem, env(safe-area-inset-bottom));
+  display: none;
+}
+
+.navbar a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+  color: var(--text-body);
+  flex: 1;
+  min-width: 0;
+  padding: 0.4rem 0.4rem 0.2rem;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.navbar a:active {
+  transform: scale(0.96);
+}
+
+.navIconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navIconWrap svg {
+  width: 2.4rem;
+  height: 2.4rem;
+  stroke-width: 1.8;
+  transition: stroke-width 0.2s ease;
+}
+
+.navText {
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition: font-weight 0.2s ease;
+}
+
+.navbar a.active {
+  color: var(--text-heading);
+}
+
+.navbar a.active .navIconWrap svg {
+  stroke-width: 2.3;
+}
+
+.navbar a.active .navText {
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    display: flex;
+  }
+}
+
+@media (max-width: 425px) {
+  .navbar {
+    padding: 0.5rem 0.4rem;
+    padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+  }
+
+  .navIconWrap svg {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+}

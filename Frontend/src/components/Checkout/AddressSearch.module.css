@@ -1,0 +1,116 @@
+.container {
+  position: fixed;
+  top: 5.5rem;
+  left: 0;
+  bottom: 0;
+  width: min(100%, 500px);
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  background: #f8f8f8;
+  z-index: 5;
+  overflow: hidden;
+}
+
+.form {
+  flex-shrink: 0;
+  margin-top: 1.5rem;
+  height: 4.5rem;
+  display: flex;
+  align-items: center;
+  padding: 0 1.8rem;
+  border: 1px solid #eeeeee;
+  border-radius: 0.8rem;
+  background: #fff;
+  /* box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); */
+}
+
+.form:focus-within {
+  border-color: var(--color-primary-dark);
+}
+
+.form input {
+  flex: 1;
+  height: 100%;
+  border: none;
+  outline: none;
+  font-size: 1.4rem;
+  color: var(--text-heading);
+}
+
+.form input::placeholder {
+  font-size: 1.4rem;
+}
+
+.form button {
+  border: none;
+  outline: none;
+  background: inherit;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+.suggestion {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  margin: 2rem 0 0;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid #eeeeee;
+  border-bottom: none;
+  border-top-left-radius: 0.8rem;
+  border-top-right-radius: 0.8rem;
+  /* box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2); */
+}
+
+.noResult,
+.loading {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 1.4rem;
+  color: var(--text-muted);
+}
+
+.result {
+  width: 100%;
+  padding: 1rem 2rem;
+  border: none;
+  outline: none;
+  background: #fff;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.result:hover {
+  background: var(--color-primary-tint);
+}
+
+.result > span {
+  flex-shrink: 0;
+  color: var(--color-primary-dark);
+  display: flex;
+  align-items: center;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.info strong,
+.info span {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--text-heading);
+}

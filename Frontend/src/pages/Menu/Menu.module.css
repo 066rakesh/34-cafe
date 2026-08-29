@@ -1,0 +1,46 @@
+.menu {
+  padding-top: 6.5rem;
+}
+
+.wrapper {
+  margin: 3rem auto 4rem;
+  width: min(92%, 1300px);
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hero h1 {
+  color: var(--text-heading);
+  font-size: clamp(1.6rem, 6vw, 3.8rem);
+  font-weight: 600;
+}
+
+.hero h1 span {
+  color: var(--color-primary-dark);
+  font-size: clamp(1.6rem, 6vw, 3.8rem);
+}
+
+.hero p {
+  text-align: center;
+  color: var(--text-body);
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .menu {
+    padding-top: 6rem;
+  }
+  .wrapper {
+    width: 94%;
+    margin-top: 0.5rem;
+  }
+  .hero {
+    margin-top: 0;
+  }
+}

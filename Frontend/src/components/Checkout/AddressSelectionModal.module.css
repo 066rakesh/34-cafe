@@ -1,0 +1,108 @@
+.modal {
+  width: min(100%, 500px);
+  height: 100dvh;
+  position: relative;
+  overflow-y: auto;
+  background: #fff;
+  background: #f8f8f8;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
+  scrollbar-width: thin;
+  scrollbar-color: #d5d5d5 transparent;
+}
+
+.header {
+  width: min(100%, 500px);
+  position: fixed;
+  inset: 0;
+  height: 5.5rem;
+  background: #fff;
+  border-bottom: 1px solid #eeeeee;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.035);
+  z-index: 10;
+}
+
+.headerInner {
+  width: 91%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.left h1 {
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: var(--text-heading);
+}
+
+.crossBtn {
+  height: 100%;
+  width: fit-content;
+  cursor: pointer;
+  color: var(--text-body);
+  border: none;
+  background: none;
+  transition: color 0.2s ease;
+}
+
+.crossBtn:hover {
+  color: var(--color-primary-dark);
+}
+
+.content {
+  margin: 7rem auto 0;
+  width: 94%;
+}
+
+.contentTop {
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px dashed var(--text-muted);
+}
+
+.contentTop h2 {
+  font-size: 1.5rem;
+}
+
+.contentTop button {
+  border: none;
+  outline: none;
+  background: inherit;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.contentTop button svg {
+  color: var(--color-primary-darker);
+  font-size: 0rem;
+}
+
+.contentTop button span:last-child {
+  color: var(--color-primary-dark);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.addressCard {
+  position: relative;
+}
+
+.addressLabel svg {
+  color: var(--text-muted);
+}
+
+.addressLabel span {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+.editBtn {
+  cursor: pointer;
+}

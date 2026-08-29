@@ -1,0 +1,88 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.45);
+  animation: fadeIn 0.2s ease;
+}
+
+.content {
+  width: min(100%, 360px);
+  padding: 2.4rem 2rem 2rem;
+  background: #fff;
+  border-radius: 1.4rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  animation: popIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.message {
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--text-heading);
+  margin-bottom: 2.2rem;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.actions button {
+  flex: 1;
+  padding: 1.1rem 1.4rem;
+  border: none;
+  border-radius: 0.9rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+
+.actions button:active {
+  transform: scale(0.97);
+}
+
+.cancelBtn {
+  background: #f1f1f1;
+  color: var(--text-body);
+}
+
+.cancelBtn:hover {
+  background: #e6e6e6;
+}
+
+.deleteBtn {
+  background: var(--color-warning);
+  color: #fff;
+}
+
+.deleteBtn:hover {
+  filter: brightness(0.92);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}

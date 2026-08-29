@@ -1,0 +1,285 @@
+.menu {
+  width: min(92%, 1300px);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.categories {
+  width: 100%;
+  margin-top: clamp(20px, 3vw, 30px);
+  margin-bottom: clamp(16px, 3vw, 32px);
+}
+
+.categories h2 {
+  margin-top: 20px;
+  margin-left: 1rem;
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 700;
+  color: var(--text-heading);
+}
+
+.categoriesSlide {
+  width: fit-content !important;
+  margin-top: clamp(12px, 2vw, 25px);
+}
+
+.categoriesCard {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.25s ease;
+}
+
+.categoriesImage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(70px, 13vw, 100px);
+  aspect-ratio: 1;
+  overflow: hidden;
+  flex-shrink: 0;
+  transition: 0.3s;
+  border-radius: 50%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.categoriesCard:hover .categoriesImage {
+  box-shadow: 0 8px 24px rgba(249, 115, 22, 0.25);
+}
+
+.categoriesImage img {
+  width: 95%;
+  height: 95%;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: transform 0.25s ease;
+}
+
+.categoriesCard:hover img {
+  transform: scale(1.08);
+}
+
+.categoriesCard p {
+  font-size: clamp(1.4rem, 2vw, 1.7rem);
+  font-weight: 500;
+  color: var(--text-body);
+  text-align: center;
+}
+
+.categoriesCard:hover p {
+  color: var(--color-primary-dark);
+}
+
+.dishes {
+  width: 100%;
+  margin-top: clamp(3.5rem, 3vw, 4.5rem);
+  margin-bottom: clamp(20px, 3vw, 40px);
+}
+
+.dishes h2 {
+  margin-left: 1rem;
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 700;
+  color: var(--text-heading);
+}
+
+.dishSlide {
+  width: 220px !important;
+  margin-top: clamp(12px, 2vw, 25px);
+}
+
+.card {
+  width: 100%;
+  margin: 0 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  border: 0.1rem solid transparent;
+  border-radius: 1.5rem;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.image {
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  border-radius: 1.3rem;
+}
+
+.image img {
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 13px;
+  transition: transform 0.35s ease;
+}
+
+
+@media (max-width: 768px) {
+  .menu {
+    width: 94%;
+  }
+  
+  .categoriesCard {
+    margin: 0;
+    padding: 0.5rem;
+  }
+
+  .card {
+    margin: 0;
+  }
+
+  .categoriesCard p {
+    font-size: 14px;
+  }
+}
+
+.card {
+  border: 1px solid transparent;
+  border-radius: 1.4rem;
+  background: #fff;
+  overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  border: 1px solid #eee;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.imageWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/11;
+}
+
+.image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.vegDot {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 1.8rem;
+  height: 1.8rem;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.4rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--color-success);
+}
+
+.vegDot span {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  background: var(--color-success);
+}
+
+.discountBadge {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(90deg, #be123c, #f97316);
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-align: center;
+  padding: 0.4rem 0;
+}
+
+.content {
+  padding: 1.3rem 1.4rem 1.5rem;
+}
+
+.topRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-bottom: 0.6rem;
+}
+
+.name {
+  font-size: clamp(1.4rem, 2vw, 1.7rem);
+  font-weight: 700;
+  color: var(--text-heading);
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  flex-shrink: 0;
+  background: var(--color-success);
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 0.3rem 0.7rem;
+  border-radius: 2rem;
+}
+
+.description {
+  font-size: 1.3rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  margin-bottom: 1.2rem;
+}
+
+.prepTime,
+.reviewCount {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 1.3rem;
+  color: var(--text-muted);
+}
+
+.priceBlock {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+}
+
+.price {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-heading);
+}
+
+.originalPrice {
+  font-size: 1.3rem;
+  color: var(--text-muted);
+  text-decoration: line-through;
+}

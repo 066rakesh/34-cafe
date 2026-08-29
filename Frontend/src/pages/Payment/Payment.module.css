@@ -1,0 +1,21 @@
+.paymentPage {
+  min-height: 100vh;
+  overflow: hidden;
+  background: #f8f8f8;
+}
+
+.container {
+  height: calc(100vh - 9.5rem);
+  width: min(94%, 700px);
+  background: #fff;
+  margin: 9.5rem auto 0;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: min(94%, 500);
+    margin-top: 7rem;
+    padding-bottom: clamp(9rem, 20vw, 12rem);
+    gap: 1.5rem;
+  }
+}

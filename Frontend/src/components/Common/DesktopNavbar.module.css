@@ -1,0 +1,154 @@
+.header {
+  position: fixed;
+  inset: 0 0 auto;
+  height: 6.5rem;
+  background: #fff;
+  box-shadow: 0 8px 1rem rgb(0, 0, 0, 0.04);
+  z-index: 1000;
+}
+
+.wrapper {
+  width: min(92%, 1300px);
+  height: 100%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  width: fit-content;
+}
+
+.number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, #be123c 0%, #f97316 100%);
+  color: #fff;
+  font-size: 1.9rem;
+  font-weight: 800;
+}
+
+.divider {
+  width: 1px;
+  height: 2.6rem;
+  background: #e0e0e0;
+}
+
+.text {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: var(--text-heading, #1a1a1a);
+  letter-spacing: 0.04em;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 2.8rem;
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 1.7rem;
+  font-weight: 600;
+  transition: 0.25s;
+}
+
+.nav a:hover {
+  color: var(--color-primary-dark);
+}
+
+.nav .active {
+  color: var(--color-primary-dark);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.cart {
+  width: 4rem;
+  height: 4rem;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  color: var(--text-muted);
+  transition: .25s;
+}
+
+.badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user {
+  border: none;
+  outline: none;
+  padding: 0 1.4rem;
+  border-radius: 999px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  cursor: pointer;
+  color: var(--text-body);
+}
+
+.user svg {
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.user span {
+  font-size: 1.45rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    width: 94%;
+  }
+  
+  .header {
+    height: 5.5rem;
+    box-shadow: none;
+    border-bottom: 1px solid #eeeeee;
+  }
+  
+  .nav {
+    display: none;
+  }
+}
+
+@media (max-width: 425px) {
+  .cart {
+    display: none;
+  }
+}
