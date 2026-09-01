@@ -171,7 +171,7 @@
   }
 
   .form {
-    margin-top: 0.5rem;
+    margin-top: 2rem;
   }
 }
 
@@ -181,8 +181,9 @@
   }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 426px) {
   .form {
+    margin: 0.5rem;
     width: 100%;
   }
 }

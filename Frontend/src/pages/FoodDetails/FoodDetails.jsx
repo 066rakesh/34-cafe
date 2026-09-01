@@ -8,19 +8,20 @@ import { CartBottomBar } from "../../components/Common/CartBottomBar";
 import { menu } from "../../data/menu";
 
 export const FoodDetails = () => {
-  const { foodId } = useParams();
+  const { slugId } = useParams();
+  const match = slugId.match(/fd_[a-z0-9]+$/);
+  const id = match ? match[0] : null;
 
   const { cartItems, addToCart, increaseQuantity, decreaseQuantity } =
     useContext(CartContext);
 
-  const food = menu.find((item) => String(item.id) === String(foodId));
+  const food = menu.find((item) => String(item.id) === String(id));
 
   const cartItem = cartItems.find((item) => item.id === food.id);
 
   return (
     <div className={styles.page}>
       <DesktopNavbar />
-
       <div className={styles.layout}>
         <div className={styles.imageSection}>
           <img src={food.image} alt={food.title} className={styles.image} />

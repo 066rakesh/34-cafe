@@ -33,14 +33,14 @@
 }
 
 @media (max-width: 768px) {
-  .menu {
-    padding-top: 6rem;
-  }
   .wrapper {
     width: 94%;
-    margin-top: 0.5rem;
+    margin-top: 1rem;
   }
-  .hero {
-    margin-top: 0;
+}
+
+@media (max-width: 426px){
+  .menu {
+    padding-top: 5.5rem;
   }
 }

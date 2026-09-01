@@ -2,13 +2,15 @@ import styles from "./FoodGrid.module.css";
 import { Clock, Star } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { menu } from "../../data/menu";
+import { slugify } from "../../utils/slugify";
 
-export const FoodGrid = ({selectedCategory}) => {
+export const FoodGrid = ({ selectedCategory }) => {
   const navigate = useNavigate();
 
-  const filterMenu = selectedCategory === "All"
-    ? menu
-    : menu.filter((item) => item.category === selectedCategory);
+  const filterMenu =
+    selectedCategory === "All"
+      ? menu
+      : menu.filter((item) => item.category === selectedCategory);
 
   return (
     <section>
@@ -17,7 +19,7 @@ export const FoodGrid = ({selectedCategory}) => {
           <div
             className={styles.card}
             key={food.id}
-            onClick={() => navigate(`/menu/food/${food.id}`)}
+            onClick={() => navigate(`/menu/food/${slugify(food.title)}-${food.id}`)}
           >
             <div className={styles.imageWrap}>
               <img className={styles.image} src={food.image} />

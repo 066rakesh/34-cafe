@@ -311,7 +311,13 @@
   }
 
   .layout {
-    margin-top: 7rem;
+    margin-top: 8.5rem;
     width: min(94%, 500px);
+  }
+}
+
+@media (max-width: 426px) {
+  .layout {
+    margin-top: 7rem;
   }
 }

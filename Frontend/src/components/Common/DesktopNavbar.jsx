@@ -34,6 +34,9 @@ export const DesktopNavbar = () => {
           <span className={styles.divider} />
           <span className={styles.text}>CAFE</span>
         </Link>
+        <button className={styles.backBtn} onClick={() => navigate(-1)}>
+          <ArrowLeft size={25} />
+        </button>
 
         <nav className={styles.nav}>
           <NavLink to="/" end className={getNavLinkClass}>
