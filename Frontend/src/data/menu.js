@@ -6,7 +6,7 @@ import pizza from "../assets/images/pizza.webp";
 import burgers from "../assets/images/burgers.avif";
 import Beverages from "../assets/images/drink.avif";
 import cake from "../assets/images/cake.avif";
-import Sandwitch from "../assets/images/Sandwitch.avif";
+import Sandwitch from "../assets/images/sandwitch.avif";
 import samosa from "../assets/images/samosa.avif";
 import rolls from "../assets/images/rolls.avif";
 import biryani from "../assets/images/biryani.avif";
@@ -24,6 +24,7 @@ import red_sauce_pasta from "../assets/images/red sauce pasta.jpg";
 import paneer_masala_maggie from "../assets/images/paneer masala maggie.avif";
 import sev_bhaji from "../assets/images/sev bhaji.avif";
 import matar_pulao from "../assets/images/matar pulao.avif";
+import fallback from "../assets/images/fallback.jpg";
 
 export const menu = [
   {
@@ -840,5 +841,1803 @@ export const menu = [
         price: 169,
       },
     ],
+  },
+  {
+    id: "fd_ujzde8",
+    image: fallback,
+    title: "Veg Manchurian Dry",
+    description: "Fried veggie balls tossed in a tangy dry Manchurian glaze.",
+    price: 189,
+    rating: 4.5,
+    prepTime: 16,
+    isVeg: true,
+
+    category: "Starters",
+    subCategory: "Fried",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [
+      {
+        id: "v1",
+        label: "Half",
+        price: 119,
+      },
+      {
+        id: "v2",
+        label: "Full",
+        price: 189,
+      },
+    ],
+  },
+
+  {
+    id: "fd_d6ncf1",
+    image: fallback,
+    title: "Paneer Chilli Dry",
+    description:
+      "Crispy paneer tossed dry with onions, capsicum and chilli-soy glaze.",
+    price: 219,
+    rating: 4.7,
+    prepTime: 15,
+    isVeg: true,
+
+    category: "Starters",
+    subCategory: "Fried",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [
+      {
+        id: "v1",
+        label: "Half",
+        price: 139,
+      },
+      {
+        id: "v2",
+        label: "Full",
+        price: 219,
+      },
+    ],
+  },
+
+  {
+    id: "fd_pf91dh",
+    image: fallback,
+    title: "Baby Corn Fritters",
+    description: "Crunchy fried baby corn coated in a light spiced batter.",
+    price: 179,
+    rating: 4.9,
+    prepTime: 14,
+    isVeg: true,
+
+    category: "Starters",
+    subCategory: "Fried",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+
+  {
+    id: "fd_dzdoc9",
+    image: fallback,
+    title: "Tandoori Aloo",
+    description: "Baby potatoes marinated in tandoori spices and char-grilled.",
+    price: 159,
+    rating: 4.8,
+    prepTime: 16,
+    isVeg: true,
+
+    category: "Starters",
+    subCategory: "Tandoor",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [
+      {
+        id: "v1",
+        label: "Half",
+        price: 99,
+      },
+      {
+        id: "v2",
+        label: "Full",
+        price: 159,
+      },
+    ],
+  },
+
+  {
+    id: "fd_s0j8ht",
+    image: fallback,
+    title: "Crispy Veg Nuggets",
+    description:
+      "Golden fried veggie nuggets, crunchy on the outside, soft inside.",
+    price: 169,
+    rating: 4.7,
+    prepTime: 13,
+    isVeg: true,
+
+    category: "Starters",
+    subCategory: "Fried",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+
+  {
+    id: "fd_lgmxg9",
+    image: fallback,
+    title: "Stuffed Mushroom",
+    description:
+      "Button mushrooms stuffed with a spiced cheese filling and baked.",
+    price: 209,
+    rating: 4.8,
+    prepTime: 18,
+    isVeg: true,
+
+    category: "Starters",
+    subCategory: "Baked",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [
+      {
+        id: "v1",
+        label: "4 Pieces",
+        price: 139,
+      },
+      {
+        id: "v2",
+        label: "6 Pieces",
+        price: 209,
+      },
+    ],
+  },
+  {
+    id: "fd_bq4wxl",
+    image: fallback,
+    title: "Chana Masala",
+    description: "Chickpeas simmered in a tangy, spiced onion-tomato gravy.",
+    price: 179,
+    rating: 4.7,
+    prepTime: 16,
+    isVeg: true,
+
+    category: "Main Course",
+    subCategory: "Curry",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [
+      {
+        id: "v1",
+        label: "Half",
+        price: 109,
+      },
+      {
+        id: "v2",
+        label: "Full",
+        price: 179,
+      },
+    ],
+  },
+
+  {
+    id: "fd_ny7tzq",
+    image: fallback,
+    title: "Veg Handi",
+    description: "Mixed vegetables slow-cooked in a rich handi-style gravy.",
+    price: 219,
+    rating: 4.8,
+    prepTime: 20,
+    isVeg: true,
+
+    category: "Main Course",
+    subCategory: "Curry",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+
+  {
+    id: "fd_gx3mkp",
+    image: fallback,
+    title: "Paneer Lababdar",
+    description: "Paneer cubes in a rich, buttery tomato and cashew gravy.",
+    price: 249,
+    rating: 4.9,
+    prepTime: 20,
+    isVeg: true,
+
+    category: "Main Course",
+    subCategory: "Curry",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [
+      {
+        id: "v1",
+        label: "Half",
+        price: 149,
+      },
+      {
+        id: "v2",
+        label: "Full",
+        price: 249,
+      },
+    ],
+  },
+
+  {
+    id: "fd_wv8dhr",
+    image: fallback,
+    title: "Matar Paneer",
+    description: "Soft paneer cubes and green peas in a light, spiced curry.",
+    price: 209,
+    rating: 4.7,
+    prepTime: 18,
+    isVeg: true,
+
+    category: "Main Course",
+    subCategory: "Curry",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [
+      {
+        id: "v1",
+        label: "Half",
+        price: 129,
+      },
+      {
+        id: "v2",
+        label: "Full",
+        price: 209,
+      },
+    ],
+  },
+
+  {
+    id: "fd_ftl2b6",
+    image: fallback,
+    title: "Kadai Vegetable",
+    description:
+      "Seasonal vegetables tossed in a spicy kadai masala with peppers.",
+    price: 199,
+    rating: 4.6,
+    prepTime: 18,
+    isVeg: true,
+
+    category: "Main Course",
+    subCategory: "Curry",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+
+  {
+    id: "fd_uc9jre",
+    image: fallback,
+    title: "Vegetable Korma",
+    description:
+      "Mixed vegetables simmered in a mild, creamy coconut-cashew gravy.",
+    price: 219,
+    rating: 4.8,
+    prepTime: 19,
+    isVeg: true,
+
+    category: "Main Course",
+    subCategory: "Curry",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [
+      {
+        id: "v1",
+        label: "Half",
+        price: 129,
+      },
+      {
+        id: "v2",
+        label: "Full",
+        price: 219,
+      },
+    ],
+  },
+  // Paste these objects into the `menu` array in menu.js
+  // Make sure menu.js has: import fallback from "../assets/images/fallback.jpg";
+
+  // ---- Pizza ----
+  {
+    id: "fd_0s4n46",
+    image: fallback,
+    title: "Onion Pizza",
+    description:
+      "Simple and classic pizza topped with fresh onions and cheese.",
+    price: 229,
+    rating: 4.6,
+    prepTime: 20,
+    isVeg: true,
+
+    category: "Pizza",
+    subCategory: "Classic",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [
+      {
+        id: "v1",
+        label: "7 inch",
+        price: 159,
+      },
+      {
+        id: "v2",
+        label: "10 inch",
+        price: 229,
+      },
+    ],
+  },
+  {
+    id: "fd_paax1e",
+    image: fallback,
+    title: "Paneer Makhani Pizza",
+    description: "Pizza topped with paneer tossed in a rich makhani sauce.",
+    price: 289,
+    rating: 4.6,
+    prepTime: 18,
+    isVeg: true,
+
+    category: "Pizza",
+    subCategory: "Paneer",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_ooc102",
+    image: fallback,
+    title: "BBQ Paneer Pizza",
+    description: "Smoky BBQ glazed paneer with onions on a cheesy base.",
+    price: 289,
+    rating: 4.6,
+    prepTime: 22,
+    isVeg: true,
+
+    category: "Pizza",
+    subCategory: "Paneer",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [
+      {
+        id: "v1",
+        label: "7 inch",
+        price: 209,
+      },
+      {
+        id: "v2",
+        label: "10 inch",
+        price: 289,
+      },
+    ],
+  },
+  {
+    id: "fd_85hxbj",
+    image: fallback,
+    title: "Double Cheese Margherita",
+    description: "Classic Margherita loaded with an extra layer of mozzarella.",
+    price: 259,
+    rating: 4.5,
+    prepTime: 15,
+    isVeg: true,
+
+    category: "Pizza",
+    subCategory: "Cheese",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_hb3k9v",
+    image: fallback,
+    title: "Achari Paneer Pizza",
+    description: "Tangy pickle-spiced paneer with onions and capsicum.",
+    price: 279,
+    rating: 4.8,
+    prepTime: 12,
+    isVeg: true,
+
+    category: "Pizza",
+    subCategory: "Paneer",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [
+      {
+        id: "v1",
+        label: "7 inch",
+        price: 199,
+      },
+      {
+        id: "v2",
+        label: "10 inch",
+        price: 279,
+      },
+    ],
+  },
+  {
+    id: "fd_lc4pem",
+    image: fallback,
+    title: "Spicy Triple Pizza",
+    description: "Loaded with jalapenos, paneer and a fiery red sauce.",
+    price: 299,
+    rating: 4.7,
+    prepTime: 14,
+    isVeg: true,
+
+    category: "Pizza",
+    subCategory: "Spicy",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+
+  // ---- Burger ----
+  {
+    id: "fd_eh949y",
+    image: fallback,
+    title: "Schezwan Burger",
+    description: "Crispy veg patty tossed in a fiery schezwan glaze.",
+    price: 159,
+    rating: 4.6,
+    prepTime: 22,
+    isVeg: true,
+
+    category: "Burger",
+    subCategory: "Spicy",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_80sx26",
+    image: fallback,
+    title: "Grilled Veg Burger",
+    description: "Grilled veggie patty with fresh lettuce and tangy sauce.",
+    price: 149,
+    rating: 4.6,
+    prepTime: 14,
+    isVeg: true,
+
+    category: "Burger",
+    subCategory: "Grilled",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_yrbfk5",
+    image: fallback,
+    title: "Crispy Corn Burger",
+    description: "Crunchy corn patty stacked with mayo and fresh veggies.",
+    price: 139,
+    rating: 4.7,
+    prepTime: 16,
+    isVeg: true,
+
+    category: "Burger",
+    subCategory: "Classic",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_97ou9h",
+    image: fallback,
+    title: "Paneer Tikka Burger",
+    description: "Smoky tandoori paneer patty with mint mayo and onions.",
+    price: 179,
+    rating: 4.5,
+    prepTime: 12,
+    isVeg: true,
+
+    category: "Burger",
+    subCategory: "Paneer",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_wvwtpg",
+    image: fallback,
+    title: "Loaded Veggie Burger",
+    description: "Stacked with double veggies, cheese and tangy sauces.",
+    price: 189,
+    rating: 4.6,
+    prepTime: 14,
+    isVeg: true,
+
+    category: "Burger",
+    subCategory: "Loaded",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_l1xkc7",
+    image: fallback,
+    title: "Smoky BBQ Paneer Burger",
+    description: "Grilled paneer patty glazed with a smoky BBQ sauce.",
+    price: 199,
+    rating: 4.6,
+    prepTime: 22,
+    isVeg: true,
+
+    category: "Burger",
+    subCategory: "BBQ",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+
+  // ---- Momos ----
+  {
+    id: "fd_0kaw56",
+    image: fallback,
+    title: "Peri Peri Momos",
+    description: "Steamed momos tossed in a tangy peri peri seasoning.",
+    price: 169,
+    rating: 4.9,
+    prepTime: 14,
+    isVeg: true,
+
+    category: "Momos",
+    subCategory: "Spicy",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_pk9e20",
+    image: fallback,
+    title: "Manchurian Momos",
+    description: "Steamed momos tossed in a tangy Manchurian sauce.",
+    price: 179,
+    rating: 4.7,
+    prepTime: 14,
+    isVeg: true,
+
+    category: "Momos",
+    subCategory: "Gravy",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_dsdqsc",
+    image: fallback,
+    title: "Butter Momos",
+    description: "Soft steamed momos tossed in a rich buttery sauce.",
+    price: 189,
+    rating: 4.8,
+    prepTime: 16,
+    isVeg: true,
+
+    category: "Momos",
+    subCategory: "Creamy",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_zevjj4",
+    image: fallback,
+    title: "Malai Momos",
+    description: "Steamed momos in a mild, creamy malai gravy.",
+    price: 199,
+    rating: 4.7,
+    prepTime: 14,
+    isVeg: true,
+
+    category: "Momos",
+    subCategory: "Creamy",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_74bnxj",
+    image: fallback,
+    title: "Crispy Chilli Momos",
+    description: "Deep-fried momos tossed in a spicy chilli-soy glaze.",
+    price: 189,
+    rating: 4.5,
+    prepTime: 14,
+    isVeg: true,
+
+    category: "Momos",
+    subCategory: "Fried",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_154ti8",
+    image: fallback,
+    title: "Steamed Spicy Momos",
+    description: "Classic steamed veg momos with an extra spicy filling.",
+    price: 159,
+    rating: 4.9,
+    prepTime: 18,
+    isVeg: true,
+
+    category: "Momos",
+    subCategory: "Steamed",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [
+      {
+        id: "v1",
+        label: "6 Pieces",
+        price: 109,
+      },
+      {
+        id: "v2",
+        label: "10 Pieces",
+        price: 159,
+      },
+    ],
+  },
+
+  // ---- Sandwich ----
+  {
+    id: "fd_ayibqu",
+    image: fallback,
+    title: "Mumbai Masala Sandwich",
+    description: "Spiced potato and chutney sandwich, Mumbai street style.",
+    price: 139,
+    rating: 4.7,
+    prepTime: 14,
+    isVeg: true,
+
+    category: "Sandwich",
+    subCategory: "Street Style",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_0qziij",
+    image: fallback,
+    title: "Cheese Garlic Sandwich",
+    description: "Toasted sandwich loaded with garlic butter and cheese.",
+    price: 149,
+    rating: 4.8,
+    prepTime: 22,
+    isVeg: true,
+
+    category: "Sandwich",
+    subCategory: "Cheese",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_lb2jeh",
+    image: fallback,
+    title: "Veg Mayo Sandwich",
+    description: "Soft bread loaded with fresh veggies and creamy mayo.",
+    price: 129,
+    rating: 4.5,
+    prepTime: 12,
+    isVeg: true,
+
+    category: "Sandwich",
+    subCategory: "Classic",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_t8uz5o",
+    image: fallback,
+    title: "Peri Peri Paneer Sandwich",
+    description: "Grilled sandwich stuffed with peri peri spiced paneer.",
+    price: 179,
+    rating: 4.8,
+    prepTime: 14,
+    isVeg: true,
+
+    category: "Sandwich",
+    subCategory: "Paneer",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_lym9c6",
+    image: fallback,
+    title: "Tandoori Veg Sandwich",
+    description: "Tandoori spiced veggies grilled between soft bread.",
+    price: 159,
+    rating: 4.7,
+    prepTime: 14,
+    isVeg: true,
+
+    category: "Sandwich",
+    subCategory: "Grilled",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_day3ez",
+    image: fallback,
+    title: "Open Grilled Sandwich",
+    description: "Open-faced toasted sandwich topped with veggies and cheese.",
+    price: 169,
+    rating: 4.8,
+    prepTime: 22,
+    isVeg: true,
+
+    category: "Sandwich",
+    subCategory: "Grilled",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+
+  // ---- Pasta ----
+  {
+    id: "fd_oqucpy",
+    image: fallback,
+    title: "Alfredo Pasta",
+    description: "Penne tossed in a rich, creamy alfredo sauce.",
+    price: 249,
+    rating: 4.8,
+    prepTime: 14,
+    isVeg: true,
+
+    category: "Pasta",
+    subCategory: "Italian",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [
+      {
+        id: "v1",
+        label: "Half",
+        price: 149,
+      },
+      {
+        id: "v2",
+        label: "Full",
+        price: 249,
+      },
+    ],
+  },
+  {
+    id: "fd_s695g8",
+    image: fallback,
+    title: "Tomato Basil Pasta",
+    description: "Pasta tossed in a fresh tomato and basil sauce.",
+    price: 219,
+    rating: 4.6,
+    prepTime: 20,
+    isVeg: true,
+
+    category: "Pasta",
+    subCategory: "Italian",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_u7ts79",
+    image: fallback,
+    title: "Spinach & Cheese Pasta",
+    description: "Pasta tossed with sauteed spinach in a cheesy sauce.",
+    price: 239,
+    rating: 4.7,
+    prepTime: 18,
+    isVeg: true,
+
+    category: "Pasta",
+    subCategory: "Cheese",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_umweu0",
+    image: fallback,
+    title: "Garlic Butter Pasta",
+    description: "Pasta tossed in a fragrant garlic butter sauce.",
+    price: 219,
+    rating: 4.6,
+    prepTime: 18,
+    isVeg: true,
+
+    category: "Pasta",
+    subCategory: "Italian",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_e26b24",
+    image: fallback,
+    title: "Creamy Mushroom Pasta",
+    description: "Pasta tossed with mushrooms in a creamy white sauce.",
+    price: 249,
+    rating: 4.5,
+    prepTime: 12,
+    isVeg: true,
+
+    category: "Pasta",
+    subCategory: "Creamy",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [
+      {
+        id: "v1",
+        label: "Half",
+        price: 149,
+      },
+      {
+        id: "v2",
+        label: "Full",
+        price: 249,
+      },
+    ],
+  },
+  {
+    id: "fd_zeobd1",
+    image: fallback,
+    title: "Baked Pasta",
+    description: "Pasta baked with a cheesy tomato sauce till golden.",
+    price: 259,
+    rating: 4.7,
+    prepTime: 16,
+    isVeg: true,
+
+    category: "Pasta",
+    subCategory: "Baked",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  // Paste these objects into the `menu` array in menu.js
+  // Make sure menu.js has: import fallback from "../assets/images/fallback.jpg";
+
+  // ---- Rolls ----
+  {
+    id: "fd_vjs1qd",
+    image: fallback,
+    title: "Mushroom Roll",
+    description: "Sauteed spiced mushrooms rolled in a soft paratha.",
+    price: 149,
+    rating: 4.7,
+    prepTime: 10,
+    isVeg: true,
+
+    category: "Rolls",
+    subCategory: "Classic",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_xgxa6a",
+    image: fallback,
+    title: "Corn Cheese Roll",
+    description: "Sweet corn and melted cheese rolled in a soft paratha.",
+    price: 139,
+    rating: 4.8,
+    prepTime: 14,
+    isVeg: true,
+
+    category: "Rolls",
+    subCategory: "Cheese",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_xbv5db",
+    image: fallback,
+    title: "Achari Paneer Roll",
+    description: "Tangy pickle-spiced paneer rolled in a soft paratha.",
+    price: 169,
+    rating: 4.5,
+    prepTime: 18,
+    isVeg: true,
+
+    category: "Rolls",
+    subCategory: "Paneer",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_fkvke4",
+    image: fallback,
+    title: "Chilli Paneer Roll",
+    description: "Spicy Indo-Chinese paneer filling wrapped in a soft roti.",
+    price: 169,
+    rating: 4.6,
+    prepTime: 15,
+    isVeg: true,
+
+    category: "Rolls",
+    subCategory: "Paneer",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_skei82",
+    image: fallback,
+    title: "Kurkure Roll",
+    description:
+      "Crunchy fried filling rolled in a soft paratha for extra crisp.",
+    price: 159,
+    rating: 4.8,
+    prepTime: 8,
+    isVeg: true,
+
+    category: "Rolls",
+    subCategory: "Fried",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_uzycq3",
+    image: fallback,
+    title: "Peri Peri Veg Roll",
+    description: "Mixed veggies tossed in peri peri seasoning, rolled up.",
+    price: 149,
+    rating: 4.9,
+    prepTime: 18,
+    isVeg: true,
+
+    category: "Rolls",
+    subCategory: "Spicy",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+
+  // ---- Chinese ----
+  {
+    id: "fd_hv94ge",
+    image: fallback,
+    title: "Veg Manchurian Rice",
+    description: "Fried rice topped with veg manchurian in a tangy gravy.",
+    price: 229,
+    rating: 4.7,
+    prepTime: 5,
+    isVeg: true,
+
+    category: "Chinese",
+    subCategory: "Rice",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_2yaqop",
+    image: fallback,
+    title: "Singapore Noodles",
+    description:
+      "Stir-fried rice noodles tossed with vegetables and mild spices.",
+    price: 209,
+    rating: 4.7,
+    prepTime: 12,
+    isVeg: true,
+
+    category: "Chinese",
+    subCategory: "Noodles",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_bfghlb",
+    image: fallback,
+    title: "Veg Manchow Soup",
+    description: "Spicy, tangy soup loaded with vegetables and crispy noodles.",
+    price: 129,
+    rating: 4.8,
+    prepTime: 10,
+    isVeg: true,
+
+    category: "Chinese",
+    subCategory: "Soup",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_a36k8s",
+    image: fallback,
+    title: "Paneer Chilli Gravy",
+    description: "Paneer tossed in a rich, spicy chilli gravy sauce.",
+    price: 229,
+    rating: 4.6,
+    prepTime: 18,
+    isVeg: true,
+
+    category: "Chinese",
+    subCategory: "Paneer",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_dy7r86",
+    image: fallback,
+    title: "Dragon Potato",
+    description: "Crispy fried potatoes tossed in a fiery dragon sauce.",
+    price: 179,
+    rating: 4.7,
+    prepTime: 16,
+    isVeg: true,
+
+    category: "Chinese",
+    subCategory: "Fried",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_s5gw8f",
+    image: fallback,
+    title: "Chilli Garlic Veggies",
+    description: "Crisp vegetables tossed in a bold chilli garlic sauce.",
+    price: 199,
+    rating: 4.6,
+    prepTime: 18,
+    isVeg: true,
+
+    category: "Chinese",
+    subCategory: "Gravy",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+
+  // ---- South Indian ----
+  {
+    id: "fd_3ya23g",
+    image: fallback,
+    title: "Onion Dosa",
+    description: "Crispy rice crepe topped with finely chopped onions.",
+    price: 129,
+    rating: 4.7,
+    prepTime: 15,
+    isVeg: true,
+
+    category: "South Indian",
+    subCategory: "Dosa",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_8k3gpt",
+    image: fallback,
+    title: "Paneer Dosa",
+    description: "Crispy dosa stuffed with a spiced paneer filling.",
+    price: 169,
+    rating: 4.6,
+    prepTime: 15,
+    isVeg: true,
+
+    category: "South Indian",
+    subCategory: "Dosa",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_d0w39b",
+    image: fallback,
+    title: "Idli Fry",
+    description: "Steamed idlis pan-fried with a spiced tempering.",
+    price: 109,
+    rating: 4.5,
+    prepTime: 16,
+    isVeg: true,
+
+    category: "South Indian",
+    subCategory: "Idli",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_5u6g7p",
+    image: fallback,
+    title: "Rava Idli",
+    description: "Soft steamed semolina idlis served with sambar and chutney.",
+    price: 109,
+    rating: 4.6,
+    prepTime: 8,
+    isVeg: true,
+
+    category: "South Indian",
+    subCategory: "Idli",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_2pjnzn",
+    image: fallback,
+    title: "Bisi Bele Bath",
+    description: "Spiced rice and lentil dish loaded with vegetables.",
+    price: 139,
+    rating: 4.8,
+    prepTime: 20,
+    isVeg: true,
+
+    category: "South Indian",
+    subCategory: "Rice",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_86z2mj",
+    image: fallback,
+    title: "Coconut Rice",
+    description:
+      "Fragrant rice tempered with coconut, curry leaves and mustard seeds.",
+    price: 119,
+    rating: 4.6,
+    prepTime: 12,
+    isVeg: true,
+
+    category: "South Indian",
+    subCategory: "Rice",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+
+  // ---- Thali ----
+  {
+    id: "fd_28naw0",
+    image: fallback,
+    title: "Bengali Thali",
+    description: "Platter featuring classic Bengali curries and steamed rice.",
+    price: 279,
+    rating: 4.9,
+    prepTime: 8,
+    isVeg: true,
+
+    category: "Thali",
+    subCategory: "Regional",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_omxxc8",
+    image: fallback,
+    title: "Maharashtrian Thali",
+    description: "Traditional platter with varan bhaat and local specialties.",
+    price: 269,
+    rating: 4.8,
+    prepTime: 14,
+    isVeg: true,
+
+    category: "Thali",
+    subCategory: "Regional",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_ushfy4",
+    image: fallback,
+    title: "Kids Thali",
+    description: "A smaller, mild platter designed for children.",
+    price: 149,
+    rating: 4.6,
+    prepTime: 18,
+    isVeg: true,
+
+    category: "Thali",
+    subCategory: "Light",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_dy1bwq",
+    image: fallback,
+    title: "Weekend Special Thali",
+    description: "An extra-special platter with festive curries and dessert.",
+    price: 339,
+    rating: 4.9,
+    prepTime: 5,
+    isVeg: true,
+
+    category: "Thali",
+    subCategory: "Special",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_35htv3",
+    image: fallback,
+    title: "North Indian Thali",
+    description: "Platter with rich North Indian curries, dal, roti and rice.",
+    price: 259,
+    rating: 4.5,
+    prepTime: 10,
+    isVeg: true,
+
+    category: "Thali",
+    subCategory: "Regional",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_9fjw6s",
+    image: fallback,
+    title: "Executive Thali",
+    description: "A quick, balanced platter perfect for a working lunch.",
+    price: 199,
+    rating: 4.7,
+    prepTime: 5,
+    isVeg: true,
+
+    category: "Thali",
+    subCategory: "Value",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+
+  // ---- Snacks ----
+  {
+    id: "fd_nv2wy1",
+    image: fallback,
+    title: "Paneer Pakora",
+    description: "Crispy fried paneer fritters in a spiced gram flour batter.",
+    price: 149,
+    rating: 4.7,
+    prepTime: 5,
+    isVeg: true,
+
+    category: "Snacks",
+    subCategory: "Fried",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_7xecm1",
+    image: fallback,
+    title: "Sev Puri",
+    description: "Crisp puris topped with chutneys, potatoes and crunchy sev.",
+    price: 99,
+    rating: 4.5,
+    prepTime: 8,
+    isVeg: true,
+
+    category: "Snacks",
+    subCategory: "Street Food",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_tewujq",
+    image: fallback,
+    title: "Pani Puri",
+    description: "Crispy puris filled with spiced water, tamarind and potato.",
+    price: 79,
+    rating: 4.6,
+    prepTime: 16,
+    isVeg: true,
+
+    category: "Snacks",
+    subCategory: "Street Food",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_km22xe",
+    image: fallback,
+    title: "French Fries",
+    description: "Golden, crispy salted fries served hot.",
+    price: 119,
+    rating: 4.9,
+    prepTime: 14,
+    isVeg: true,
+
+    category: "Snacks",
+    subCategory: "Fried",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_5jx06j",
+    image: fallback,
+    title: "Masala Papad",
+    description:
+      "Roasted papad topped with chopped onions, tomatoes and spices.",
+    price: 69,
+    rating: 4.8,
+    prepTime: 10,
+    isVeg: true,
+
+    category: "Snacks",
+    subCategory: "Classic",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_cnpr6o",
+    image: fallback,
+    title: "Aloo Chaat",
+    description: "Crispy fried potatoes tossed in tangy chutneys and spices.",
+    price: 109,
+    rating: 4.8,
+    prepTime: 12,
+    isVeg: true,
+
+    category: "Snacks",
+    subCategory: "Street Food",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+
+  // ---- Desserts ----
+  {
+    id: "fd_cs3ls9",
+    image: fallback,
+    title: "Gajar Halwa",
+    description: "Traditional carrot halwa slow-cooked with milk and ghee.",
+    price: 119,
+    rating: 4.5,
+    prepTime: 10,
+    isVeg: true,
+
+    category: "Desserts",
+    subCategory: "Indian",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_c0tvq5",
+    image: fallback,
+    title: "Rabri",
+    description: "Thick, sweetened condensed milk flavoured with cardamom.",
+    price: 109,
+    rating: 4.6,
+    prepTime: 18,
+    isVeg: true,
+
+    category: "Desserts",
+    subCategory: "Indian",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_rllsiy",
+    image: fallback,
+    title: "Vanilla Ice Cream Sundae",
+    description: "Vanilla ice cream topped with chocolate sauce and nuts.",
+    price: 129,
+    rating: 4.9,
+    prepTime: 15,
+    isVeg: true,
+
+    category: "Desserts",
+    subCategory: "Cold",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_nhfxml",
+    image: fallback,
+    title: "Cheesecake",
+    description: "Rich, creamy baked cheesecake with a biscuit base.",
+    price: 159,
+    rating: 4.8,
+    prepTime: 12,
+    isVeg: true,
+
+    category: "Desserts",
+    subCategory: "Baked",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_52ivma",
+    image: fallback,
+    title: "Moong Dal Halwa",
+    description: "Classic lentil halwa slow-cooked with ghee and nuts.",
+    price: 129,
+    rating: 4.6,
+    prepTime: 14,
+    isVeg: true,
+
+    category: "Desserts",
+    subCategory: "Indian",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_s0g40i",
+    image: fallback,
+    title: "Angoori Rasmalai",
+    description: "Bite-sized rasmalai balls soaked in sweetened milk.",
+    price: 139,
+    rating: 4.7,
+    prepTime: 18,
+    isVeg: true,
+
+    category: "Desserts",
+    subCategory: "Indian",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+
+  // ---- Beverages ----
+  {
+    id: "fd_sdi5pt",
+    image: fallback,
+    title: "Oreo Shake",
+    description: "Creamy milkshake blended with crushed Oreo cookies.",
+    price: 139,
+    rating: 4.7,
+    prepTime: 15,
+    isVeg: true,
+
+    category: "Beverages",
+    subCategory: "Cold",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_el6jxt",
+    image: fallback,
+    title: "Virgin Mojito",
+    description: "Refreshing mint and lime mocktail, served chilled.",
+    price: 109,
+    rating: 4.9,
+    prepTime: 8,
+    isVeg: true,
+
+    category: "Beverages",
+    subCategory: "Cold",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_empiwq",
+    image: fallback,
+    title: "Watermelon Juice",
+    description: "Fresh, chilled watermelon juice.",
+    price: 89,
+    rating: 4.7,
+    prepTime: 12,
+    isVeg: true,
+
+    category: "Beverages",
+    subCategory: "Cold",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_jau3qk",
+    image: fallback,
+    title: "Filter Coffee",
+    description: "Traditional South Indian style strong filter coffee.",
+    price: 59,
+    rating: 4.7,
+    prepTime: 10,
+    isVeg: true,
+
+    category: "Beverages",
+    subCategory: "Hot",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_885zvy",
+    image: fallback,
+    title: "Strawberry Shake",
+    description: "Creamy shake blended with fresh strawberries.",
+    price: 129,
+    rating: 4.8,
+    prepTime: 18,
+    isVeg: true,
+
+    category: "Beverages",
+    subCategory: "Cold",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
+  },
+  {
+    id: "fd_b50rq6",
+    image: fallback,
+    title: "Green Tea",
+    description: "Light and refreshing green tea, served hot.",
+    price: 49,
+    rating: 4.6,
+    prepTime: 8,
+    isVeg: true,
+
+    category: "Beverages",
+    subCategory: "Hot",
+
+    isChefSpecial: false,
+    isCraving: false,
+    isPopular: false,
+
+    variants: [],
   },
 ];
