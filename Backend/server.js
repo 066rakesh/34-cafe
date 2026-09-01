@@ -5,6 +5,8 @@ import { connectDB } from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
 import deliveryRoutes from "./routes/deliveryRoutes.js";
 import addressRoutes from "./routes/addressRoutes.js";
+import dns from "dns";
+dns.setDefaultResultOrder("ipv4first");
 
 const app = express();
 
