@@ -70,19 +70,18 @@
 }
 
 .cuisines {
-  margin: 4rem 0 2rem;
+  margin: 0.5rem 0 2rem;
 }
 
 .cuisines h3 {
-  color: var(--text-heading);
+  color: var(--text-body);
   font-size: clamp(1.8rem, 3.5vw, 2.2rem);
   font-weight: 700;
-  margin: 1.5rem 0;
 }
 
 .slide {
   width: fit-content !important;
-  margin: clamp(1.2rem, 2vw, 2.5rem) 0;
+  margin: 1.5rem 0;
 }
 
 .card {
@@ -174,6 +173,10 @@
   .form {
     margin-top: 2rem;
   }
+
+  .cuisines {
+    margin-bottom: 1rem;
+  }
 }
 
 @media (max-width: 500px) {
@@ -184,7 +187,7 @@
 
 @media (max-width: 426px) {
   .form {
-    margin: 0.5rem;
+    margin: 0.5rem 0 2rem;
     width: 100%;
   }
 }

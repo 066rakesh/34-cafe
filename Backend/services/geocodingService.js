@@ -1,5 +1,4 @@
 import axios from "axios";
-import User from "../models/user.js";
 
 const getAddressComponent = (components, type) => {
   const component = components.find((item) => item.types?.includes(type));
