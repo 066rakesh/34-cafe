@@ -5,8 +5,7 @@ import { connectDB } from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
 import deliveryRoutes from "./routes/deliveryRoutes.js";
 import addressRoutes from "./routes/addressRoutes.js";
-import dns from "dns";
-dns.setDefaultResultOrder("ipv4first");
+import chatbotRoutes from "./routes/chatbotRoutes.js";
 
 const app = express();
 
@@ -20,6 +19,8 @@ app.use("/api/auth", authRoutes);
 app.use("/api/delivery", deliveryRoutes);
 
 app.use("/api/addresses", addressRoutes);
+
+app.use("/api/chatbot", chatbotRoutes);
 
 app.get("/", (req, res) => {
   res.send("server is running...");

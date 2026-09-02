@@ -1,21 +1,20 @@
-import nodemailer from "nodemailer";
+import { BrevoClient } from "@getbrevo/brevo";
 
-const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 465,
-  secure: true,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-  family: 4,
-});
+const brevo = new BrevoClient({ apiKey: process.env.BREVO_API_KEY });
 
 export const sendOtpEmail = async (email, otp) => {
-  await transporter.sendMail({
-    from: process.env.EMAIL_USER,
-    to: email,
-    subject: "Your Login OTP - 34 Paapi Pet Cafe",
-    text: `Your OTP is ${otp}. It is valid for 5 minutes.`,
-  });
+  try {
+    await brevo.transactionalEmails.sendOtpEmail({
+      subject: "Your Login OTP - 34 Paapi Pet Cafe",
+      textContent: `Your OTP is ${otp}. It is valid for 5 minutes.`,
+      sender: {
+        name: "34 Paapi Pet Cafe",
+        email: process.env.BREVO_SENDER_EMAIL,
+      },
+      to: [{ email }],
+    });
+  } catch (error) {
+    console.error("Brevo error", error);
+    throw error;
+  }
 };
