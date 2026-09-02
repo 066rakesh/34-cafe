@@ -27,11 +27,12 @@
   margin: 3rem auto;
   background: #fff;
   border: 1.5px solid #d4d5d9;
-  transition: border-color 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.2s ease;
 }
 
 .form:focus-within {
-  border-color: var(--color-primary-dark);
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.06);
 }
 
 .form input {

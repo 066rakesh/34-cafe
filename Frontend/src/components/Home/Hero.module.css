@@ -131,7 +131,6 @@
 
 .statsCard:hover .arrow {
   transform: translateX(4px);
-  background: var(--color-primary-dark);
 }
 
 .arrow svg {

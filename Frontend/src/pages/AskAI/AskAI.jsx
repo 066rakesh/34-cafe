@@ -3,10 +3,42 @@ import styles from "./AskAI.module.css";
 import { LuArrowUp, LuSparkles, IconChefHat } from "../../assets/icons/icon";
 import { DesktopNavbarSkeleton } from "../../components/Common/DesktopNavbarSkeleton";
 import { AuthContext } from "../../context/AuthContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import { chatbot } from "../../services/chatbotService";
 
 export const AskAI = () => {
   const { loading } = useContext(AuthContext);
+  const [messages, setMessages] = useState([
+    { sender: "ai", text: "Hello! What would you like to eat?" },
+  ]);
+  const [input, setInput] = useState("");
+  const [aiTyping, setAiTyping] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!input.trim()) return;
+
+    const userMessage = { sender: "user", text: input };
+    setMessages((prev) => [...prev, userMessage]);
+    setInput("");
+    setAiTyping(true);
+
+    try {
+      const response = await chatbot(input);
+      const aimessage = { sender: "ai", text: response.data.reply };
+      setMessages((prev) => [...prev, aimessage]);
+    } catch (error) {
+      console.log("Chatbot error", error);
+      const errorMessage = {
+        sender: "ai",
+        message: "Sorry, please try again!",
+      };
+      setMessages((prev) => [...prev, errorMessage]);
+    } finally {
+      setAiTyping(false);
+    }
+  };
 
   return (
     <main className={styles.askAi}>
@@ -24,22 +56,37 @@ export const AskAI = () => {
 
         <section className={styles.chat}>
           <div className={styles.messages}>
-            <div className={`${styles.message} ${styles.ai}`}>
-              <div className={styles.aiAvatar}>
-                <IconChefHat size={20} stroke={2} />
+            {messages.map((msg, index) => (
+              <div
+                key={index}
+                className={`${styles.message} ${msg.sender === "ai" ? styles.ai : styles.user}`}
+              >
+                {msg.sender === "ai" && (
+                  <div className={styles.aiAvatar}>
+                    <IconChefHat size={20} strokeWidth={2} />
+                  </div>
+                )}
+                <div className={styles.bubble}>{msg.text}</div>
               </div>
-              <div className={styles.bubble}>
-                Hello! What would you like to eat?
-              </div>
-            </div>
+            ))}
 
-            <div className={`${styles.message} ${styles.user}`}>
-              <div className={styles.bubble}>Suggest something spicy</div>
-            </div>
+            {aiTyping && (
+              <div className={`${styles.message} ${styles.ai}`}>
+                <div className={styles.aiAvatar}>
+                  <IconChefHat size={20} strokeWidth={2} />
+                </div>
+
+                <div className={styles.typingDots}>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+            )}
           </div>
         </section>
 
-        <form className={styles.form} onSubmit={(e) => e.preventDefault()}>
+        <form className={styles.form} onSubmit={handleSubmit}>
           <input
             type="text"
             name="text"
@@ -49,6 +96,8 @@ export const AskAI = () => {
             spellCheck={false}
             aria-label="ask-ai"
             autoFocus
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
           />
           <button type="submit" aria-label="Send message">
             <LuArrowUp className={styles.searchIcon} />

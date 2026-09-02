@@ -76,13 +76,6 @@
   gap: clamp(5px, 2vw, 15px);
   border-radius: 3rem;
   text-decoration: none;
-  transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
-}
-
-.btn:hover {
-  background: var(--color-primary-dark);
-  transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgba(249, 115, 22, 0.3);
 }
 
 .btnText {
