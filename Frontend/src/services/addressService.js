@@ -1,13 +1,13 @@
 import API from "./api";
 
 export const createAddress = async (addressData) => {
-  return API.post("/addresses", addressData);
+  return API.post("/api/addresses", addressData);
 };
 
 export const getAddressesApi = async () => {
-  return API.get("/addresses");
+  return API.get("/api/addresses");
 };
 
 export const deleteAddressApi = async (addressId) => {
-  return API.delete(`/addresses/${addressId}`);
+  return API.delete(`/api/addresses/${addressId}`);
 };
