@@ -1,5 +1,4 @@
 import { ArrowLeft, Plus, Home } from "../../assets/icons/icon";
-import { useNavigate } from "react-router-dom";
 import styles from "./Checkout.module.css";
 import { SummaryCard } from "../../components/Checkout/SummaryCard";
 import { useContext, useEffect, useState } from "react";
@@ -18,12 +17,10 @@ export const Checkout = () => {
   const [showUserAddresses, setShowUserAddresses] = useState(false);
   const [selectedAddress, setSelectedAddress] = useState(null);
 
-  const { getAddresses, userAddresses, addressesLoading } =
+  const { getAddresses, userAddresses, getAddressesLoading } =
     useContext(AddressContext);
   const { user } = useContext(AuthContext);
   const { cartItems } = useContext(CartContext);
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (showAddressDrawer || showUserAddresses) {
@@ -64,7 +61,7 @@ export const Checkout = () => {
       <DesktopNavbar />
       <div className={styles.container}>
         <section className={styles.left}>
-          {addressesLoading ? (
+          {getAddressesLoading ? (
             <AddressSkeleton />
           ) : (
             <>
