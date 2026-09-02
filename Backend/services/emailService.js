@@ -4,7 +4,7 @@ const brevo = new BrevoClient({ apiKey: process.env.BREVO_API_KEY });
 
 export const sendOtpEmail = async (email, otp) => {
   try {
-    await brevo.transactionalEmails.sendOtpEmail({
+    await brevo.transactionalEmails.sendTransacEmail({
       subject: "Your Login OTP - 34 Paapi Pet Cafe",
       textContent: `Your OTP is ${otp}. It is valid for 5 minutes.`,
       sender: {
