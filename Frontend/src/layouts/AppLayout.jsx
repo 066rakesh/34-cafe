@@ -5,22 +5,14 @@ import { AuthModal } from "../components/Auth/AuthModal";
 import { AuthProvider } from "../context/AuthContext";
 import { NetworkStatus } from "../components/Common/NetworkStatus";
 
-const routesWithoutFooter = [
-  "/search",
-  "/ask-ai",
-  "/checkout",
-  "/payment",
-  "/menu/food",
-];
+const routesWithFooter = ["/", "/menu"];
 
 const routesWithoutFooterNavbar = ["/checkout", "/menu/food"];
 
 export const AppLayout = () => {
   const location = useLocation();
 
-  const hideFooter = routesWithoutFooter.some((path) =>
-    location.pathname.startsWith(path)
-  );
+  const showFooter = routesWithFooter.includes(location.pathname);
 
   const hideFooterNavbar = routesWithoutFooterNavbar.some((path) =>
     location.pathname.startsWith(path)
@@ -32,7 +24,7 @@ export const AppLayout = () => {
         <NetworkStatus />
         <Outlet />
 
-        {!hideFooter && <Footer />}
+        {showFooter && <Footer />}
 
         <AuthModal />
         {!hideFooterNavbar && <FooterNavbar />}
