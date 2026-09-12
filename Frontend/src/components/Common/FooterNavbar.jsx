@@ -6,12 +6,17 @@ import {
   Search,
 } from "../../assets/icons/icon";
 import { NavLink } from "react-router-dom";
+import { ScrollBar } from "../../hooks/scrollBar";
 
 export const FooterNavbar = () => {
   const getNavLinkClass = ({ isActive }) => (isActive ? styles.active : "");
+  const isHidden = ScrollBar();
 
   return (
-    <nav className={styles.navbar} aria-label="Mobile navigation">
+    <nav
+      className={`${styles.navbar} ${isHidden ? styles.hidden : ""}`}
+      aria-label="Mobile navigation"
+    >
       <NavLink to="/" end className={getNavLinkClass}>
         <span className={styles.navIconWrap}>
           <Home size={22} />

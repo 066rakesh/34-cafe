@@ -42,9 +42,9 @@ export const Hero = () => {
             </div>
           </Link>
 
-          <Link to="/ask-ai" end className={styles.statsCard}>
+          <Link to="/ask-ai" className={styles.statsCard}>
             <div className={styles.top}>
-              <h2>Ask Ai</h2>
+              <h2>Ask AI</h2>
               <p>
                 Get personalized meal recommendations based on your taste and
                 budget.
@@ -55,7 +55,7 @@ export const Hero = () => {
                 <FaArrowRight />
               </span>
 
-              <img src={ai} alt="AI assistant illustration" />
+              <img src={ai} alt="AI assistant illustration" loading="lazy"/>
             </div>
           </Link>
 
@@ -72,7 +72,7 @@ export const Hero = () => {
                 <FaArrowRight />
               </span>
 
-              <img src={about} alt="Restaurant illustration" />
+              <img src={about} alt="Restaurant illustration" loading="lazy" />
             </div>
           </Link>
         </div>

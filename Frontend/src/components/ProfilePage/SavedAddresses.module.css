@@ -1,0 +1,245 @@
+.page {
+  margin-top: 6.5rem;
+  padding: 2.5rem 0;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #fff7ed 0%, #fffbeb 100%);
+  display: flex;
+  justify-content: center;
+}
+
+.wrap {
+  width: min(94%, 700px);
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1c1917;
+  margin: 0 0 1.8rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px dashed var(--text-muted);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin: 0 0 1.6rem;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #eee;
+  border-radius: 1.6rem;
+  /* box-shadow: 0 1.2rem 2.8rem rgba(190, 18, 60, 0.06); */
+  padding: 3rem 2rem;
+  display: flex;
+  gap: 1.4rem;
+  position: relative;
+}
+
+.icon {
+  width: 4.2rem;
+  height: 4.2rem;
+  border-radius: 1.1rem;
+  background: linear-gradient(135deg, #be123c 0%, #f97316 100%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.info {
+  flex: 1;
+  min-width: 0;
+}
+
+.typeRow {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.4rem;
+}
+
+.type {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1c1917;
+}
+
+.defaultBadge {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #15803d;
+  background: #f0fdf4;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+}
+
+.addressText {
+  font-size: 1.3rem;
+  color: #57534e;
+  line-height: 1.6;
+}
+
+.menuWrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.menuBtn {
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a8a29e;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+}
+
+.menuBtn:hover {
+  background: #f5f5f4;
+}
+
+.menuDropdown {
+  position: absolute;
+  top: 3.6rem;
+  right: 0;
+  background: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 0.8rem 2.4rem rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  z-index: 5;
+  min-width: 14rem;
+}
+
+.menuItem {
+  padding: 1.2rem 1.4rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #dc2626;
+  cursor: pointer;
+}
+
+.menuItem:hover {
+  background: #fef2f2;
+}
+
+.addBtn {
+  margin: 0 1.2rem;
+  width: calc(100% - 2.4rem);
+  padding: 1.4rem;
+  border-radius: 1.2rem;
+  border: 1.5px dashed #f97316;
+  background: #fff7ed;
+  color: #c2410c;
+  font-size: 1.4rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  cursor: pointer;
+}
+
+.empty {
+  text-align: center;
+  padding: 5rem 2rem;
+  color: #a8a29e;
+  margin: 0 1.2rem 2rem;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(28, 25, 23, 0.4);
+  z-index: 15;
+}
+
+.confirmOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(28, 25, 23, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  padding: 1.6rem;
+}
+
+.confirmCard {
+  background: #ffffff;
+  border-radius: 1.6rem;
+  padding: 2.4rem;
+  max-width: 36rem;
+  width: 100%;
+  text-align: center;
+}
+
+.confirmCard h3 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1c1917;
+  margin-bottom: 0.8rem;
+}
+
+.confirmCard p {
+  font-size: 1.3rem;
+  color: #78716c;
+  margin-bottom: 2rem;
+}
+
+.confirmActions {
+  display: flex;
+  gap: 1rem;
+}
+
+.confirmBtn {
+  flex: 1;
+  padding: 1.1rem;
+  border-radius: 0.9rem;
+  font-size: 1.35rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+.cancelBtn {
+  background: #f5f5f4;
+  color: #44403c;
+}
+
+.deleteBtn {
+  background: #dc2626;
+  color: #ffffff;
+}
+
+.deleteBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding-top: 2rem;
+  }
+
+  .wrap {
+    width: 94%;
+  }
+
+  .card {
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (max-width: 426px) {
+  .page {
+    margin-top: 5rem;
+  }
+}

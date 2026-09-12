@@ -3,6 +3,9 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
+}
+
+html {
   font-size: 62.5%;
 }
 
@@ -15,6 +18,7 @@
   --color-primary-tint: #ffedd5;
   --color-success: #16a34a;
   --color-warning: #dc2626;
+  --color-accent: #facc15;
   --color-theme: linear-gradient(135deg, #be123c 0%, #f97316 50%, #facc15 100%);
 
   /* Text colors */

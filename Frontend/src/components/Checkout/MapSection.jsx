@@ -7,12 +7,13 @@ import {
 import styles from "./MapSection.module.css";
 import { CAFE_LOCATION } from "../../constants/location";
 import { LocateFixed, MapPin } from "../../assets/icons/icon";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { AddressContext } from "../../context/AddressContext";
 import { useGeolocation } from "../../hooks/useGeolocation";
 
 const MapController = ({ userLocation }) => {
   const map = useMap();
+  const hasZoomedRef = useRef(false);
 
   useEffect(() => {
     if (!map || !userLocation) return;
@@ -21,7 +22,11 @@ const MapController = ({ userLocation }) => {
       lat: userLocation.latitude,
       lng: userLocation.longitude,
     });
-    map.setZoom(16);
+
+    if (!hasZoomedRef.current) {
+      map.setZoom(16);
+      hasZoomedRef.current = true;
+    }
   }, [map, userLocation]);
 
   return null;
@@ -40,7 +45,7 @@ export const MapSection = () => {
         <Map
           className={styles.map}
           defaultCenter={CAFE_LOCATION}
-          defaultZoom={13}
+          defaultZoom={12}
           gestureHandling="greedy"
           disableDefaultUI={true}
           mapId="fa9e2a471980d129c2add30a"
@@ -69,6 +74,7 @@ export const MapSection = () => {
           type="button"
           className={styles.locationBtn}
           onClick={handleCurrentLocation}
+          aria-label="Use current location"
         >
           <LocateFixed size={35} strokeWidth={1.8} />
         </button>
@@ -80,6 +86,13 @@ export const MapSection = () => {
       {locationError && (
         <div className={styles.locationError}>
           <p>{locationError}</p>
+        </div>
+      )}
+
+      {!userLocation && !locationLoading && !locationError && (
+        <div className={styles.locationHint}>
+          <LocateFixed size={25} />
+          <p>Tap the marker to set your location. or search above</p>
         </div>
       )}
     </div>

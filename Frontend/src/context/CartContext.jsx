@@ -13,9 +13,9 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem("cart", JSON.stringify(cartItems));
   }, [cartItems]);
 
-  const addToCart = (product, variant = null) => {
+  const addToCart = (food, variant = null) => {
     setCartItems((currentItems) => {
-      const cartItemId = variant ? `${product.id}_${variant.id}` : product.id;
+      const cartItemId = variant ? `${food._id}_${variant._id}` : food._id;
 
       const existingItems = currentItems.find((item) => item.id === cartItemId);
 
@@ -30,12 +30,12 @@ export const CartProvider = ({ children }) => {
       return [
         ...currentItems,
         {
-          ...product,
+          ...food,
 
           id: cartItemId,
-          variantId: variant?.id,
+          variantId: variant?._id,
           variantLabel: variant?.label,
-          price: variant?.price ?? product.price,
+          price: variant?.price ?? food.price,
 
           quantity: 1,
         },
@@ -63,6 +63,10 @@ export const CartProvider = ({ children }) => {
     });
   };
 
+  const clearCart = () => {
+    setCartItems([]);
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -71,6 +75,7 @@ export const CartProvider = ({ children }) => {
         addToCart,
         increaseQuantity,
         decreaseQuantity,
+        clearCart,
       }}
     >
       {children}

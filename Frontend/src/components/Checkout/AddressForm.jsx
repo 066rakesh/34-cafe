@@ -21,6 +21,7 @@ export const AddressForm = ({ setShowAddressDrawer }) => {
     landmark: "",
     addressType: "",
   });
+  const [submitError, setSubmitError] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -33,6 +34,10 @@ export const AddressForm = ({ setShowAddressDrawer }) => {
 
   const handleAddressSubmit = async (e) => {
     e.preventDefault();
+
+    if (!userLocation || !locationData.available) {
+      return;
+    }
     const newErrors = {};
 
     if (address.houseNumber.trim() === "")
@@ -54,6 +59,8 @@ export const AddressForm = ({ setShowAddressDrawer }) => {
       address: locationData.location.address,
     };
 
+    submitError(false);
+
     try {
       await handleCreateAddress(addressData);
       setAddress({
@@ -65,6 +72,7 @@ export const AddressForm = ({ setShowAddressDrawer }) => {
       setShowAddressDrawer(false);
     } catch (error) {
       console.log(error);
+      submitError(true);
     }
   };
 
@@ -198,6 +206,12 @@ export const AddressForm = ({ setShowAddressDrawer }) => {
           />
           <span>Make this is my default address</span>
         </div>
+
+        {submitError && (
+          <p className={styles.submitErr}>
+            Unable to save address. Please try again.
+          </p>
+        )}
 
         <button
           type="submit"

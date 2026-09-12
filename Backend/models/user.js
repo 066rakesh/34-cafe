@@ -23,6 +23,12 @@ const userSchema = new mongoose.Schema(
       trim: true,
     },
 
+    role: {
+      type: String,
+      enum: ["customer", "admin"],
+      default: "customer",
+    },
+
     otp: {
       type: String,
       default: null,
@@ -34,7 +40,7 @@ const userSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  },
+  }
 );
 
 const User = mongoose.model("User", userSchema);

@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://three4-cafe.onrender.com",
+  // baseURL: "https://three4-cafe.onrender.com",
+  baseURL: "http://localhost:5000",
 });
 
 API.interceptors.request.use((config) => {
@@ -24,7 +25,7 @@ API.interceptors.response.use(
     }
 
     return Promise.reject(error);
-  },
+  }
 );
 
 export default API;

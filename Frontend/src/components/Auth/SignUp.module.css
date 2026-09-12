@@ -12,7 +12,6 @@
 
 .crossBtn {
   width: fit-content;
-  font-size: 4rem;
   cursor: pointer;
   color: var(--text-body);
   border: none;

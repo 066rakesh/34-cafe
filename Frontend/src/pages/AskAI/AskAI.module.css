@@ -1,5 +1,5 @@
 .askAi {
-  height: 100svh;
+  min-height: 100svh;
   overflow: hidden;
   padding-top: 6.5rem;
   display: flex;
@@ -38,11 +38,10 @@
 }
 
 .chat {
-  margin: 3.5rem auto 0;
+  margin: 2.5rem auto 0;
   width: min(100%, 700px);
   padding-right: 0.8rem;
   flex: 1;
-  overflow-y: auto;
 }
 
 .message {

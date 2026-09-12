@@ -1,22 +1,7 @@
 .search {
-  padding-top: 6.5rem;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.wrapper {
   width: min(92%, 900px);
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  min-height: 0;
-}
-
-.fixedTop {
-  flex-shrink: 0;
+  padding: 6.5rem 0 3rem;
 }
 
 .form {
@@ -24,11 +9,14 @@
   align-items: center;
   padding: 0 1.8rem;
   height: clamp(4.5rem, 9vw, 5.5rem);
-  margin: 3rem auto;
+  margin: 3rem auto 2rem;
   background: #fff;
   border: 1.5px solid #d4d5d9;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
   transition: box-shadow 0.2s ease;
+  position: sticky;
+  top: 6.5rem;
+  z-index: 99;
 }
 
 .form:focus-within {
@@ -47,8 +35,8 @@
 
 .form input::placeholder {
   font-size: inherit;
-  color: var(--text-muted);
-  font-weight: 600;
+  color: var(--text-body);
+  font-weight: 500;
 }
 
 .searchBtn {
@@ -139,43 +127,17 @@
   color: var(--color-primary-dark);
 }
 
-.scrollArea {
-  flex: 1;
-  min-height: 0;
-  overflow-y: auto;
-  padding-bottom: 3rem;
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-primary-dark) transparent;
-}
-
-.scrollArea::-webkit-scrollbar {
-  width: 0.6rem;
-}
-
-.scrollArea::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.scrollArea::-webkit-scrollbar-thumb {
-  background: var(--color-primary-dark);
-  border-radius: 10rem;
-}
-
-.scrollArea::-webkit-scrollbar-thumb:hover {
-  opacity: 0.85;
-}
-
 @media (max-width: 768px) {
-  .wrapper {
+  .search {
     width: 94%;
-  }
-
-  .form {
-    margin-top: 2rem;
   }
 
   .cuisines {
     margin-bottom: 1rem;
+  }
+
+  .form {
+    top: 6rem;
   }
 }
 
@@ -189,5 +151,6 @@
   .form {
     margin: 0.5rem 0 2rem;
     width: 100%;
+    top: 5.5rem;
   }
 }

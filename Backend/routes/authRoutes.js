@@ -4,7 +4,6 @@ import {
   getMe,
   login,
   signup,
-  updateMe,
   verifyOtp,
 } from "../controllers/authController.js";
 
@@ -17,7 +16,5 @@ router.post("/login", login);
 router.post("/verify-otp", verifyOtp);
 
 router.get("/me", authMiddleware, getMe);
-
-router.put("/me", authMiddleware, updateMe);
 
 export default router;

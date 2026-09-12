@@ -68,12 +68,12 @@
 }
 
 .btn {
-  padding: 1.3rem 2rem;
+  padding: 0.9rem 2rem;
   background: var(--color-theme);
   width: fit-content;
   display: flex;
   align-items: center;
-  gap: clamp(5px, 2vw, 15px);
+  gap: 1.5rem;
   border-radius: 3rem;
   text-decoration: none;
 }
@@ -89,13 +89,16 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   background: white;
   color: var(--color-primary);
   border-radius: 50%;
-  font-size: clamp(1.8rem, 2.5vw, 2.4rem);
   transition: transform .25s ease;
+}
+
+.arrow svg {
+  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
 }
 
 .btn:hover .arrow {

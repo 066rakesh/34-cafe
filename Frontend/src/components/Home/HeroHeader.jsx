@@ -1,16 +1,17 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import styles from "./HeroHeader.module.css";
 import { useContext } from "react";
-import { UIContext } from "../../context/UIContext";
 import { AuthContext } from "../../context/AuthContext";
 import { FaUser } from "../../assets/icons/icon";
 
 export const HeroHeader = () => {
-  const { setIsAuthOpen, setIsProfileOpen } = useContext(UIContext);
-  const { user } = useContext(AuthContext);
+  const { setIsAuthOpen, user } = useContext(AuthContext);
+
   const getNavLinkClass = ({ isActive }) => {
     return isActive ? styles.active : "";
   };
+
+  const navigate = useNavigate();
 
   return (
     <header className={styles.header}>
@@ -35,16 +36,14 @@ export const HeroHeader = () => {
       </nav>
 
       <div className={styles.btn}>
-        <NavLink to="/contact" className={getNavLinkClass}>
-          Contact Us
-        </NavLink>
+        <Link to="/about">About Us</Link>
 
         {user ? (
           <button
             type="button"
             className={styles.user}
             aria-label="profile"
-            onClick={() => setIsProfileOpen(true)}
+            onClick={() => navigate("/profile")}
           >
             <FaUser />
           </button>
@@ -53,7 +52,7 @@ export const HeroHeader = () => {
             type="button"
             className={styles.signBtn}
             aria-label="sign in"
-            onClick={() => setIsAuthOpen("login")}
+            onClick={() => setIsAuthOpen(true)}
           >
             Sign In
           </button>

@@ -1,5 +1,5 @@
 .addressField {
-  margin: 5rem 0 2rem;
+  margin: 3rem 0 2rem;
   padding: 2rem 1.5rem;
   background: #fff;
   border: 1px solid #eeeeee;
@@ -158,10 +158,16 @@
 }
 
 .error {
-  color: #dc2626;
+  color: var(--color-warning);
   font-size: 1.3rem;
   margin-top: -1rem;
   margin-bottom: 2rem;
+}
+
+.submitErr {
+  margin: 2rem 0 -3.5rem;
+  color: var(--color-warning);
+  font-size: 1.3rem;
 }
 
 .proceedBtn {

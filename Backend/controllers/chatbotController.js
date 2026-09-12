@@ -25,7 +25,7 @@ export const chatbot = async (req, res) => {
       prepTime: item.prepTime,
     }));
 
-    const model = genAI.getGenerativeModel({ model: "gemini-3.6-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-lite" });
 
     const prompt = `You are a friendly food assistant for "34 Cafe".
     Only recommend items from this menu list: ${JSON.stringify(trimmedMenu)}

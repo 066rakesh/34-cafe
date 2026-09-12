@@ -2,15 +2,12 @@ import styles from "./Login.module.css";
 import { RxCross2 } from "../../assets/icons/icon";
 import logo from "../../assets/images/logo_black.svg";
 import { useContext, useState } from "react";
-import { UIContext } from "../../context/UIContext";
 import { loginUser, verifyOtp } from "../../services/authService";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 export const Login = () => {
-  const { setIsAuthOpen, setAuthMode } = useContext(UIContext);
-
-  const { fetchUser } = useContext(AuthContext);
+  const { setIsAuthOpen, setAuthMode, fetchUser } = useContext(AuthContext);
 
   const [showOtp, setShowOtp] = useState(false);
   const [otp, setOtp] = useState("");
@@ -113,7 +110,7 @@ export const Login = () => {
         aria-label="Close login"
         onClick={() => setIsAuthOpen(false)}
       >
-        <RxCross2 />
+        <RxCross2 size={25} />
       </button>
 
       <div className={styles.top}>

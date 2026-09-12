@@ -5,19 +5,27 @@ import { DesktopNavbar } from "../../components/Common/DesktopNavbar";
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import { CartBottomBar } from "../../components/Common/CartBottomBar";
-import { menu } from "../../data/menu";
+import { ProductContext } from "../../context/ProductContext";
 
 export const FoodDetails = () => {
-  const { slugId } = useParams();
-  const match = slugId.match(/fd_[a-z0-9]+$/);
-  const id = match ? match[0] : null;
+  const { products, productsLoading } = useContext(ProductContext);
+
+  const { foodId } = useParams();
 
   const { cartItems, addToCart, increaseQuantity, decreaseQuantity } =
     useContext(CartContext);
 
-  const food = menu.find((item) => String(item.id) === String(id));
+  const food = products.find((item) => item._id === foodId);
 
-  const cartItem = cartItems.find((item) => item.id === food.id);
+  if (productsLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!food) {
+    return <div>Product not found</div>;
+  }
+
+  const cartItem = cartItems.find((item) => item.id === food._id);
 
   return (
     <div className={styles.page}>
@@ -59,16 +67,16 @@ export const FoodDetails = () => {
                 <div className={styles.cartBtn}>
                   <button
                     type="submit"
-                    onClick={() => increaseQuantity(food.id)}
+                    onClick={() => decreaseQuantity(food._id)}
                   >
-                    <Plus size={20} />
+                    <Minus size={20} />
                   </button>
                   <span>{cartItem.quantity}</span>
                   <button
                     type="submit"
-                    onClick={() => decreaseQuantity(food.id)}
+                    onClick={() => increaseQuantity(food._id)}
                   >
-                    <Minus size={20} />
+                    <Plus size={20} />
                   </button>
                 </div>
               ) : (
@@ -87,14 +95,14 @@ export const FoodDetails = () => {
           <div className={styles.variantSection}>
             <h2>Select Option</h2>
             {food.variants?.map((item) => {
-              const cartItemId = `${food.id}_${item.id}`;
+              const cartItemId = `${food._id}_${item._id}`;
 
               const cartItem = cartItems.find(
                 (cartItem) => cartItem.id === cartItemId
               );
 
               return (
-                <div className={styles.variantLayout} key={item.id}>
+                <div className={styles.variantLayout} key={item._id}>
                   <div className={styles.left}>
                     <h3>{food.title}</h3>
                     <span className={styles.optionName}>{item.label}</span>

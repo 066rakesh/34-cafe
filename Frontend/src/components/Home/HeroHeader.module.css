@@ -1,7 +1,8 @@
 .header {
   width: min(92%, 1300px);
   margin: 2.5rem auto;
-  height: 6rem;
+  min-height: 6rem;
+  padding-block: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -15,28 +16,19 @@
   justify-content: center;
   gap: 0.8rem;
   text-decoration: none;
-  transition: opacity 0.3s ease;
-}
-
-.brand:hover {
-  opacity: 0.9;
 }
 
 .brand .number {
   color: var(--text-on-dark);
-  font-size: 2.6rem;
+  font-size: 3.2rem;
   font-weight: 800;
-  border-radius: 1.3rem;
-  padding: 0.5rem 1rem;
-  background: rgba(255, 255, 255, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 .brand .text {
   color: var(--text-on-dark);
   letter-spacing: 0.2rem;
   font-weight: 700;
-  font-size: clamp(1.4rem, 3.5vw, 1.8rem);
+  font-size: 1.6rem;
   padding-left: 0.8rem;
   border-left: 1px solid rgba(255, 255, 255, 0.5);
   white-space: nowrap;
@@ -51,11 +43,27 @@
 .menuItems a {
   color: var(--text-on-dark);
   text-decoration: none;
-  font-size: 1.8rem;
+  font-size: clamp(1.5rem, 3.5vw, 1.8rem);
   font-weight: 600;
   transition:
     opacity 0.3s ease,
     color 0.3s ease;
+}
+
+.menuItems a.active {
+  color: var(--color-accent);
+  position: relative;
+}
+
+.menuItems a.active::after {
+  content: "";
+  position: absolute;
+  bottom: -0.6rem;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #FACC15;
+  border-radius: 2px;
 }
 
 .btn {
@@ -74,8 +82,8 @@
 }
 
 .signBtn {
-  padding: 1.2rem 2.2rem;
-  border: 2px solid rgba(255, 255, 255, 0.5);
+  padding: 1rem 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.5);
   outline: none;
   color: #fff;
   background: transparent;
@@ -95,7 +103,7 @@
 }
 
 .signBtn:active {
-  transform: translateY(0);
+  transform: scale(0.97);
 }
 
 .user {
@@ -119,6 +127,13 @@
 
 .user svg {
   font-size: 2.2rem;
+}
+
+.signBtn:focus-visible,
+.user:focus-visible,
+.menuItems a:focus-visible {
+  outline: 2px solid #FACC15;
+  outline-offset: 2px;
 }
 
 @media (max-width: 1024px) {
@@ -148,7 +163,7 @@
   }
 }
 
-@media (max-width: 426px) {
+@media (max-width: 375px) {
   .brand .text {
     display: none;
   }

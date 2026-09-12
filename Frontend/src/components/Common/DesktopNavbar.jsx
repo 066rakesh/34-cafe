@@ -1,20 +1,13 @@
 import styles from "./DesktopNavbar.module.css";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import {
-  ArrowLeft,
-  ShoppingBag,
-  CircleUserRound,
-} from "../../assets/icons/icon";
+import { ShoppingBag } from "../../assets/icons/icon";
 import { useContext } from "react";
-import { UIContext } from "../../context/UIContext";
 import { AuthContext } from "../../context/AuthContext";
 import { CartContext } from "../../context/CartContext";
-import { LuUserRound } from "react-icons/lu";
 import { FaUser } from "react-icons/fa";
 
 export const DesktopNavbar = () => {
-  const { user } = useContext(AuthContext);
-  const { setIsAuthOpen, setIsProfileOpen } = useContext(UIContext);
+  const { user, setIsAuthOpen } = useContext(AuthContext);
   const { cartItems } = useContext(CartContext);
   const getNavLinkClass = ({ isActive }) => {
     return isActive ? styles.active : undefined;
@@ -34,9 +27,6 @@ export const DesktopNavbar = () => {
           <span className={styles.divider} />
           <span className={styles.text}>CAFE</span>
         </Link>
-        <button className={styles.backBtn} onClick={() => navigate(-1)}>
-          <ArrowLeft size={25} />
-        </button>
 
         <nav className={styles.nav}>
           <NavLink to="/" end className={getNavLinkClass}>
@@ -71,9 +61,9 @@ export const DesktopNavbar = () => {
               className={styles.user}
               type="button"
               aria-label="Open profile"
-              onClick={() => setIsProfileOpen(true)}
+              onClick={() => navigate("/profile")}
             >
-              <FaUser size={28} />
+              <FaUser size={25} />
               <span>{userName}</span>
             </button>
           ) : (
@@ -83,7 +73,7 @@ export const DesktopNavbar = () => {
               aria-label="Sign In"
               onClick={() => setIsAuthOpen(true)}
             >
-              <FaUser size={28} />
+              <FaUser size={25} />
               <span>Sign In</span>
             </button>
           )}

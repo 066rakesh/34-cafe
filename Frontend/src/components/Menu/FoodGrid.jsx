@@ -1,16 +1,22 @@
 import styles from "./FoodGrid.module.css";
 import { Clock, Star } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { menu } from "../../data/menu";
-import { slugify } from "../../utils/slugify";
+import { useContext } from "react";
+import { ProductContext } from "../../context/ProductContext";
+import { FoodGridSkeleton } from "./FoodGridSkeleton";
 
 export const FoodGrid = ({ selectedCategory }) => {
+  const { products, productsLoading } = useContext(ProductContext);
   const navigate = useNavigate();
 
   const filterMenu =
     selectedCategory === "All"
-      ? menu
-      : menu.filter((item) => item.category === selectedCategory);
+      ? products
+      : products.filter((item) => item.category === selectedCategory);
+
+  if (productsLoading) {
+    return <FoodGridSkeleton />;
+  }
 
   return (
     <section>
@@ -18,8 +24,10 @@ export const FoodGrid = ({ selectedCategory }) => {
         {filterMenu.map((food) => (
           <div
             className={styles.card}
-            key={food.id}
-            onClick={() => navigate(`/menu/food/${slugify(food.title)}-${food.id}`)}
+            key={food._id}
+            onClick={() =>
+              navigate(`/menu/food/${food._id}`)
+            }
           >
             <div className={styles.imageWrap}>
               <img className={styles.image} src={food.image} />

@@ -28,13 +28,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 4.5rem;
-  height: 4.5rem;
-  border-radius: 1.5rem;
-  background: linear-gradient(135deg, #be123c 0%, #f97316 100%);
-  color: #fff;
-  font-size: 2.2rem;
+  font-size: 3rem;
   font-weight: 800;
+  color: var(--color-primary-dark);
+  letter-spacing: 0.04rem;
 }
 
 .divider {
@@ -46,7 +43,7 @@
 .text {
   font-size: 1.9rem;
   font-weight: 800;
-  color: var(--text-heading, #1a1a1a);
+  color: var(--text-body);
   letter-spacing: 0.04em;
 }
 
@@ -79,21 +76,21 @@
 }
 
 .cart {
-  width: 4rem;
-  height: 4rem;
+  width: 3.2rem;
+  height: 3.2rem;
   background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  color: var(--text-muted);
+  color: var(--text-body);
   transition: 0.25s;
 }
 
 .badge {
   position: absolute;
-  top: 0px;
-  right: 0px;
+  top: -2px;
+  right: -2px;
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
@@ -115,22 +112,17 @@
   align-items: center;
   gap: 0.8rem;
   cursor: pointer;
-  color: var(--text-body);
 }
 
 .user svg {
-  color: var(--text-muted);
+  color: var(--text-body);
   flex-shrink: 0;
 }
 
 .user span {
   font-size: 1.45rem;
-  color: var(--text-muted);
+  color: var(--text-body);
   font-weight: 600;
-}
-
-.backBtn {
-  display: none;
 }
 
 @media (max-width: 768px) {
@@ -150,19 +142,5 @@
 @media (max-width: 426px) {
   .header {
     height: 5.5rem;
-    box-shadow: none;
-    border: 1px solid #eee;
-  }
-
-  .logo {
-    display: none;
-  }
-
-  .backBtn {
-    display: block;
-    border: none;
-    outline: none;
-    background: transparent;
-    color: var(--text-body);
   }
 }

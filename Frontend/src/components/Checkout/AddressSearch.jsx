@@ -35,8 +35,10 @@ export const AddressSearch = ({ setShowAddressSearch }) => {
     try {
       const { latitude, longitude } = await getPlaceDetails(placeId);
       setUserLocation({ latitude, longitude });
+      return true;
     } catch (error) {
       console.error(error);
+      return false;
     }
   };
 
@@ -75,9 +77,12 @@ export const AddressSearch = ({ setShowAddressSearch }) => {
             <button
               className={styles.result}
               key={item.placeId}
-              onClick={() => {
-                handlePlaceSelect(item.placeId);
-                setShowAddressSearch(false);
+              onClick={async () => {
+                const success = await handlePlaceSelect(item.placeId);
+
+                if (success) {
+                  setShowAddressSearch(false);
+                }
               }}
             >
               <span>

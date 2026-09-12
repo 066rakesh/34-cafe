@@ -1,0 +1,160 @@
+.page {
+  margin-top: 6.5rem;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #fff7ed 0%, #fffbeb 100%);
+  display: flex;
+  justify-content: center;
+}
+
+.wrap {
+  margin-top: 2.5rem;
+  width: min(94%, 700px);
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-body);
+  margin: 0 1.2rem 2rem;
+}
+
+.contactGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  margin: 0 0 3rem;
+}
+
+.contactCard {
+  background: #ffffff;
+  border-radius: 1.4rem;
+  box-shadow: 0 1.2rem 2.4rem rgba(190, 18, 60, 0.06);
+  padding: 3rem 2rem;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.15s ease;
+}
+
+.contactCard:hover {
+  transform: translateY(-2px);
+}
+
+.contactIcon {
+  width: 4.4rem;
+  height: 4.4rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #be123c 0%, #f97316 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  margin: 0 auto 1rem;
+}
+
+.contactLabel {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-body);
+}
+
+.contactSub {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #a8a29e;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0 0 1rem;
+}
+
+.faqCard {
+  background: #ffffff;
+  border-radius: 1.6rem;
+  box-shadow: 0 1.2rem 2.8rem rgba(190, 18, 60, 0.06);
+  overflow: hidden;
+}
+
+.faqRow {
+  border-bottom: 1px solid #f5f5f4;
+}
+
+.faqRow:last-child {
+  border-bottom: none;
+}
+
+.faqQ {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  padding: 3rem 2rem;
+  cursor: pointer;
+}
+
+.faqQ span {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-body);
+}
+
+.chevron {
+  flex-shrink: 0;
+  color: #a8a29e;
+  transition: transform 0.2s ease;
+}
+
+.chevron.open {
+  transform: rotate(180deg);
+  color: #f97316;
+}
+
+.faqA {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease;
+}
+
+.faqA.open {
+  max-height: 20rem;
+}
+
+.faqA p {
+  padding: 0 1.8rem 1.8rem;
+  font-size: 1.3rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .contactCard,
+  .faqQ {
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .contactGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+  }
+
+  .contactLabel {
+    font-size: 1.15rem;
+  }
+
+  .contactSub {
+    display: none;
+  }
+}
+
+@media (max-width: 426px) {
+  .page {
+    margin-top: 5rem;
+  }
+}

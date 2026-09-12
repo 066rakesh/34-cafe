@@ -1,0 +1,189 @@
+.page {
+  margin-top: 6.5rem;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #fff7ed 0%, #fffbeb 100%);
+  padding-bottom: 4rem;
+}
+
+.hero {
+  background: linear-gradient(135deg, #be123c 0%, #f97316 50%, #facc15 100%);
+  padding: 3.2rem 2rem 6.4rem;
+  text-align: center;
+  color: #ffffff;
+}
+
+.hero h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.5rem;
+  opacity: 0.92;
+  max-width: 48rem;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.wrap {
+  width: min(94%, 900px);
+  margin: 0 auto;
+}
+
+.statsStrip {
+  margin-top: -3.6rem;
+  background: #ffffff;
+  border-radius: 1.8rem;
+  box-shadow: 0 1.2rem 3.2rem rgba(190, 18, 60, 0.1);
+  padding: 3rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.6rem;
+  text-align: center;
+}
+
+.statValue {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #be123c, #f97316);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.statLabel {
+  font-size: 1.15rem;
+  color: #78716c;
+  margin-top: 0.3rem;
+}
+
+.storySection {
+  margin-top: 4.8rem;
+  text-align: center;
+}
+
+.eyebrow {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #f97316;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.storyTitle {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #1c1917;
+  margin: 0.6rem 0 1.6rem;
+}
+
+.storyText {
+  font-size: 1.4rem;
+  color: #57534e;
+  line-height: 1.8;
+  max-width: 62rem;
+  margin: 0 auto;
+}
+
+.featureGrid {
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.6rem;
+}
+
+.featureCard {
+  background: #ffffff;
+  border-radius: 1.6rem;
+  box-shadow: 0 1.2rem 2.8rem rgba(190, 18, 60, 0.06);
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.featureIcon {
+  width: 5.2rem;
+  height: 5.2rem;
+  border-radius: 1.4rem;
+  background: linear-gradient(135deg, #be123c 0%, #f97316 100%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.4rem;
+}
+
+.featureCard h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1c1917;
+  margin-bottom: 0.6rem;
+}
+
+.featureCard p {
+  font-size: 1.25rem;
+  color: #a8a29e;
+  line-height: 1.6;
+}
+
+.ctaBand {
+  margin-top: 5rem;
+  background: linear-gradient(135deg, #be123c 0%, #f97316 100%);
+  border-radius: 2rem;
+  padding: 3rem 2rem;
+  text-align: center;
+  color: #ffffff;
+}
+
+.ctaBand h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+}
+
+.ctaBand p {
+  font-size: 1.4rem;
+  opacity: 0.9;
+  margin-bottom: 2rem;
+}
+
+.ctaBtn {
+  background: #ffffff;
+  color: #be123c;
+  border: none;
+  padding: 1.3rem 3rem;
+  border-radius: 1rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .wrap {
+    width: 94%;
+  }
+
+  .statsStrip,
+  .featureGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .featureCard,
+  .ctaBand {
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (max-width: 426px) {
+  .page {
+    margin-top: 5rem;
+  }
+
+  .ctaBtn {
+    width: 100%;
+  }
+}

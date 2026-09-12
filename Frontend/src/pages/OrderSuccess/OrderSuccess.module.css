@@ -1,0 +1,227 @@
+.page {
+  margin-top: 6.5rem;
+  padding: 2.5rem 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #fff;
+  background: linear-gradient(180deg, #fff7ed 0%, #fffbeb 100%);
+}
+
+.card {
+  width: min(94%, 700px);
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 1.6rem;
+  box-shadow: 0 1.2rem 3.2rem rgba(190, 18, 60, 0.08);
+  padding: 3rem 2rem;
+}
+
+.confirmHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.checkCircle {
+  width: 6.4rem;
+  height: 6.4rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: var(--color-theme);
+  margin-bottom: 1.6rem;
+  animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.confirmHeader h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--text-heading);
+  margin-bottom: 0.6rem;
+}
+
+.subText {
+  font-size: 1.4rem;
+  color: var(--text-body);
+}
+
+.subText strong {
+  color: var(--text-heading);
+}
+
+.etaRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-size: 1.4rem;
+  color: var(--text-body);
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 0.8rem;
+  padding: 1rem 1.4rem;
+}
+
+.divider {
+  height: 1px;
+  background: #eee;
+  margin: 2rem 0;
+}
+
+.section h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-heading);
+  margin-bottom: 1.2rem;
+}
+
+.itemList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.item img {
+  width: 5.2rem;
+  height: 5.2rem;
+  border-radius: 0.8rem;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: #f5f5f4;
+}
+
+.itemInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.itemInfo h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-heading);
+}
+
+.itemInfo p {
+  font-size: 1.3rem;
+  color: #a8a29e;
+}
+
+.itemQtyPrice {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.2rem;
+  font-size: 1.4rem;
+  color: #57534e;
+  flex-shrink: 0;
+}
+
+.itemQtyPrice strong {
+  color: #1c1917;
+}
+
+.address {
+  font-size: 1.4rem;
+  color: #57534e;
+  line-height: 1.5;
+}
+
+.address strong {
+  color: #1c1917;
+}
+
+.paymentSummary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  font-size: 1.4rem;
+  color: #57534e;
+}
+
+.paymentSummary > div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.paidRow {
+  font-size: 1.6rem;
+  color: #1c1917;
+  padding-top: 0.8rem;
+  border-top: 1px dashed #e7e5e4;
+}
+
+.actions {
+  display: flex;
+  gap: 1.2rem;
+  margin-top: 2.8rem;
+}
+
+.trackBtn {
+  flex: 1;
+  padding: 1.2rem;
+  border-radius: 0.9rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition:
+    transform 0.15s ease,
+    opacity 0.15s ease;
+}
+
+.trackBtn {
+  color: #fff;
+  background: linear-gradient(135deg, #be123c 0%, #f97316 100%);
+}
+
+.trackBtn:hover {
+  opacity: 0.9;
+}
+
+.trackBtn:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 94%;
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (max-width: 426px) {
+  .page {
+    margin-top: 5rem;
+  }
+}

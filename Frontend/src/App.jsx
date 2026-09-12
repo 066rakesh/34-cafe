@@ -1,11 +1,18 @@
 import "./styles/Global.css";
-import { AuthProvider } from "./context/AuthContext";
-import { AppContent } from "./AppContent";
+import { ProductProvider } from "./context/ProductContext";
+import { CartProvider } from "./context/CartContext";
+import { AddressProvider } from "./context/AddressContext";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routes/router";
 
 export const App = () => {
   return (
-    <AuthProvider>
-      <AppContent />
-    </AuthProvider>
+    <ProductProvider>
+      <CartProvider>
+        <AddressProvider>
+          <RouterProvider router={router} />
+        </AddressProvider>
+      </CartProvider>
+    </ProductProvider>
   );
 };

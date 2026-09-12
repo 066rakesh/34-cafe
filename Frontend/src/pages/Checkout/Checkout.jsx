@@ -11,14 +11,27 @@ import { AddressSkeleton } from "../../components/Checkout/AddressSkeleton ";
 import { CartContext } from "../../context/CartContext";
 import { EmptyCheckout } from "../EmptyCheckout/EmptyCheckout";
 import { DesktopNavbar } from "../../components/Common/DesktopNavbar";
+import { useSearchParams } from "react-router-dom";
 
 export const Checkout = () => {
-  const [showAddressDrawer, setShowAddressDrawer] = useState(false);
-  const [showUserAddresses, setShowUserAddresses] = useState(false);
-  const [selectedAddress, setSelectedAddress] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const { getAddresses, userAddresses, getAddressesLoading } =
-    useContext(AddressContext);
+  const showAddressDrawer = searchParams.get("modal") === "add-address";
+  const showUserAddresses = searchParams.get("modal") === "select-address";
+
+  const openAddressDrawer = () => setSearchParams({ modal: "add-address" });
+  const closeAddressDrawer = () => setSearchParams({}, { replace: false });
+
+  const openUserAddresses = () => setSearchParams({ modal: "select-address" });
+  const closeUserAddresses = () => setSearchParams({});
+
+  const {
+    getAddresses,
+    userAddresses,
+    getAddressesLoading,
+    selectedAddress,
+    setSelectedAddress,
+  } = useContext(AddressContext);
   const { user } = useContext(AuthContext);
   const { cartItems } = useContext(CartContext);
 
@@ -67,12 +80,12 @@ export const Checkout = () => {
             <>
               {userAddresses.length > 0 ? (
                 <AddressCard
-                  userName={user.name}
+                  userName={user?.name}
                   address={selectedAddress}
                   rightSlot={
                     <div
                       className={styles.addressChange}
-                      onClick={() => setShowUserAddresses(true)}
+                      onClick={openUserAddresses}
                     >
                       <span>Change</span>
                     </div>
@@ -100,7 +113,7 @@ export const Checkout = () => {
           <button
             type="button"
             className={styles.addAddressButton}
-            onClick={() => setShowAddressDrawer(true)}
+            onClick={openAddressDrawer}
           >
             <span className={styles.plusIcon}>
               <Plus />
@@ -109,25 +122,22 @@ export const Checkout = () => {
             <span>Add New Address</span>
           </button>
 
-          <div
-            className={showUserAddresses ? styles.overlay : ""}
-            onClick={() => setShowUserAddresses(false)}
-          >
-            {showUserAddresses && (
+          {showUserAddresses && (
+            <div className={styles.overlay} onClick={closeUserAddresses}>
               <AddressSelectionModal
-                setShowUserAddresses={setShowUserAddresses}
+                setShowUserAddresses={closeUserAddresses}
                 setSelectedAddress={setSelectedAddress}
-                setShowAddressDrawer={setShowAddressDrawer}
+                setShowAddressDrawer={openAddressDrawer}
               />
-            )}
-          </div>
+            </div>
+          )}
 
           <div
             className={showAddressDrawer ? styles.overlay : ""}
-            onClick={() => setShowAddressDrawer(false)}
+            onClick={closeAddressDrawer}
           >
             {showAddressDrawer && (
-              <AddressDrawer setShowAddressDrawer={setShowAddressDrawer} />
+              <AddressDrawer setShowAddressDrawer={closeAddressDrawer} />
             )}
           </div>
         </section>

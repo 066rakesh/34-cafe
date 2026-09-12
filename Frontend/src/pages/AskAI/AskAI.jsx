@@ -29,10 +29,10 @@ export const AskAI = () => {
       const aimessage = { sender: "ai", text: response.data.reply };
       setMessages((prev) => [...prev, aimessage]);
     } catch (error) {
-      console.log("Chatbot error", error);
+      console.error("Chatbot error", error);
       const errorMessage = {
         sender: "ai",
-        message: "Sorry, please try again!",
+        text: "Sorry, please try again!",
       };
       setMessages((prev) => [...prev, errorMessage]);
     } finally {
@@ -97,6 +97,7 @@ export const AskAI = () => {
             aria-label="ask-ai"
             autoFocus
             value={input}
+            disabled={aiTyping}
             onChange={(e) => setInput(e.target.value)}
           />
           <button type="submit" aria-label="Send message">

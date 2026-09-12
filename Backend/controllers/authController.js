@@ -15,6 +15,7 @@ export const signup = async (req, res) => {
       if (existingUser.phone === phone) {
         return res.status(409).json({
           success: false,
+          field: "phone",
           message: "Phone number already exists",
         });
       }
@@ -22,6 +23,7 @@ export const signup = async (req, res) => {
       if (existingUser.email === email) {
         return res.status(409).json({
           success: false,
+          field: "email",
           message: "Email already registered",
         });
       }
@@ -172,58 +174,6 @@ export const getMe = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Unable to fetch user details. Please try again later.",
-    });
-  }
-};
-
-export const updateMe = async (req, res) => {
-  try {
-    const { name, email } = req.body;
-    const userId = req.user.id;
-    const user = await User.findById(userId);
-
-    if (!user) {
-      return res.status(404).json({
-        success: false,
-        message: "User not found",
-      });
-    }
-
-    if (name) {
-      user.name = name;
-    }
-
-    if (email) {
-      const existingEmail = await User.findOne({
-        email: email,
-        _id: { $ne: userId },
-      });
-
-      if (existingEmail) {
-        return res.status(409).json({
-          success: false,
-          message: "Email already exists",
-        });
-      }
-
-      user.email = email;
-    }
-
-    await user.save();
-
-    return res.status(200).json({
-      success: true,
-      user: {
-        name: user.name,
-        email: user.email,
-      },
-    });
-  } catch (error) {
-    console.error("Update user error:", error);
-
-    return res.status(500).json({
-      success: false,
-      message: "Unable to update your profile. Please try again later.",
     });
   }
 };

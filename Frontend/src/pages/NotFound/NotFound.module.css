@@ -55,7 +55,7 @@
 
 .homeBtn:hover,
 .buttons button:hover  {
-  background: rgb(255, 82, 0);
+  background: var(--color-theme);
   color: #fff;
 }
 

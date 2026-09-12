@@ -26,7 +26,7 @@ export const AddressDrawer = ({ setShowAddressDrawer }) => {
               <button
                 type="button"
                 className={styles.crossBtn}
-                aria-label="Close login"
+                aria-label="Close address drawer"
                 onClick={() => setShowAddressDrawer(false)}
               >
                 <RxCross2 size={25} />
@@ -36,9 +36,7 @@ export const AddressDrawer = ({ setShowAddressDrawer }) => {
             <h2>Add Address</h2>
           </div>
 
-          {showAddressSearch ? (
-            ""
-          ) : (
+          {!showAddressSearch && (
             <button
               type="button"
               className={styles.searchBtn}
@@ -56,7 +54,7 @@ export const AddressDrawer = ({ setShowAddressDrawer }) => {
           <div className={styles.mapSection}>
             <MapSection />
           </div>
-          <AddressForm setShowAddressDrawer={setShowAddressDrawer}/>
+          <AddressForm setShowAddressDrawer={setShowAddressDrawer} />
         </div>
       )}
     </main>

@@ -16,6 +16,7 @@ export const AddressProvider = ({ children }) => {
   const [createAddressLoading, setCreateAddressLoading] = useState(false);
   const [userAddresses, setUserAddresses] = useState([]);
   const [getAddressesLoading, setGetAddressesLoading] = useState(false);
+  const [selectedAddress, setSelectedAddress] = useState(null);
 
   const [address, setAddress] = useState({
     houseNumber: "",
@@ -133,6 +134,9 @@ export const AddressProvider = ({ children }) => {
         getAddresses,
         userAddresses,
         removeAddressFromState,
+
+        selectedAddress,
+        setSelectedAddress,
       }}
     >
       {children}

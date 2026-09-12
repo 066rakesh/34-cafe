@@ -1,11 +1,11 @@
 import { useContext, useEffect } from "react";
-import { UIContext } from "../../context/UIContext";
 import { Login } from "../Auth/Login";
 import {SignUp} from "../Auth/SignUp";
 import styles from "./Modal.module.css";
+import { AuthContext } from "../../context/AuthContext";
 
 export const AuthModal = () => {
-  const { isAuthOpen, setIsAuthOpen, authMode } = useContext(UIContext);
+  const { isAuthOpen, setIsAuthOpen, authMode } = useContext(AuthContext);
 
   useEffect(() => {
     if (isAuthOpen) {

@@ -2,15 +2,12 @@ import styles from "./SignUp.module.css";
 import logo from "../../assets/images/logo_black.svg";
 import { useContext, useState } from "react";
 import { RxCross2 } from "../../assets/icons/icon";
-import { UIContext } from "../../context/UIContext";
-import toast from "react-hot-toast";
 import { signupUser } from "../../services/authService";
-import { handleApiError } from "../../utils/handleApiError";
+import { AuthContext } from "../../context/AuthContext";
 
 export const SignUp = () => {
-  const { setAuthMode, setIsAuthOpen } = useContext(UIContext);
-
   const [loading, setLoading] = useState(false);
+  const { setAuthMode, setIsAuthOpen } = useContext(AuthContext);
 
   const [signData, setSignData] = useState({
     phone: "",
@@ -66,9 +63,7 @@ export const SignUp = () => {
     try {
       setLoading(true);
 
-      const response = await signupUser(signData);
-
-      toast.success(response.data.message);
+      await signupUser(signData);
 
       setSignData({
         phone: "",
@@ -78,7 +73,23 @@ export const SignUp = () => {
 
       setAuthMode("login");
     } catch (error) {
-      handleApiError(error);
+      if (error.response) {
+        const field = error.response.data.field || "email";
+        setErrors((prev) => ({
+          ...prev,
+          [field]: error.response.data.message,
+        }));
+      } else if (error.request) {
+        setErrors((prev) => ({
+          ...prev,
+          email: error.response.data.message,
+        }));
+      } else {
+        setErrors((prev) => ({
+          ...prev,
+          email: error.response.data.message,
+        }));
+      }
     } finally {
       setLoading(false);
     }
@@ -89,10 +100,10 @@ export const SignUp = () => {
       <button
         type="button"
         className={styles.crossBtn}
-        aria-label="Close login"
+        aria-label="Close Sign up"
         onClick={() => setIsAuthOpen(false)}
       >
-        <RxCross2 />
+        <RxCross2 size={25} />
       </button>
 
       <div className={styles.top}>
