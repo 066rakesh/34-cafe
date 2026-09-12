@@ -20,9 +20,6 @@ export const Footer = () => {
               <Link to="/menu">Menu</Link>
             </li>
             <li>
-              <Link to="/contact">Contact</Link>
-            </li>
-            <li>
               <Link to="/about">About</Link>
             </li>
           </ul>
@@ -33,9 +30,9 @@ export const Footer = () => {
           <ul>
             <li>Fast Delivery</li>
             <li>Daily Offers</li>
-            <li>Catering Service</li>
-            <li>AI Food Assistant</li>
-            <li>24/7 Support</li>
+            <li>
+              <Link to="/ask-ai">AI Food Assistant</Link>
+            </li>
           </ul>
         </div>
 
@@ -46,11 +43,11 @@ export const Footer = () => {
               <a href="tel:+919876543210">+91 9876543210</a>
             </li>
             <li>
-              <a href="mailto:info@34cafe.com">info@34cafe.com</a>
+              <a href="mailto:support@34paapicafe.com">
+                support@34paapicafe.com
+              </a>
             </li>
-            <li>
-              IMT Manesar, Gurugram
-            </li>
+            <li>IMT Manesar, Gurugram</li>
           </ul>
         </div>
 

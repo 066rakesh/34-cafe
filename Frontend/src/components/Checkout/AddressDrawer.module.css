@@ -59,29 +59,37 @@
 
 .backBtn,
 .crossBtn {
-  height: 100%;
-  width: fit-content;
+  height: 3.2rem;
+  width: 3.2rem;
+  border-radius: 50%;
   cursor: pointer;
   color: var(--text-body);
   border: none;
   background: none;
-  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
 }
 
 .searchBtn {
-  height: 100%;
-  width: fit-content;
+  height: 3.2rem;
+  width: 3.2rem;
+  border-radius: 50%;
   cursor: pointer;
   color: var(--text-body);
   border: none;
   background: none;
-  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
 }
 
 .crossBtn:hover,
 .backBtn:hover,
 .searchBtn:hover {
-  color: var(--color-primary-dark);
+  background: #f5f5f4;
 }
 
 .content {

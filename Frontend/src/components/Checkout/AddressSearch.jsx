@@ -62,7 +62,7 @@ export const AddressSearch = ({ setShowAddressSearch }) => {
           autoFocus
         />
         <button type="submit">
-          <Search size={25} />
+          <Search size={20} />
         </button>
       </form>
 

@@ -52,7 +52,7 @@ export const AddressSelectionModal = ({
               aria-label="Close select address"
               onClick={() => setShowUserAddresses(false)}
             >
-              <RxCross2 size={25} />
+              <RxCross2 size={20} />
             </button>
           </div>
         </div>

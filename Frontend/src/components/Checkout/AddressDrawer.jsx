@@ -20,7 +20,7 @@ export const AddressDrawer = ({ setShowAddressDrawer }) => {
                 aria-label="Back button"
                 onClick={() => setShowAddressSearch(false)}
               >
-                <ArrowLeft size={25} />
+                <ArrowLeft size={22} />
               </button>
             ) : (
               <button
@@ -29,7 +29,7 @@ export const AddressDrawer = ({ setShowAddressDrawer }) => {
                 aria-label="Close address drawer"
                 onClick={() => setShowAddressDrawer(false)}
               >
-                <RxCross2 size={25} />
+                <RxCross2 size={20} />
               </button>
             )}
 
@@ -42,7 +42,7 @@ export const AddressDrawer = ({ setShowAddressDrawer }) => {
               className={styles.searchBtn}
               onClick={() => setShowAddressSearch(true)}
             >
-              <Search size={25} />
+              <Search size={20} />
             </button>
           )}
         </div>

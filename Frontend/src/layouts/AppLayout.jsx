@@ -8,7 +8,7 @@ import { ScrollTop } from "../hooks/scrollTop";
 
 const routesWithFooter = ["/", "/menu"];
 
-const routesWithoutFooterNavbar = ["/checkout", "/menu/food"];
+const routesWithoutFooterNavbar = ["/menu/food"];
 
 export const AppLayout = () => {
   const location = useLocation();

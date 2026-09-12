@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./EmptyCheckout.module.css";
-import { ArrowLeft, ArrowRight, ShoppingBag } from "lucide-react";
+import { ArrowLeft, ShoppingBag } from "lucide-react";
 
-export const EmptyCheckout = ({ onContinueShopping }) => {
+export const EmptyCheckout = () => {
   const navigate = useNavigate();
 
   return (
@@ -15,7 +15,7 @@ export const EmptyCheckout = ({ onContinueShopping }) => {
             aria-label="Go back"
             onClick={() => navigate("/menu")}
           >
-            <ArrowLeft size={25} />
+            <ArrowLeft size={23} />
           </button>
 
           <div className={styles.headerTitle}>
@@ -33,11 +33,6 @@ export const EmptyCheckout = ({ onContinueShopping }) => {
           Looks like you haven't added anything yet. Explore our menu and find
           something delicious to order.
         </p>
-
-        {/* <button className={styles.ctaBtn} onClick={() => navigate("/menu")}>
-        <span>Continue Shopping</span>
-        <ArrowRight size={25} />
-      </button> */}
       </div>
     </main>
   );

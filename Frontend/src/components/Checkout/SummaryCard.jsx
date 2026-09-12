@@ -185,13 +185,6 @@ export const SummaryCard = () => {
             <strong>₹{toPay}</strong>
           </div>
         </div>
-        {/* <button
-          className={styles.paymentBtn}
-          disabled={userAddresses?.length === 0}
-          onClick={handlePayment}
-        >
-          {paymentLoading ? "Processing..." : "Proceed to Payment"}
-        </button> */}
 
         {paymentFailed ? (
           <div className={styles.paymentFailedBox}>

@@ -13,6 +13,7 @@
   border-radius: 50%;
   background: linear-gradient(90deg, #eee 25%, #f5f5f5 50%, #eee 75%);
   background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
 }
 
 .skeletonLine1 {
@@ -20,6 +21,7 @@
   border-radius: 0.4rem;
   background: linear-gradient(90deg, #eee 25%, #f5f5f5 50%, #eee 75%);
   background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
 }
 
 .skeletonCard2 {

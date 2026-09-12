@@ -68,7 +68,7 @@ export const Search = () => {
               <button
                 type="button"
                 className={styles.card}
-                onClick={() => navigate(`/menu/food/${item.id}`)}
+                onClick={() => navigate(`/menu/food/${item._id}`)}
               >
                 <span className={styles.image}>
                   <img src={item.image} alt={item.title} loading="lazy" />
