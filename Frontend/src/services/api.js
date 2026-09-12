@@ -1,8 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  // baseURL: "https://three4-cafe.onrender.com",
-  baseURL: "http://localhost:5000",
+  baseURL: "https://three4-cafe.onrender.com",
 });
 
 API.interceptors.request.use((config) => {
