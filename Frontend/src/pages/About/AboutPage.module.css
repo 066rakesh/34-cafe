@@ -1,8 +1,7 @@
 .page {
-  margin-top: 6.5rem;
   min-height: 100vh;
   background: linear-gradient(180deg, #fff7ed 0%, #fffbeb 100%);
-  padding-bottom: 4rem;
+  padding: 6.5rem 0 3rem;
 }
 
 .hero {
@@ -159,6 +158,10 @@
 }
 
 @media (max-width: 768px) {
+  .page {
+    padding-top: 6rem;
+    margin-bottom: clamp(6rem, 14vw, 8rem);
+  }
   .wrap {
     width: 94%;
   }
@@ -180,7 +183,7 @@
 
 @media (max-width: 426px) {
   .page {
-    margin-top: 5rem;
+    padding-top: 5rem;
   }
 
   .ctaBtn {

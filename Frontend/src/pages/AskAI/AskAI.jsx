@@ -3,7 +3,7 @@ import styles from "./AskAI.module.css";
 import { LuArrowUp, LuSparkles, IconChefHat } from "../../assets/icons/icon";
 import { DesktopNavbarSkeleton } from "../../components/Common/DesktopNavbarSkeleton";
 import { AuthContext } from "../../context/AuthContext";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { chatbot } from "../../services/chatbotService";
 
 export const AskAI = () => {
@@ -13,6 +13,12 @@ export const AskAI = () => {
   ]);
   const [input, setInput] = useState("");
   const [aiTyping, setAiTyping] = useState(false);
+
+  const bottomRef = useRef(null);
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, aiTyping]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -84,6 +90,7 @@ export const AskAI = () => {
               </div>
             )}
           </div>
+          <div ref={bottomRef}/>
         </section>
 
         <form className={styles.form} onSubmit={handleSubmit}>
@@ -97,7 +104,6 @@ export const AskAI = () => {
             aria-label="ask-ai"
             autoFocus
             value={input}
-            disabled={aiTyping}
             onChange={(e) => setInput(e.target.value)}
           />
           <button type="submit" aria-label="Send message">
