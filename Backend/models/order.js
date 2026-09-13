@@ -9,9 +9,26 @@ const orderSchema = new mongoose.Schema(
     },
 
     address: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Address",
-      required: true,
+      houseNumber: {
+        type: String,
+        required: true,
+      },
+      locality: {
+        type: String,
+        required: true,
+      },
+      landmark: {
+        type: String,
+        required: true,
+      },
+      address: {
+        type: String,
+        required: true,
+      },
+      addressType: {
+        type: String,
+        required: true,
+      },
     },
 
     items: [

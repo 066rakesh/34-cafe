@@ -9,6 +9,7 @@ import razorpayInstance from "../config/razorpay.js";
 import Order from "../models/order.js";
 import crypto from "crypto";
 import { sendOtpConfirmationEmail } from "../services/emailService.js";
+import Address from "../models/address.js";
 
 export const createOrder = async (req, res) => {
   try {
@@ -26,6 +27,15 @@ export const createOrder = async (req, res) => {
       return res.status(400).json({
         success: false,
         message: "Address is required",
+      });
+    }
+
+    const selectedAddress = await Address.findById(addressId);
+
+    if (!selectedAddress) {
+      return res.status(400).json({
+        success: false,
+        message: "Address not found",
       });
     }
 
@@ -89,7 +99,13 @@ export const createOrder = async (req, res) => {
 
     const newOrder = await Order.create({
       user: userId,
-      address: addressId,
+      address: {
+        houseNumber: selectedAddress.houseNumber,
+        locality: selectedAddress.locality,
+        landmark: selectedAddress.landmark,
+        address: selectedAddress.address,
+        addressType: selectedAddress.addressType,
+      },
       items: orderItems,
       itemTotal,
       deliveryFee,
@@ -156,7 +172,7 @@ export const verifyPayment = async (req, res) => {
         paymentMethod: paymentDetails.method,
       },
       { new: true }
-    ).populate("items.product", "title immage");
+    ).populate("items.product", "title image");
 
     if (!order) {
       return res.status(404).json({

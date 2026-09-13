@@ -150,7 +150,7 @@ export const AddressForm = ({ setShowAddressDrawer }) => {
             name="landmark"
             id="landmark"
             placeholder=" "
-            autoComplete="off"
+            autoComplete="on"
             value={address.landmark}
             onChange={handleInputChange}
           />

@@ -8,9 +8,7 @@ export const getOrderById = async (req, res) => {
     const order = await Order.findOne({
       _id: orderId,
       user: userId,
-    })
-      .populate("items.product", "title image prepTime")
-      .populate("address");
+    }).populate("items.product", "title image prepTime");
 
     if (!order) {
       return res.status(400).json({

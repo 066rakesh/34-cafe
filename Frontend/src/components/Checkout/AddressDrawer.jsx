@@ -1,12 +1,28 @@
 import { RxCross2, Search, ArrowLeft } from "../../assets/icons/icon";
 import styles from "./AddressDrawer.module.css";
 import { MapSection } from "./MapSection";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { AddressSearch } from "./AddressSearch";
 import { AddressForm } from "./AddressForm";
+import { AddressContext } from "../../context/AddressContext";
 
 export const AddressDrawer = ({ setShowAddressDrawer }) => {
   const [showAddressSearch, setShowAddressSearch] = useState(false);
+  const { setAddress, setUserLocation, setLocationData } =
+    useContext(AddressContext);
+
+  const handleClose = () => {
+    setUserLocation(null);
+    setLocationData(null);
+    setAddress({
+      houseNumber: "",
+      locality: "",
+      landmark: "",
+      addressType: "",
+      isDefault: false,
+    });
+    setShowAddressDrawer(false);
+  };
 
   return (
     <main className={styles.address} onClick={(e) => e.stopPropagation()}>
@@ -27,7 +43,7 @@ export const AddressDrawer = ({ setShowAddressDrawer }) => {
                 type="button"
                 className={styles.crossBtn}
                 aria-label="Close address drawer"
-                onClick={() => setShowAddressDrawer(false)}
+                onClick={handleClose}
               >
                 <RxCross2 size={20} />
               </button>

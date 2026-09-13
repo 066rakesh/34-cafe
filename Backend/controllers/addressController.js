@@ -152,7 +152,7 @@ export const createAddress = async (req, res) => {
       message: "Address created successfully",
     });
   } catch (error) {
-    console.log("Address error", error);
+    console.error("Address error", error);
 
     return res.status(500).json({
       success: false,
@@ -171,7 +171,7 @@ export const getAddresses = async (req, res) => {
       addresses,
     });
   } catch (error) {
-    console.log("Address error", error);
+    console.error("Address error", error);
 
     return res.status(500).json({
       success: false,
@@ -235,7 +235,7 @@ export const deleteAddress = async (req, res) => {
     });
   } catch (error) {
     await session.abortTransaction();
-    console.log("Address error", error);
+    console.error("Address error", error);
 
     return res.status(500).json({
       success: false,

@@ -39,7 +39,13 @@ export const AddressSelectionModal = ({
   };
 
   return (
-    <main className={styles.modal} onClick={(e) => e.stopPropagation()}>
+    <main
+      className={styles.modal}
+      onClick={(e) => {
+        e.stopPropagation();
+        setActiveAddressId(null);
+      }}
+    >
       <header className={styles.header}>
         <div className={styles.headerInner}>
           <div className={styles.left}>

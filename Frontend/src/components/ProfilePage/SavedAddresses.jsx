@@ -1,37 +1,46 @@
 import { useContext, useEffect, useState } from "react";
 import styles from "./SavedAddresses.module.css";
-import { BriefcaseBusiness, House, MapPin, MoreHorizontal } from "lucide-react";
+import {
+  BriefcaseBusiness,
+  House,
+  MapPin,
+  MoreHorizontal,
+  Trash2,
+} from "lucide-react";
 import { AddressContext } from "../../context/AddressContext";
 import { DesktopNavbar } from "../Common/DesktopNavbar";
-import { AddressActionMenu } from "../Checkout/AddressActionMenu";
 import { DeleteAddressModal } from "../Checkout/DeleteAddressModal";
-const TYPE_ICONS = { home: House, work: BriefcaseBusiness, Other: MapPin };
+const TYPE_ICONS = { Home: House, Work: BriefcaseBusiness, Other: MapPin };
 
 export const SavedAddresses = () => {
   const [activeAddressId, setActiveAddressId] = useState(null);
   const [deleteAddress, setDeleteAddress] = useState(null);
+  const [deleteLoading, setDeleteLoading] = useState(false);
+  const [deleteError, setDeleteError] = useState(false);
 
-  const {
-    getAddresses,
-    getAddressesLoading,
-    userAddresses,
-    handleDeleteAddress,
-  } = useContext(AddressContext);
+  const { getAddresses, userAddresses, handleDeleteAddress } =
+    useContext(AddressContext);
 
   useEffect(() => {
     getAddresses();
   }, []);
 
   const handleConfirmDelete = async () => {
+    setDeleteLoading(true);
+    setDeleteError(false);
     try {
       await handleDeleteAddress(deleteAddress._id);
+      setDeleteAddress(null);
     } catch (error) {
       console.log(error);
+      setDeleteError(true);
+    } finally {
+      setDeleteLoading(false);
     }
   };
 
   return (
-    <main className={styles.page}>
+    <main className={styles.page} onClick={() => setActiveAddressId(null)}>
       <DesktopNavbar />
       <div className={styles.wrap}>
         <h1 className={styles.title}>Saved Addresses</h1>
@@ -70,35 +79,49 @@ export const SavedAddresses = () => {
                     <button
                       type="button"
                       className={styles.menuBtn}
-                      onClick={() =>
+                      onClick={(e) => {
+                        e.stopPropagation();
                         setActiveAddressId((prev) =>
                           prev === address._id ? null : address._id
-                        )
-                      }
+                        );
+                      }}
                     >
                       <MoreHorizontal size={19} />
                     </button>
+                    {activeAddressId === address._id && (
+                      <div className={styles.actionMenu}>
+                        <div className={styles.actionCard}>
+                          <button
+                            type="button"
+                            className={styles.actionBtn}
+                            onClick={() => {
+                              setDeleteAddress(address);
+                              setActiveAddressId(null);
+                            }}
+                          >
+                            <Trash2 size={15} />
+                            <span>Delete</span>
+                          </button>
+                        </div>
+                      </div>
+                    )}
                   </div>
-
-                  {activeAddressId === address._id && (
-                    <AddressActionMenu
-                      onDelete={() => {
-                        setDeleteAddress(address);
-                        setActiveAddressId(null);
-                      }}
-                    />
-                  )}
-
-                  {deleteAddress && (
-                    <DeleteAddressModal
-                      onCancel={() => setDeleteAddress(null)}
-                      onConfirm={handleConfirmDelete}
-                    />
-                  )}
                 </div>
               );
             })}
           </div>
+        )}
+
+        {deleteAddress && (
+          <DeleteAddressModal
+            onCancel={() => {
+              setDeleteAddress(null);
+              setDeleteError(null);
+            }}
+            onConfirm={handleConfirmDelete}
+            loading={deleteLoading}
+            error={deleteError}
+          />
         )}
       </div>
     </main>

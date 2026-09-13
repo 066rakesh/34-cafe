@@ -8,7 +8,7 @@
 
 .wrap {
   width: min(94%, 700px);
-  margin: 0 auto;
+  margin: 0 auto 2rem;
 }
 
 .title {
@@ -105,45 +105,33 @@
   background: #f5f5f4;
 }
 
-.menuDropdown {
+.actionMenu {
   position: absolute;
-  top: 3.6rem;
+  top: 3.5rem;
   right: 0;
-  background: #ffffff;
+  background: #eeeeee;
   border-radius: 1rem;
-  box-shadow: 0 0.8rem 2.4rem rgba(0, 0, 0, 0.12);
-  overflow: hidden;
-  z-index: 5;
-  min-width: 14rem;
+  min-width: 12rem;
 }
 
-.menuItem {
-  padding: 1.2rem 1.4rem;
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #dc2626;
-  cursor: pointer;
-}
-
-.menuItem:hover {
-  background: #fef2f2;
-}
-
-.addBtn {
-  margin: 0 1.2rem;
-  width: calc(100% - 2.4rem);
-  padding: 1.4rem;
-  border-radius: 1.2rem;
-  border: 1.5px dashed #f97316;
-  background: #fff7ed;
-  color: #c2410c;
-  font-size: 1.4rem;
-  font-weight: 600;
+.actionBtn {
+  border: none;
+  outline: none;
+  background: inherit;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
+  gap: 1rem;
+  padding: 1.2rem 1.6rem;
   cursor: pointer;
+}
+
+.actionBtn span {
+  font-size: 1.4rem;
+  color: var(--color-warning);
+}
+
+.actionBtn svg {
+  color: var(--color-warning);
 }
 
 .empty {
@@ -153,79 +141,10 @@
   margin: 0 1.2rem 2rem;
 }
 
-.overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(28, 25, 23, 0.4);
-  z-index: 15;
-}
-
-.confirmOverlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(28, 25, 23, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 20;
-  padding: 1.6rem;
-}
-
-.confirmCard {
-  background: #ffffff;
-  border-radius: 1.6rem;
-  padding: 2.4rem;
-  max-width: 36rem;
-  width: 100%;
-  text-align: center;
-}
-
-.confirmCard h3 {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: #1c1917;
-  margin-bottom: 0.8rem;
-}
-
-.confirmCard p {
-  font-size: 1.3rem;
-  color: #78716c;
-  margin-bottom: 2rem;
-}
-
-.confirmActions {
-  display: flex;
-  gap: 1rem;
-}
-
-.confirmBtn {
-  flex: 1;
-  padding: 1.1rem;
-  border-radius: 0.9rem;
-  font-size: 1.35rem;
-  font-weight: 600;
-  cursor: pointer;
-  border: none;
-}
-
-.cancelBtn {
-  background: #f5f5f4;
-  color: #44403c;
-}
-
-.deleteBtn {
-  background: #dc2626;
-  color: #ffffff;
-}
-
-.deleteBtn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
 @media (max-width: 768px) {
   .page {
     padding-top: 8.5rem;
+    padding-bottom: clamp(6rem, 14vw, 8rem);
   }
 
   .wrap {

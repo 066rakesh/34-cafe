@@ -212,6 +212,15 @@
   transform: scale(0.98);
 }
 
+.status {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #57534e;
+}
+
 @media (max-width: 768px) {
   .page {
     padding-top: 8.5rem;
