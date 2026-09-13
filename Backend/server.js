@@ -9,7 +9,6 @@ import chatbotRoutes from "./routes/chatbotRoutes.js";
 import paymentRoutes from "./routes/paymentRoutes.js";
 import prodctRoutes from "./routes/productRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
-import adminRoutes from "./routes/adminRoutes.js";
 
 const app = express();
 
@@ -28,9 +27,6 @@ app.use("/api/chatbot", chatbotRoutes);
 app.use("/api/payment", paymentRoutes);
 app.use("/api/products", prodctRoutes);
 app.use("/api/orders", orderRoutes);
-
-app.use("/api/admin", adminRoutes);
-app.use("/api/admin/auth", adminRoutes);
 
 app.get("/", (req, res) => {
   res.send("server is running...");

@@ -6,7 +6,9 @@ import { AddressContext } from "../../context/AddressContext";
 export const AddressForm = ({ setShowAddressDrawer }) => {
   const {
     userLocation,
+    setUserLocation,
     locationData,
+    setLocationData,
     locationLoading,
     deliveryLoading,
     address,
@@ -69,6 +71,8 @@ export const AddressForm = ({ setShowAddressDrawer }) => {
         landmark: "",
         addressType: "",
       });
+      setUserLocation(null);
+      setLocationData(null);
       setShowAddressDrawer(false);
     } catch (error) {
       console.log(error);

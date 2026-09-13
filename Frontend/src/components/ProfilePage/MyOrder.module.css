@@ -8,7 +8,7 @@
 
 .wrap {
   width: min(94%, 700px);
-  margin: 0 auto;
+  margin: 0 auto 2.5rem;
 }
 
 .status {
@@ -176,7 +176,7 @@
 @media (max-width: 768px) {
   .page {
     padding-top: 8.5rem;
-    margin-bottom: clamp(6rem, 14vw, 8rem);
+    padding-bottom: clamp(6rem, 14vw, 8rem);
   }
 
   .wrap {
