@@ -59,7 +59,7 @@ export const AddressForm = ({ setShowAddressDrawer }) => {
       address: locationData.location.address,
     };
 
-    submitError(false);
+    setSubmitError(false);
 
     try {
       await handleCreateAddress(addressData);
@@ -72,7 +72,7 @@ export const AddressForm = ({ setShowAddressDrawer }) => {
       setShowAddressDrawer(false);
     } catch (error) {
       console.log(error);
-      submitError(true);
+      setSubmitError(true);
     }
   };
 

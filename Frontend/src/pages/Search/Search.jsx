@@ -9,13 +9,13 @@ import { useContext, useState } from "react";
 import { Clock, Star } from "lucide-react";
 import { ProductContext } from "../../context/ProductContext";
 import gridStyle from "../../components/Menu/FoodGrid.module.css";
-
-
+import { ErrorState } from "../../components/Common/ErrorState";
 
 export const Search = () => {
   const [searchFood, setSearchFood] = useState("");
   const { loading } = useContext(AuthContext);
-  const { products } = useContext(ProductContext);
+  const { products, productsLoading, productsError, fetchProducts } =
+    useContext(ProductContext);
   const navigate = useNavigate();
 
   const Popular = products.filter((item) => item.isPopular);
@@ -53,78 +53,108 @@ export const Search = () => {
 
       <div>
         <div className={styles.cuisines}>
-        <h3>Popular Cuisines</h3>
+          <h3>Popular Cuisines</h3>
 
-        <Swiper
-          slidesPerView="auto"
-          breakpoints={{
-            0: { spaceBetween: 10 },
-            768: { spaceBetween: 16 },
-            1024: { spaceBetween: 20 },
-          }}
-        >
-          {Popular.map((item) => (
-            <SwiperSlide key={item._id} className={styles.slide}>
-              <button
-                type="button"
-                className={styles.card}
-                onClick={() => navigate(`/menu/food/${item._id}`)}
-              >
-                <span className={styles.image}>
-                  <img src={item.image} alt={item.title} loading="lazy" />
-                </span>
-                <p>{item.title}</p>
-              </button>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-
-      {searchFood && (
-        <section className={gridStyle.foods}>
-          {filterMenu.map((food) => (
-            <div
-              className={gridStyle.card}
-              key={food.id}
-              onClick={() => navigate(`/menu/food/${food.id}`)}
+          {productsLoading ? (
+            <div className={styles.skeletonRow}>
+              {Array.from({ length: 10 }).map((_, i) => (
+                <div className={styles.skeletonCard} key={i}>
+                  <div className={styles.skeletonCircle} />
+                  <div
+                    className={styles.skeletonLine}
+                    style={{ width: "60px" }}
+                  />
+                </div>
+              ))}
+            </div>
+          ) : productsError ? (
+            <ErrorState
+              onRetry={fetchProducts}
+              message={"Couldn't load cuisines"}
+            />
+          ) : (
+            <Swiper
+              slidesPerView="auto"
+              breakpoints={{
+                0: { spaceBetween: 10 },
+                768: { spaceBetween: 16 },
+                1024: { spaceBetween: 20 },
+              }}
             >
-              <div className={gridStyle.imageWrap}>
-                <img className={gridStyle.image} src={food.image} />
+              {Popular.map((item) => (
+                <SwiperSlide key={item._id} className={styles.slide}>
+                  <button
+                    type="button"
+                    className={styles.card}
+                    onClick={() => navigate(`/menu/food/${item._id}`)}
+                  >
+                    <span className={styles.image}>
+                      <img src={item.image} alt={item.title} loading="lazy" />
+                    </span>
+                    <p>{item.title}</p>
+                  </button>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          )}
+        </div>
 
-                <span className={`${gridStyle.vegDot} ${gridStyle.veg}`}>
-                  <span />
-                </span>
-              </div>
+        {searchFood && filterMenu.length === 0 && (
+          <p className={styles.status}>No results found for {searchFood}.</p>
+        )}
 
-              <div className={gridStyle.content}>
-                <div className={gridStyle.topRow}>
-                  <h3 className={gridStyle.name}>{food.title}</h3>
-                  <span className={gridStyle.rating}>
-                    <Star size={12} />
-                    {food.rating}
+        {searchFood && filterMenu.length > 0 && (
+          <section className={gridStyle.foods}>
+            {filterMenu.map((food) => (
+              <div
+                className={gridStyle.card}
+                key={food.id}
+                onClick={() => navigate(`/menu/food/${food._id}`)}
+              >
+                <div className={gridStyle.imageWrap}>
+                  <img
+                    className={gridStyle.image}
+                    src={food.image}
+                    alt={food.title}
+                    loading="lazy"
+                  />
+
+                  <span className={gridStyle.vegDot}>
+                    <span
+                      className={food.isVeg ? gridStyle.veg : gridStyle.nonVeg}
+                    />
                   </span>
                 </div>
 
-                <p className={gridStyle.description}>{food.description}</p>
+                <div className={gridStyle.content}>
+                  <div className={gridStyle.topRow}>
+                    <h3 className={gridStyle.name}>{food.title}</h3>
+                    <span className={gridStyle.rating}>
+                      <Star size={12} />
+                      {food.rating}
+                    </span>
+                  </div>
 
-                <div className={gridStyle.metaRow}>
-                  <span className={gridStyle.prepTime}>
-                    <Clock size={12} />
-                    {food.prepTime} mins
-                  </span>
-                  <span className={gridStyle.category}>{food.category}</span>
-                </div>
+                  <p className={gridStyle.description}>{food.description}</p>
 
-                <div className={gridStyle.bottomRow}>
-                  <div className={gridStyle.priceBlock}>
-                    <span className={gridStyle.price}>₹{food.price}</span>
+                  <div className={gridStyle.metaRow}>
+                    <span className={gridStyle.prepTime}>
+                      <Clock size={12} />
+                      {food.prepTime} mins
+                    </span>
+                    <span className={gridStyle.category}>{food.category}</span>
+                  </div>
+
+                  <div className={gridStyle.bottomRow}>
+                    <div className={gridStyle.priceBlock}>
+                      <span className={gridStyle.price}>₹{food.price}</span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </section>
-      )}
+            ))}
+          </section>
+        )}
       </div>
     </main>
   );

@@ -1,0 +1,39 @@
+.wrapper {
+  width: 100%;
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.message {
+  font-size: 1.5rem;
+  color: var(--text-body);
+  margin: 0;
+}
+
+.retryBtn {
+  margin-top: 0.4rem;
+  padding: 0.7rem 2rem;
+  border: none;
+  border-radius: 1rem;
+  background: var(--color-theme);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.retryBtn:hover {
+  opacity: 0.9;
+}
+
+.retryBtn:active {
+  transform: scale(0.97);
+}

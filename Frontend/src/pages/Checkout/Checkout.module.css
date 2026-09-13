@@ -13,7 +13,6 @@
     minmax(320px, 1fr);
   gap: 2rem;
   align-items: start;
-  box-sizing: border-box;
 }
 
 .left {
@@ -139,5 +138,6 @@
     width: 94%;
     margin-top: 7rem;
     gap: 1.5rem;
+    padding-bottom: clamp(6rem, 14vw, 8rem);
   }
 }

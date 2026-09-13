@@ -4,9 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { ProductContext } from "../../context/ProductContext";
 import { FoodGridSkeleton } from "./FoodGridSkeleton";
+import { ErrorState } from "../Common/ErrorState";
 
 export const FoodGrid = ({ selectedCategory }) => {
-  const { products, productsLoading } = useContext(ProductContext);
+  const { products, productsLoading, productsError, fetchProducts } =
+    useContext(ProductContext);
   const navigate = useNavigate();
 
   const filterMenu =
@@ -18,6 +20,12 @@ export const FoodGrid = ({ selectedCategory }) => {
     return <FoodGridSkeleton />;
   }
 
+  if (productsError) {
+    return (
+      <ErrorState onRetry={fetchProducts} message={"Couldn't load menu"} />
+    );
+  }
+
   return (
     <section>
       <div className={styles.foods}>
@@ -25,15 +33,18 @@ export const FoodGrid = ({ selectedCategory }) => {
           <div
             className={styles.card}
             key={food._id}
-            onClick={() =>
-              navigate(`/menu/food/${food._id}`)
-            }
+            onClick={() => navigate(`/menu/food/${food._id}`)}
           >
             <div className={styles.imageWrap}>
-              <img className={styles.image} src={food.image} />
+              <img
+                className={styles.image}
+                src={food.image}
+                alt={food.title}
+                loading="lazy"
+              />
 
-              <span className={`${styles.vegDot} ${styles.veg}`}>
-                <span />
+              <span className={styles.vegDot}>
+                <span className={food.isVeg ? styles.veg : styles.nonVeg} />
               </span>
             </div>
 

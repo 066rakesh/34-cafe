@@ -1,15 +1,14 @@
 .page {
-  margin-top: 6.5rem;
   min-height: 100vh;
   background: linear-gradient(180deg, #fff7ed 0%, #fffbeb 100%);
-  padding: 2.5rem 0;
+  padding: 9rem 0 2.5rem;
   display: flex;
   justify-content: center;
 }
 
 .wrap {
   width: min(94%, 700px);
-  margin: 0 auto;
+  margin: 0 auto 2rem;
 }
 
 .status {
@@ -249,7 +248,8 @@
 
 @media (max-width: 768px) {
   .page {
-    padding-top: 2rem;
+    padding-top: 8.5rem;
+    padding-bottom: clamp(6rem, 14vw, 8rem);
   }
   .wrap {
     width: 94%;
@@ -262,6 +262,6 @@
 
 @media (max-width: 426px) {
   .page {
-    margin-top: 5rem;
+    padding-top: 7rem;
   }
 }

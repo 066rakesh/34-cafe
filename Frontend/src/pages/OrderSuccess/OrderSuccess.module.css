@@ -1,6 +1,5 @@
 .page {
-  margin-top: 6.5rem;
-  padding: 2.5rem 0;
+  padding: 9rem 0 2.5rem;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -214,6 +213,11 @@
 }
 
 @media (max-width: 768px) {
+  .page {
+    padding-top: 8.5rem;
+    margin-bottom: clamp(6rem, 14vw, 8rem);
+  }
+
   .card {
     width: 94%;
     padding: 2rem 1.5rem;
@@ -222,6 +226,6 @@
 
 @media (max-width: 426px) {
   .page {
-    margin-top: 5rem;
+    padding-top: 7rem;
   }
 }

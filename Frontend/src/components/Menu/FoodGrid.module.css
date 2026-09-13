@@ -49,7 +49,14 @@
   width: 0.8rem;
   height: 0.8rem;
   border-radius: 50%;
+}
+
+.vegDot .veg {
   background: var(--color-success);
+}
+
+.vegDot .nonVeg {
+  background: var(--color-warning);
 }
 
 .discountBadge {
