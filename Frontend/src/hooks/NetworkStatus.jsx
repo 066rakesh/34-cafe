@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import styles from "./NetworkStatus.module.css";
 
 export const NetworkStatus = () => {
-  const [isOnLine, setIsOnLine] = useState(navigator.onLine);
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
 
   useEffect(() => {
-    const handleOnline = () => setIsOnLine(true);
-    const handleOffline = () => setIsOnLine(false);
+    const handleOnline = () => setIsOnline(true);
+    const handleOffline = () => setIsOnline(false);
 
     window.addEventListener("online", handleOnline);
     window.addEventListener("offline", handleOffline);
@@ -17,7 +17,7 @@ export const NetworkStatus = () => {
     };
   }, []);
 
-  if(isOnLine) return null;
+  if (isOnline) return null;
 
   return <div className={styles.banner}>No internet connection</div>;
 };

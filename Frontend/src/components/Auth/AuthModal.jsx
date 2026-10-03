@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { Login } from "../Auth/Login";
-import {SignUp} from "../Auth/SignUp";
-import styles from "./Modal.module.css";
+import { SignUp } from "../Auth/SignUp";
+import styles from "./AuthModal.module.css";
 import { AuthContext } from "../../context/AuthContext";
 
 export const AuthModal = () => {

@@ -1,5 +1,5 @@
 import styles from "./NotFound.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import error from "../../assets/images/404.png";
 
 export const NotFound = () => {
@@ -12,12 +12,27 @@ export const NotFound = () => {
       <div className={styles.info}>
         <h2>Oops! Page Not Found</h2>
 
-        <p>Sorry, the page you're looking for doesn't exist or may have been moved.</p>
+        <p>
+          Sorry, the page you're looking for doesn't exist or may have been
+          moved.
+        </p>
 
         <div className={styles.buttons}>
-          <Link to="/" className={styles.homeBtn}>Go To Home</Link>
+          <button
+            type="button"
+            className={styles.homeBtn}
+            onClick={() => navigate("/")}
+          >
+            Go To Home
+          </button>
 
-          <button type="button" onClick={() => navigate(-1)}>Go Back</button>
+          <button
+            type="button"
+            className={styles.backBtn}
+            onClick={() => navigate(-1)}
+          >
+            Go Back
+          </button>
         </div>
       </div>
     </main>

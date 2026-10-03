@@ -20,6 +20,7 @@ html {
   --color-warning: #dc2626;
   --color-accent: #facc15;
   --color-theme: linear-gradient(135deg, #be123c 0%, #f97316 50%, #facc15 100%);
+  --color-bg: linear-gradient(180deg, #fff7ed 0%, #fffbeb 100%);
 
   /* Text colors */
   --text-heading: #1f2937;

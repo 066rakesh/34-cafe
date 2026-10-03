@@ -1,7 +1,7 @@
-import { ArrowLeft, Plus, Home } from "../../assets/icons/icon";
+import { Plus, Home } from "../../assets/icons/icon";
 import styles from "./Checkout.module.css";
 import { SummaryCard } from "../../components/Checkout/SummaryCard";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { AddressDrawer } from "../../components/Checkout/AddressDrawer";
 import { AddressContext } from "../../context/AddressContext";
 import { AuthContext } from "../../context/AuthContext";

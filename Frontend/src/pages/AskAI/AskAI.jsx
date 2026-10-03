@@ -90,7 +90,7 @@ export const AskAI = () => {
               </div>
             )}
           </div>
-          <div ref={bottomRef}/>
+          <div ref={bottomRef} />
         </section>
 
         <form className={styles.form} onSubmit={handleSubmit}>

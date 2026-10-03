@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { getMe } from "../services/authService";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 export const AuthContext = createContext();
 
@@ -33,8 +33,7 @@ export const AuthProvider = ({ children }) => {
       const token = localStorage.getItem("token");
 
       if (!token) {
-        setUser(null);
-        return;
+        return setUser(null);
       }
       const response = await getMe();
       setUser(response.data.user);
@@ -43,7 +42,6 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem("token");
         setUser(null);
       }
-      console.log(error.message);
     } finally {
       setLoading(false);
     }

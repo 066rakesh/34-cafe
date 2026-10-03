@@ -8,6 +8,8 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 
 export const Login = () => {
   const { setIsAuthOpen, setAuthMode, fetchUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   const [showOtp, setShowOtp] = useState(false);
   const [otp, setOtp] = useState("");
@@ -17,9 +19,6 @@ export const Login = () => {
     otp: "",
   });
   const [loading, setLoading] = useState(false);
-
-  const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,17 +31,13 @@ export const Login = () => {
     }
 
     setError(newErrors);
-
     if (Object.keys(newErrors).length > 0) return;
 
     try {
       if (!showOtp) {
         setLoading(true);
-
         await loginUser({ email });
-
         setShowOtp(true);
-
         return;
       }
 
@@ -61,20 +56,14 @@ export const Login = () => {
       }
 
       setLoading(true);
-
       const response = await verifyOtp({
         email,
         otp,
       });
-
       const { token } = response.data;
-
       localStorage.setItem("token", token);
-
       await fetchUser();
-
       const redirect = searchParams.get("redirect");
-
       if (redirect) {
         navigate(redirect);
       } else {
@@ -160,7 +149,7 @@ export const Login = () => {
                 name="otp"
                 id="otp"
                 inputMode="numeric"
-                placeholder=" "
+                placeholder=""
                 autoFocus
                 maxLength={6}
                 value={otp}

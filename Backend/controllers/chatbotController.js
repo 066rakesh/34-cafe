@@ -1,10 +1,12 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 import { menu } from "../data/menu.js";
+
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 export const chatbot = async (req, res) => {
   try {
     const { message } = req.body;
+    console.log(message);
 
     if (!message.trim()) {
       return res.status(400).json({
@@ -31,7 +33,6 @@ export const chatbot = async (req, res) => {
     Only recommend items from this menu list: ${JSON.stringify(trimmedMenu)}
     If the user asks for something not in the menu, politely say it's not available.
     Keep replies short (2-3 sentences) and conversational. Mention price when relevant.
-
     User: ${message}`;
 
     const result = await model.generateContent(prompt);

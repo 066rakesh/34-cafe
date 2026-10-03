@@ -11,6 +11,7 @@ import { DesktopNavbar } from "../Common/DesktopNavbar";
 import { useEffect, useState } from "react";
 import { getMyOrders } from "../../services/orderService";
 import { useNavigate } from "react-router-dom";
+import { socket } from "../../services/socket";
 
 const TABS = ["All", "Active", "Delivered", "Cancelled"];
 
@@ -91,6 +92,35 @@ export const MyOrder = () => {
 
     fetchOrders();
   }, []);
+
+  useEffect(() => {
+    if (!orders?.orders?.length) return;
+
+    orders?.orders?.forEach((order) => {
+      socket.emit("joinOrderRoom", order._id);
+    });
+  }, [orders]);
+
+  useEffect(() => {
+    const handleStatusUpdate = (updateOrder) => {
+      setOrders((prev) => {
+        if (!prev?.orders) return prev;
+
+        return {
+          ...prev,
+          orders: prev.orders.map((order) =>
+            order._id === updateOrder._id ? updateOrder : order
+          ),
+        };
+      });
+    };
+
+    socket.on("orderStatusUpdated", handleStatusUpdate);
+
+    return () => {
+      socket.off("orderStatusUpdated", handleStatusUpdate);
+    };
+  },[]);
 
   if (loading) {
     return <div className={styles.status}>Loading your orders...</div>;

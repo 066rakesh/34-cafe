@@ -1,6 +1,7 @@
 import User from "../models/user.js";
 import crypto from "crypto";
 import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 import { sendOtpEmail } from "../services/emailService.js";
 
 export const signup = async (req, res) => {
@@ -18,9 +19,7 @@ export const signup = async (req, res) => {
           field: "phone",
           message: "Phone number already exists",
         });
-      }
-
-      if (existingUser.email === email) {
+      } else if (existingUser.email === email) {
         return res.status(409).json({
           success: false,
           field: "email",
@@ -41,7 +40,6 @@ export const signup = async (req, res) => {
     });
   } catch (error) {
     console.error("Signup error:", error);
-
     return res.status(500).json({
       success: false,
       message: "Unable to create your account. Please try again later.",
@@ -52,7 +50,6 @@ export const signup = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { email } = req.body;
-
     const existingUser = await User.findOne({ email });
 
     if (!existingUser) {
@@ -63,9 +60,10 @@ export const login = async (req, res) => {
     }
 
     const otp = crypto.randomInt(100000, 1000000).toString();
+    const hashedOtp = await bcrypt.hash(otp, 10);
     const otpExpiry = new Date(Date.now() + 5 * 60 * 1000);
 
-    existingUser.otp = otp;
+    existingUser.otp = hashedOtp;
     existingUser.otpExpiry = otpExpiry;
 
     await existingUser.save();
@@ -78,7 +76,6 @@ export const login = async (req, res) => {
     });
   } catch (error) {
     console.error("Login error:", error);
-
     return res.status(500).json({
       success: false,
       message: "Unable to process login. Please try again later.",
@@ -89,7 +86,6 @@ export const login = async (req, res) => {
 export const verifyOtp = async (req, res) => {
   try {
     const { email, otp } = req.body;
-
     const existingUser = await User.findOne({ email });
 
     if (!existingUser) {
@@ -99,7 +95,9 @@ export const verifyOtp = async (req, res) => {
       });
     }
 
-    if (existingUser.otp !== otp) {
+    const isValid = await bcrypt.compare(otp, existingUser.otp);
+
+    if (!isValid) {
       return res.status(400).json({
         success: false,
         message: "Invalid OTP",
@@ -111,7 +109,6 @@ export const verifyOtp = async (req, res) => {
       existingUser.otpExpiry = null;
 
       await existingUser.save();
-
       return res.status(400).json({
         success: false,
         message: "OTP expired",
@@ -120,7 +117,6 @@ export const verifyOtp = async (req, res) => {
 
     existingUser.otp = null;
     existingUser.otpExpiry = null;
-
     await existingUser.save();
 
     const token = jwt.sign(
@@ -129,7 +125,7 @@ export const verifyOtp = async (req, res) => {
       },
       process.env.JWT_SECRET,
       {
-        expiresIn: "1d",
+        expiresIn: "7d",
       }
     );
 
@@ -140,7 +136,6 @@ export const verifyOtp = async (req, res) => {
     });
   } catch (error) {
     console.error("OTP verification error:", error);
-
     return res.status(500).json({
       success: false,
       message: "Unable to verify OTP. Please try again later.",
@@ -170,7 +165,6 @@ export const getMe = async (req, res) => {
     });
   } catch (error) {
     console.error("Get user error:", error);
-
     return res.status(500).json({
       success: false,
       message: "Unable to fetch user details. Please try again later.",

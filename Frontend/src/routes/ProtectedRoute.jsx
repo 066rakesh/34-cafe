@@ -10,7 +10,9 @@ export const ProtectedRoute = () => {
   if (loading) return <Spinner />;
 
   if (!user) {
-    return <Navigate to={`/?auth=login&redirect=${location.pathname}`} replace/>;
+    return (
+      <Navigate to={`/?auth=login&redirect=${location.pathname}`} replace />
+    );
   }
 
   return <Outlet />;

@@ -15,7 +15,3 @@ export const verifyOtp = (otpData) => {
 export const getMe = () => {
   return API.get("/api/auth/me");
 };
-
-export const updateMe = (userData) => {
-  return API.put("/api/auth/me", userData);
-};

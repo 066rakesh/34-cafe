@@ -3,7 +3,7 @@ import { Footer } from "../components/Common/Footer";
 import { FooterNavbar } from "../components/Common/FooterNavbar";
 import { AuthModal } from "../components/Auth/AuthModal";
 import { AuthProvider } from "../context/AuthContext";
-import { NetworkStatus } from "../components/Common/NetworkStatus";
+import { NetworkStatus } from "../hooks/NetworkStatus";
 import { ScrollTop } from "../hooks/scrollTop";
 
 const routesWithFooter = ["/", "/menu"];
@@ -22,7 +22,6 @@ export const AppLayout = () => {
   return (
     <AuthProvider>
       <div>
-        <NetworkStatus />
         <ScrollTop />
         <Outlet />
 
@@ -30,6 +29,7 @@ export const AppLayout = () => {
 
         <AuthModal />
         {!hideFooterNavbar && <FooterNavbar />}
+        <NetworkStatus />
       </div>
     </AuthProvider>
   );

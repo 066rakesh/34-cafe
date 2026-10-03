@@ -9,5 +9,11 @@
   font-size: 1.3rem;
   font-weight: 600;
   color: #fff;
-  background: #dc2626;
+  background: var(--color-warning);
+}
+
+@media (max-width: 768px) {
+  .banner {
+    bottom: clamp(6rem, 14vw, 8rem);
+  }
 }

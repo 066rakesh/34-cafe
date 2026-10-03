@@ -1,11 +1,11 @@
 .page {
   min-height: 100vh;
-  background: linear-gradient(180deg, #fff7ed 0%, #fffbeb 100%);
+  background: var(--color-bg);
   padding: 6.5rem 0 3rem;
 }
 
 .hero {
-  background: linear-gradient(135deg, #be123c 0%, #f97316 50%, #facc15 100%);
+  background: var(--color-theme);
   padding: 3.2rem 2rem 6.4rem;
   text-align: center;
   color: #ffffff;
@@ -13,7 +13,7 @@
 
 .hero h1 {
   font-size: 2.8rem;
-  font-weight: 800;
+  font-weight: 700;
   margin-bottom: 1rem;
 }
 
@@ -52,8 +52,8 @@
 }
 
 .statLabel {
-  font-size: 1.15rem;
-  color: #78716c;
+  font-size: 1.3rem;
+  color: var(--text-muted);
   margin-top: 0.3rem;
 }
 
@@ -63,9 +63,9 @@
 }
 
 .eyebrow {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 700;
-  color: #f97316;
+  color: var(--color-primary);
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
@@ -73,13 +73,13 @@
 .storyTitle {
   font-size: 2.2rem;
   font-weight: 700;
-  color: #1c1917;
+  color: var(--color-heading);
   margin: 0.6rem 0 1.6rem;
 }
 
 .storyText {
   font-size: 1.4rem;
-  color: #57534e;
+  color: var(--color-body);
   line-height: 1.8;
   max-width: 62rem;
   margin: 0 auto;
@@ -115,13 +115,13 @@
 .featureCard h3 {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #1c1917;
+  color: var(--color-heading);
   margin-bottom: 0.6rem;
 }
 
 .featureCard p {
-  font-size: 1.25rem;
-  color: #a8a29e;
+  font-size: 1.3rem;
+  color: var(--text-muted);
   line-height: 1.6;
 }
 

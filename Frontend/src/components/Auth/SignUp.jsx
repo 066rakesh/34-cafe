@@ -23,12 +23,10 @@ export const SignUp = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     setSignData((prev) => ({
       ...prev,
       [name]: value,
     }));
-
     setErrors((prev) => ({
       ...prev,
       [name]: "",
@@ -37,7 +35,6 @@ export const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const newErrors = {};
 
     if (signData.phone.trim() === "") {
@@ -52,42 +49,38 @@ export const SignUp = () => {
 
     if (signData.email.trim() === "") {
       newErrors.email = "Email is required";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(signData.email)) {
+    } else if (!/^[^\s@]+@gmail\.com$/.test(signData.email)) {
       newErrors.email = "Enter a valid email";
     }
 
     setErrors(newErrors);
-
     if (Object.keys(newErrors).length > 0) return;
 
     try {
       setLoading(true);
-
       await signupUser(signData);
-
       setSignData({
         phone: "",
         name: "",
         email: "",
       });
-
       setAuthMode("login");
     } catch (error) {
-      if (error.response) {
-        const field = error.response.data.field || "email";
+      if (error?.response) {
+        const field = error?.response?.data?.field || "email";
         setErrors((prev) => ({
           ...prev,
-          [field]: error.response.data.message,
+          [field]: error?.response?.data?.message,
         }));
-      } else if (error.request) {
+      } else if (error?.request) {
         setErrors((prev) => ({
           ...prev,
-          email: error.response.data.message,
+          email: error?.response?.data?.message,
         }));
       } else {
         setErrors((prev) => ({
           ...prev,
-          email: error.response.data.message,
+          email: error?.response?.data?.message,
         }));
       }
     } finally {

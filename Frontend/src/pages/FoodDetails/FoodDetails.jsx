@@ -6,10 +6,10 @@ import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import { CartBottomBar } from "../../components/Common/CartBottomBar";
 import { ProductContext } from "../../context/ProductContext";
+import { Spinner } from "../../components/Common/Spinner";
 
 export const FoodDetails = () => {
   const { products, productsLoading } = useContext(ProductContext);
-
   const { foodId } = useParams();
 
   const { cartItems, addToCart, increaseQuantity, decreaseQuantity } =
@@ -18,15 +18,20 @@ export const FoodDetails = () => {
   const food = products.find((item) => item._id === foodId);
 
   if (productsLoading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   if (!food) {
-    return <div>Product not found</div>;
+    return (
+      <div
+        style={{ fontSize: "1.4rem", textAlign: "center", marginTop: "60px" }}
+      >
+        Product not found
+      </div>
+    );
   }
 
   const cartItem = cartItems.find((item) => item.id === food._id);
-
   return (
     <div className={styles.page}>
       <DesktopNavbar />
