@@ -13,6 +13,7 @@ import orderRoutes from "./routes/orderRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
 import { createServer } from "http";
 import { Server } from "socket.io";
+import { handleRazorpayWebhook } from "./controllers/paymentController.js";
 
 const app = express();
 
@@ -36,6 +37,12 @@ app.use(
     },
     credentials: true,
   })
+);
+
+app.post(
+  "/api/payment/webhook",
+  express.raw({ type: "application/json" }),
+  handleRazorpayWebhook
 );
 
 app.use(express.json());

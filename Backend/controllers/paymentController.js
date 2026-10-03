@@ -200,3 +200,45 @@ export const verifyPayment = async (req, res) => {
     });
   }
 };
+
+export const handleRazorpayWebhook = async (req, res) => {
+  try {
+    const webhookSecret = process.env.RAZORPAY_WEBHOOK_SECRET;
+    const signature = req.headers["x-razorpay-signature"];
+
+    const expectedSignature = crypto
+      .createHmac("sha256", webhookSecret)
+      .update(req.body)
+      .digest("hex");
+
+    if (expectedSignature !== signature) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Invalid signature" });
+    }
+
+    const payload = JSON.parse(req.body);
+    const event = payload.event;
+
+    if (event === "payment.captured") {
+      const paymentEntity = payload.payload.payment.entity;
+      const razorpayOrderId = paymentEntity.order_id;
+      const razorpayPaymentId = paymentEntity.id;
+
+      await Order.findOneAndUpdate(
+        { razorpayOrderId },
+        {
+          status: "paid",
+          razorpayPaymentId,
+        }
+      );
+
+      console.log(`Order ${razorpayOrderId} marked as paid via webhook`);
+    }
+
+    return res.status(200).json({ success: true });
+  } catch (error) {
+    console.error("Webhook processing failed", error);
+    return res.status(500).json({ success: false });
+  }
+};
