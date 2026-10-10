@@ -44,4 +44,6 @@ jobs:
           node-version: "20"
 
       - name: Install dependencies
+      - name: Run tests
+        run: npm test
         run: npm install

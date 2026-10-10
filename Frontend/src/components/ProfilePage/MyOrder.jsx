@@ -14,10 +14,11 @@ import { useNavigate } from "react-router-dom";
 import { socket } from "../../services/socket";
 
 const TABS = ["All", "Active", "Delivered", "Cancelled"];
+const ACTIVE_STATUSES = ["placed", "preparing", "out_for_delivery"];
 
 const STATUS_CONFIG = {
   placed: {
-    label: "placed",
+    label: "Placed",
     color: "#c2410c",
     bg: "#fff7ed",
     icon: Clock,
@@ -93,23 +94,57 @@ export const MyOrder = () => {
     fetchOrders();
   }, []);
 
-  useEffect(() => {
-    if (!orders?.orders?.length) return;
-
-    orders?.orders?.forEach((order) => {
-      socket.emit("joinOrderRoom", order._id);
-    });
-  }, [orders]);
+  const orderIds =
+    orders?.orders
+      ?.filter((order) => ACTIVE_STATUSES.includes(order.deliveryStatus))
+      .map((order) => order._id)
+      .join(",") || "";
 
   useEffect(() => {
-    const handleStatusUpdate = (updateOrder) => {
+    if (!orderIds) return;
+
+    const ids = orderIds.split(",");
+
+    const joinAll = () => {
+      console.log("CLIENT joining rooms:", ids.length);
+      ids.forEach((id) => socket.emit("joinOrderRoom", id));
+    };
+
+    const handleConnectError = (err) => {
+      console.error("Socket connection failed:", err.message);
+    };
+
+    socket.on("connect", joinAll);
+    socket.on("connect_error", handleConnectError);
+
+    if (socket.connected) {
+      joinAll();
+    } else {
+      socket.connect();
+    }
+
+    return () => {
+      socket.off("connect", joinAll);
+      socket.off("connect_error", handleConnectError);
+    };
+  }, [orderIds]);
+
+  useEffect(() => {
+    const handleStatusUpdate = (updatedOrder) => {
+      console.log(
+        "CLIENT got orderStatusUpdated:",
+        updatedOrder?._id,
+        updatedOrder?.deliveryStatus
+      );
       setOrders((prev) => {
         if (!prev?.orders) return prev;
 
         return {
           ...prev,
           orders: prev.orders.map((order) =>
-            order._id === updateOrder._id ? updateOrder : order
+            order._id === updatedOrder._id
+              ? { ...order, deliveryStatus: updatedOrder.deliveryStatus }
+              : order
           ),
         };
       });
@@ -120,7 +155,7 @@ export const MyOrder = () => {
     return () => {
       socket.off("orderStatusUpdated", handleStatusUpdate);
     };
-  },[]);
+  }, []);
 
   if (loading) {
     return <div className={styles.status}>Loading your orders...</div>;
@@ -210,7 +245,7 @@ export const MyOrder = () => {
                       )}
                     </div>
                     <p className={styles.itemsText}>
-                      <strong>{First.product?.title}</strong>
+                      <strong>{First?.product?.title}</strong>
                       {rest.length > 0 && ` +${rest.length} more`}
                     </p>
                   </div>

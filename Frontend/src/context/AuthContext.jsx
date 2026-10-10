@@ -1,8 +1,15 @@
 import { createContext, useEffect, useState } from "react";
 import { getMe } from "../services/authService";
 import { useSearchParams } from "react-router-dom";
+import { socket } from "../services/socket";
 
 export const AuthContext = createContext();
+
+const clearSession = () => {
+  localStorage.removeItem("token");
+  socket.disconnect();
+  window.dispatchEvent(new Event("auth:logout"));
+};
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -39,7 +46,7 @@ export const AuthProvider = ({ children }) => {
       setUser(response.data.user);
     } catch (error) {
       if (error.response?.status === 401 || error.response?.status === 403) {
-        localStorage.removeItem("token");
+        clearSession();
         setUser(null);
       }
     } finally {
@@ -48,7 +55,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logoutUser = () => {
-    localStorage.removeItem("token");
+    clearSession();
     setUser(null);
   };
 

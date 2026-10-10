@@ -108,7 +108,7 @@ export const Search = () => {
             {filterMenu.map((food) => (
               <div
                 className={gridStyle.card}
-                key={food.id}
+                key={food._id}
                 onClick={() => navigate(`/menu/food/${food._id}`)}
               >
                 <div className={gridStyle.imageWrap}>

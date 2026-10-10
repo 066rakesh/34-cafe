@@ -10,6 +10,7 @@ import Order from "../models/order.js";
 import crypto from "crypto";
 import { sendOtpConfirmationEmail } from "../services/emailService.js";
 import Address from "../models/address.js";
+import { checkDeliverable } from "../services/deliveryService.js";
 
 export const createOrder = async (req, res) => {
   try {
@@ -30,12 +31,36 @@ export const createOrder = async (req, res) => {
       });
     }
 
-    const selectedAddress = await Address.findById(addressId);
+    const selectedAddress = await Address.findOne({
+      _id: addressId,
+      user: userId,
+    });
 
     if (!selectedAddress) {
       return res.status(400).json({
         success: false,
         message: "Address not found",
+      });
+    }
+
+    let delivery;
+    try {
+      delivery = await checkDeliverable({
+        latitude: selectedAddress.latitude,
+        longitude: selectedAddress.longitude,
+      });
+    } catch (err) {
+      console.error("Delivery check failed", err.message);
+      return res.status(503).json({
+        success: false,
+        message: "Unable to verify delivery right now. Please try again.",
+      });
+    }
+
+    if (!delivery.available) {
+      return res.status(400).json({
+        success: false,
+        message: "Sorry, delivery is not available at this address.",
       });
     }
 
@@ -49,6 +74,13 @@ export const createOrder = async (req, res) => {
         return res.status(400).json({
           success: false,
           message: `Product not found ${cartItem.productId}`,
+        });
+      }
+
+      if (product.variants.length > 0 && !cartItem.variantId) {
+        return res.status(400).json({
+          success: false,
+          message: `Please choose a size for: ${product.title}`,
         });
       }
 
@@ -71,7 +103,7 @@ export const createOrder = async (req, res) => {
 
       const quantity = cartItem.quantity;
 
-      if (!quantity || quantity <= 0) {
+      if (!Number.isInteger(quantity) || quantity <= 0 || quantity > 20) {
         return res.status(400).json({
           success: false,
           message: `Invalid qunatity for product: ${product.title}`,
@@ -92,7 +124,7 @@ export const createOrder = async (req, res) => {
     const totalAmount = itemTotal + deliveryFee + OTHER_CHARGES;
 
     const razorpayOrder = await razorpayInstance.orders.create({
-      amount: totalAmount * 100,
+      amount: Math.round(totalAmount * 100),
       currency: "INR",
       receipt: `receipt_${Date.now()}`,
     });
@@ -226,7 +258,7 @@ export const handleRazorpayWebhook = async (req, res) => {
       const razorpayPaymentId = paymentEntity.id;
 
       await Order.findOneAndUpdate(
-        { razorpayOrderId },
+        { razorpayOrderId, status: "created" },
         {
           status: "paid",
           razorpayPaymentId,

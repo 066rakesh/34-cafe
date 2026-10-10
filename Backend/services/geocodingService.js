@@ -14,7 +14,7 @@ export const reverseGeocode = async ({ latitude, longitude }) => {
         headers: {
           "X-Goog-Api-Key": process.env.GOOGLE_MAPS_API_KEY,
         },
-      },
+      }
     );
 
     const results = response.data?.results;
@@ -37,7 +37,7 @@ export const reverseGeocode = async ({ latitude, longitude }) => {
 
     const state = getAddressComponent(
       components,
-      "administrative_area_level_1",
+      "administrative_area_level_1"
     );
 
     const pincode = getAddressComponent(components, "postal_code");

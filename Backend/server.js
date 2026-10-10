@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import { connectDB } from "./config/db.js";
 import redisClient from "./config/redisClient.js";
+import Order from "./models/order.js";
 import authRoutes from "./routes/authRoutes.js";
 import deliveryRoutes from "./routes/deliveryRoutes.js";
 import addressRoutes from "./routes/addressRoutes.js";
@@ -13,9 +14,12 @@ import orderRoutes from "./routes/orderRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
 import { createServer } from "http";
 import { Server } from "socket.io";
+import jwt from "jsonwebtoken";
 import { handleRazorpayWebhook } from "./controllers/paymentController.js";
 
 const app = express();
+
+app.set("trust proxy", 1);
 
 const PORT = process.env.PORT || 5000;
 
@@ -32,7 +36,7 @@ app.use(
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
-        callback(new Error("Not allowed by CORS"));
+        callback(null, false);
       }
     },
     credentials: true,
@@ -56,16 +60,37 @@ const io = new Server(httpServer, {
   },
 });
 
-io.on("connection", (socket) => {
-  console.log("A user connected:", socket.id);
+io.use((socket, next) => {
+  try {
+    const token = socket.handshake.auth?.token;
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    socket.userId = decoded.id;
+    next();
+  } catch {
+    next(new Error("unauthorized"));
+  }
+});
 
-  socket.on("joinOrderRoom", (orderId) => {
-    socket.join(orderId);
-    console.log(`Socket ${socket.id} joined room: ${orderId}`);
+io.on("connection", (socket) => {
+  console.log("SOCKET connected | id:", socket.id, "| user:", socket.userId);
+
+  socket.on("joinOrderRoom", async (orderId) => {
+    try {
+      const order = await Order.findOne({
+        _id: orderId,
+        user: socket.userId,
+      }).select("_id");
+
+      console.log("JOIN", String(orderId), order ? "OK" : "DENIED");
+
+      if (order) socket.join(orderId);
+    } catch (err) {
+      console.error("joinOrderRoom failed:", err.message);
+    }
   });
 
-  socket.on("disconnect", () => {
-    console.log("User disconnected", socket.id);
+  socket.on("disconnect", (reason) => {
+    console.log("SOCKET disconnected | id:", socket.id, "| reason:", reason);
   });
 });
 

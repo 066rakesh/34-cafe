@@ -1,7 +1,6 @@
 import styles from "./OrderDetail.module.css";
 import { DesktopNavbar } from "../Common/DesktopNavbar";
 import {
-  ArrowLeft,
   Check,
   ChefHat,
   Home,
@@ -12,6 +11,7 @@ import {
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getOrderById } from "../../services/orderService";
+import { socket } from "../../services/socket";
 
 const STATUS_ORDER = {
   placed: 1,
@@ -19,6 +19,8 @@ const STATUS_ORDER = {
   out_for_delivery: 3,
   delivered: 4,
 };
+
+const ACTIVE_STATUSES = ["placed", "preparing", "out_for_delivery"];
 
 const STEPS = [
   { key: "placed", label: "Placed", icon: Check },
@@ -31,13 +33,14 @@ export const OrderDetail = () => {
   const { orderId } = useParams();
   const navigate = useNavigate();
   const [order, setOrder] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchOrder = async () => {
       try {
         setLoading(true);
+        setError(false);
         const response = await getOrderById(orderId);
         setOrder(response.data.order);
       } catch (error) {
@@ -51,11 +54,42 @@ export const OrderDetail = () => {
     fetchOrder();
   }, [orderId]);
 
+  const liveOrderId = order?._id;
+  const isLive = !!order && ACTIVE_STATUSES.includes(order.deliveryStatus);
+
+  useEffect(() => {
+    if (!isLive) return;
+
+    const joinRoom = () => socket.emit("joinOrderRoom", liveOrderId);
+
+    const handleStatusUpdate = (updatedOrder) => {
+      if (updatedOrder?._id !== liveOrderId) return;
+
+      setOrder((prev) =>
+        prev ? { ...prev, deliveryStatus: updatedOrder.deliveryStatus } : prev
+      );
+    };
+
+    socket.on("connect", joinRoom);
+    socket.on("orderStatusUpdated", handleStatusUpdate);
+
+    if (socket.connected) {
+      joinRoom();
+    } else {
+      socket.connect();
+    }
+
+    return () => {
+      socket.off("connect", joinRoom);
+      socket.off("orderStatusUpdated", handleStatusUpdate);
+    };
+  }, [isLive, liveOrderId]);
+
   if (loading) {
     return <div className={styles.status}>Loading order details...</div>;
   }
 
-  if (error) {
+  if (error || !order) {
     return (
       <div className={styles.status}>
         <p>Order not found.</p>
@@ -66,20 +100,19 @@ export const OrderDetail = () => {
     );
   }
 
-  const isCancelled = order?.deliveryStatus === "cancelled";
-  const currentStatusNumber = STATUS_ORDER[order?.deliveryStatus] || 0;
+  const isCancelled = order.deliveryStatus === "cancelled";
+  const currentStatusNumber = STATUS_ORDER[order.deliveryStatus] || 0;
 
   return (
     <main className={styles.page}>
       <DesktopNavbar />
       <div className={styles.wrap}>
-
         <div className={styles.card}>
           <div className={styles.headRow}>
             <div>
-              <div className={styles.orderId}>{order?.razorpayOrderId}</div>
+              <div className={styles.orderId}>{order.razorpayOrderId}</div>
               <div className={styles.orderDate}>
-                {new Date(order?.createdAt).toLocaleDateString("en-IN", {
+                {new Date(order.createdAt).toLocaleDateString("en-IN", {
                   day: "2-digit",
                   month: "short",
                   year: "numeric",
@@ -88,7 +121,9 @@ export const OrderDetail = () => {
                 })}
               </div>
             </div>
-            {isCancelled && <div className={styles.cancelledBadge }>Cancelled</div>}
+            {isCancelled && (
+              <div className={styles.cancelledBadge}>Cancelled</div>
+            )}
           </div>
 
           {isCancelled ? (
@@ -132,7 +167,7 @@ export const OrderDetail = () => {
               <Package size={16} /> Items
             </h2>
             <div className={styles.itemList}>
-              {order?.items.map((item) => (
+              {order.items?.map((item) => (
                 <div className={styles.item} key={item._id}>
                   <div className={styles.itemImg}>
                     <img src={item.product?.image} alt={item.product?.title} />
@@ -157,9 +192,9 @@ export const OrderDetail = () => {
               <MapPin size={16} /> Delivered to
             </h2>
             <p className={styles.address}>
-              <strong>{order?.address?.addressType}</strong> -{" "}
-              {order?.address?.houseNumber}, {order?.address?.locality},{" "}
-              {order?.address?.landmark}, {order?.address?.address}
+              <strong>{order.address?.addressType}</strong> -{" "}
+              {order.address?.houseNumber}, {order.address?.locality},{" "}
+              {order.address?.landmark}, {order.address?.address}
             </p>
           </div>
 
@@ -168,25 +203,23 @@ export const OrderDetail = () => {
           <div className={styles.paymentSummary}>
             <div>
               <span>Item total</span>
-              <span>₹{order?.itemTotal}</span>
+              <span>₹{order.itemTotal}</span>
             </div>
             <div>
               <span>Delivery fee</span>
               <span>
-                {order?.deliveryFee === 0 ? "FREE" : `₹${order?.deliveryFee}`}
+                {order.deliveryFee === 0 ? "FREE" : `₹${order.deliveryFee}`}
               </span>
             </div>
             <div>
               <span>Taxes & other charges</span>
-              <span>₹{order?.otherCharges}</span>
+              <span>₹{order.otherCharges}</span>
             </div>
             <div className={styles.paidRow}>
-              <span>Paid via {order?.paymentMethod}</span>
-              <span>₹{order?.totalAmount}</span>
+              <span>Paid via {order.paymentMethod}</span>
+              <span>₹{order.totalAmount}</span>
             </div>
           </div>
-
-          
         </div>
       </div>
     </main>

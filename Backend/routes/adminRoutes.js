@@ -1,6 +1,7 @@
 import expres from "express";
+import ratelimit from "express-rate-limit";
 import { getAllProducts } from "../controllers/productController.js";
-import upload from "../middleware/multer.js";
+import { uploadSingleImage } from "../middleware/multer.js";
 import {
   adminLogin,
   createProduct,
@@ -15,15 +16,29 @@ import { isAdmin } from "../middleware/isAdmin.js";
 
 const router = expres.Router();
 
-router.post("/login", adminLogin);
-router.get("/products", isAdmin, getAllProducts);
-router.post("/products", isAdmin, createProduct);
-router.put("/products/:id", isAdmin, updateProduct);
-router.delete("/products/:id", isAdmin, deleteProduct);
+const loginLimiter = ratelimit({
+  windowMs: 15 * 60 * 1000,
+  max: 5,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: {
+    success: false,
+    message: "Too many login attempts. Please try again in 15 minutes",
+  },
+});
+
+router.post("/login", loginLimiter, adminLogin);
+
+router.use(isAdmin);
+
+router.get("/products", getAllProducts);
+router.post("/products", createProduct);
+router.put("/products/:id", updateProduct);
+router.delete("/products/:id", deleteProduct);
 
 router.get("/users", getAllUsers);
-router.post("/upload", isAdmin, upload.single("image"), uploadProductImage);
-router.get("/orders", isAdmin, getAllOrders);
-router.patch("/orders/:id/status", isAdmin, updateOrderStatus);
+router.post("/upload", uploadSingleImage, uploadProductImage);
+router.get("/orders", getAllOrders);
+router.patch("/orders/:id/status", updateOrderStatus);
 
 export default router;

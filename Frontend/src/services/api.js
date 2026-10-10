@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://three4-cafe.onrender.com",
+  baseURL: import.meta.env.VITE_BASE_API_URL,
 });
 
 API.interceptors.request.use((config) => {

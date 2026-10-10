@@ -121,7 +121,7 @@ export const SummaryCard = () => {
         <div className={styles.summaryItems}>
           <div className={styles.cartList}>
             {cartItems.map((item) => (
-              <div className={styles.cartItems} key={item._id}>
+              <div className={styles.cartItems} key={item.id}>
                 <div className={styles.leftCartItems}>
                   <img src={item.image} alt={item.title} />
 

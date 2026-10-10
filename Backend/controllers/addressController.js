@@ -1,6 +1,10 @@
 import User from "../models/user.js";
 import Address from "../models/address.js";
 import mongoose from "mongoose";
+import { checkDeliverable } from "../services/deliveryService.js";
+import { reverseGeocode } from "../services/geocodingService.js";
+
+const MAX_ADDRESSES_PER_USER = 10;
 
 export const createAddress = async (req, res) => {
   try {
@@ -10,7 +14,6 @@ export const createAddress = async (req, res) => {
       landmark,
       addressType,
       isDefault,
-      address,
       longitude,
       latitude,
     } = req.body;
@@ -83,20 +86,6 @@ export const createAddress = async (req, res) => {
       });
     }
 
-    if (typeof address !== "string") {
-      return res.status(400).json({
-        success: false,
-        message: "Invalid address",
-      });
-    }
-
-    if (!address.trim()) {
-      return res.status(400).json({
-        success: false,
-        message: "Address is required",
-      });
-    }
-
     if (
       typeof longitude !== "number" ||
       !Number.isFinite(longitude) ||
@@ -121,6 +110,45 @@ export const createAddress = async (req, res) => {
       });
     }
 
+    const addressCount = await Address.countDocuments({ user: userId });
+
+    if (addressCount >= MAX_ADDRESSES_PER_USER) {
+      return res.status(400).json({
+        success: false,
+        message: `You can save up to ${MAX_ADDRESSES_PER_USER} addresses.`,
+      });
+    }
+
+    // Delivery check + address text, dono server pe coordinates se
+    let location;
+
+    try {
+      const delivery = await checkDeliverable({ latitude, longitude });
+
+      if (!delivery.available) {
+        return res.status(400).json({
+          success: false,
+          message: "Sorry, delivery is not available at this location.",
+        });
+      }
+
+      location = await reverseGeocode({ latitude, longitude });
+    } catch (err) {
+      console.error("Address verification failed:", err.message);
+
+      return res.status(503).json({
+        success: false,
+        message: "Unable to verify this location right now. Please try again.",
+      });
+    }
+
+    if (!location?.address) {
+      return res.status(400).json({
+        success: false,
+        message: "We couldn't verify this location. Please pick it again.",
+      });
+    }
+
     const existingAddresses = await Address.findOne({ user: userId });
     let shouldBeDefault = isDefault;
     if (!existingAddresses) {
@@ -141,7 +169,7 @@ export const createAddress = async (req, res) => {
       landmark,
       addressType,
       isDefault: shouldBeDefault,
-      address,
+      address: location.address,
       longitude,
       latitude,
     });

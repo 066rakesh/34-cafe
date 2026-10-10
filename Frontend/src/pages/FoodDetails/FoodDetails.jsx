@@ -71,14 +71,14 @@ export const FoodDetails = () => {
               {cartItem ? (
                 <div className={styles.cartBtn}>
                   <button
-                    type="submit"
+                    type="button"
                     onClick={() => decreaseQuantity(food._id)}
                   >
                     <Minus size={20} />
                   </button>
                   <span>{cartItem.quantity}</span>
                   <button
-                    type="submit"
+                    type="button"
                     onClick={() => increaseQuantity(food._id)}
                   >
                     <Plus size={20} />
@@ -86,6 +86,7 @@ export const FoodDetails = () => {
                 </div>
               ) : (
                 <button
+                  type="button"
                   className={styles.addToCartBtn}
                   onClick={() => addToCart(food)}
                 >
@@ -120,14 +121,14 @@ export const FoodDetails = () => {
                       {cartItem ? (
                         <div className={styles.actionBtns}>
                           <button
-                            type="submit"
+                            type="button"
                             onClick={() => decreaseQuantity(cartItemId)}
                           >
                             <Minus size={20} />
                           </button>
                           <span>{cartItem.quantity}</span>
                           <button
-                            type="submit"
+                            type="button"
                             onClick={() => increaseQuantity(cartItemId)}
                           >
                             <Plus size={20} />
@@ -135,7 +136,7 @@ export const FoodDetails = () => {
                         </div>
                       ) : (
                         <button
-                          type="submit"
+                          type="button"
                           className={styles.addBtn}
                           onClick={() => addToCart(food, item)}
                         >

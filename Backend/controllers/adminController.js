@@ -3,8 +3,32 @@ import redisClient from "../config/redisClient.js";
 import Order from "../models/order.js";
 import Product from "../models/product.js";
 import User from "../models/user.js";
+import crypto from "crypto";
 
 import jwt from "jsonwebtoken";
+
+const sha256 = (value) =>
+  crypto.createHash("sha256").update(String(value)).digest();
+
+const safeEqual = (a, b) => crypto.timingSafeEqual(sha256(a), sha256(b));
+
+const invalidateMenuCache = async () => {
+  if (!redisClient.isReady) return;
+
+  try {
+    await redisClient.del("all_products");
+  } catch (error) {
+    console.error("Menu cache invalidation failed:", error.message);
+  }
+};
+
+const ALLOWED_TRANSITIONS = {
+  placed: ["preparing", "cancelled"],
+  preparing: ["out_for_delivery", "cancelled"],
+  out_for_delivery: ["delivered", "cancelled"],
+  delivered: [],
+  cancelled: [],
+};
 
 export const adminLogin = async (req, res) => {
   try {
@@ -17,10 +41,10 @@ export const adminLogin = async (req, res) => {
       });
     }
 
-    if (
-      email !== process.env.ADMIN_EMAIL ||
-      password !== process.env.ADMIN_PASSWORD
-    ) {
+    const emailOk = safeEqual(email, process.env.ADMIN_EMAIL);
+    const passwordOk = safeEqual(password, process.env.ADMIN_PASSWORD);
+
+    if (!emailOk || !passwordOk) {
       return res.status(401).json({
         success: false,
         message: "Invalid email or password",
@@ -30,7 +54,7 @@ export const adminLogin = async (req, res) => {
     const token = jwt.sign(
       { role: "admin", email },
       process.env.JWT_ADMIN_SECRET,
-      { expiresIn: "7d" }
+      { expiresIn: "1d" }
     );
 
     return res.status(200).json({
@@ -50,7 +74,7 @@ export const createProduct = async (req, res) => {
   try {
     const newProduct = await Product.create(req.body);
 
-    await redisClient.del("all_products");
+    await invalidateMenuCache();
 
     return res.status(201).json({
       success: true,
@@ -79,7 +103,11 @@ export const uploadProductImage = async (req, res) => {
     const uploadFromBuffer = () => {
       return new Promise((resolve, reject) => {
         const stream = cloudinary.uploader.upload_stream(
-          { folder: "cafe-menu" },
+          {
+            folder: "cafe-menu",
+            resource_type: "image",
+            allowed_formats: ["jpg", "jpeg", "png", "webp"],
+          },
           (error, result) => {
             if (error) reject(error);
             else resolve(result);
@@ -118,7 +146,7 @@ export const updateProduct = async (req, res) => {
     const updatedData = req.body;
 
     const product = await Product.findByIdAndUpdate(id, updatedData, {
-      new: true,
+      returnDocument: "after",
       runValidators: true,
     });
 
@@ -129,7 +157,7 @@ export const updateProduct = async (req, res) => {
       });
     }
 
-    await redisClient.del("all_products");
+    await invalidateMenuCache();
 
     return res.status(200).json({
       success: true,
@@ -157,7 +185,7 @@ export const deleteProduct = async (req, res) => {
       });
     }
 
-    await redisClient.del("all_products");
+    await invalidateMenuCache();
 
     return res.status(200).json({
       success: true,
@@ -218,10 +246,28 @@ export const updateOrderStatus = async (req, res) => {
     const { id } = req.params;
     const { deliveryStatus } = req.body;
 
-    const order = await Order.findByIdAndUpdate(
-      id,
+    const existing = await Order.findOne({ _id: id, status: "paid" });
+
+    if (!existing) {
+      return res.status(404).json({
+        success: false,
+        message: "Paid order not found",
+      });
+    }
+
+    const allowedNext = ALLOWED_TRANSITIONS[existing.deliveryStatus] || [];
+
+    if (!allowedNext.includes(deliveryStatus)) {
+      return res.status(400).json({
+        success: false,
+        message: `Cannot change status from ${existing.deliveryStatus} to ${deliveryStatus}`,
+      });
+    }
+
+    const order = await Order.findOneAndUpdate(
+      { _id: id, status: "paid", deliveryStatus: existing.deliveryStatus },
       { deliveryStatus },
-      { new: true, runValidators: true }
+      { returnDocument: "after", runValidators: true }
     );
 
     if (!order) {
@@ -230,6 +276,9 @@ export const updateOrderStatus = async (req, res) => {
         message: "Order not found",
       });
     }
+
+    const roomSize = req.io.sockets.adapter.rooms.get(String(id))?.size || 0;
+    console.log("EMIT to room", String(id), "| members:", roomSize);
 
     req.io.to(id).emit("orderStatusUpdated", order);
 

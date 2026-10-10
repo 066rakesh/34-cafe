@@ -30,7 +30,7 @@ export const getRoadDistance = async ({ latitude, longitude }) => {
           "X-Goog-Api-Key": process.env.GOOGLE_MAPS_API_KEY,
           "X-Goog-FieldMask": "routes.distanceMeters",
         },
-      },
+      }
     );
 
     const distanceMeters = response.data?.routes?.[0]?.distanceMeters;

@@ -4,6 +4,10 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { sendOtpEmail } from "../services/emailService.js";
 
+const OTP_VALID_MS = 5 * 60 * 1000;
+const OTP_RESEND_COOLDOWN_MS = 60 * 1000;
+const MAX_OTP_ATTEMPTS = 5;
+
 export const signup = async (req, res) => {
   try {
     const { phone, name, email } = req.body;
@@ -50,7 +54,15 @@ export const signup = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { email } = req.body;
-    const existingUser = await User.findOne({ email });
+
+    if (typeof email !== "string" || !email.trim()) {
+      return res.status(400).json({
+        success: false,
+        message: "Valid email is required",
+      });
+    }
+
+    const existingUser = await User.findOne({ email: email.trim() });
 
     if (!existingUser) {
       return res.status(404).json({
@@ -59,16 +71,26 @@ export const login = async (req, res) => {
       });
     }
 
+    if (existingUser.otp && existingUser.otpExpiry) {
+      const issuedAt = existingUser.otpExpiry.getTime() - OTP_VALID_MS;
+      if (Date.now() - issuedAt < OTP_RESEND_COOLDOWN_MS) {
+        return res.status(429).json({
+          success: false,
+          message: "Please wait a minute before requesting another OTP.",
+        });
+      }
+    }
+
     const otp = crypto.randomInt(100000, 1000000).toString();
     const hashedOtp = await bcrypt.hash(otp, 10);
-    const otpExpiry = new Date(Date.now() + 5 * 60 * 1000);
 
     existingUser.otp = hashedOtp;
-    existingUser.otpExpiry = otpExpiry;
+    existingUser.otpExpiry = new Date(Date.now() + OTP_VALID_MS);
+    existingUser.otpAttempts = 0;
 
     await existingUser.save();
 
-    await sendOtpEmail(email, otp);
+    await sendOtpEmail(existingUser.email, otp);
 
     return res.status(200).json({
       success: true,
@@ -86,48 +108,82 @@ export const login = async (req, res) => {
 export const verifyOtp = async (req, res) => {
   try {
     const { email, otp } = req.body;
-    const existingUser = await User.findOne({ email });
 
-    if (!existingUser) {
+    if (
+      typeof email !== "string" ||
+      !email.trim() ||
+      otp === undefined ||
+      otp === null
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: "Email and OTP are required",
+      });
+    }
+
+    const user = await User.findOneAndUpdate(
+      { email: email.trim() },
+      { $inc: { otpAttempts: 1 } },
+      { returnDocument: "after" }
+    );
+
+    if (!user) {
       return res.status(404).json({
         success: false,
         message: "User not found",
       });
     }
 
-    const isValid = await bcrypt.compare(otp, existingUser.otp);
+    if (!user.otp || !user.otpExpiry) {
+      return res.status(400).json({
+        success: false,
+        message: "No active OTP. Please request a new one.",
+      });
+    }
+
+    if (Date.now() > user.otpExpiry.getTime()) {
+      user.otp = null;
+      user.otpExpiry = null;
+      await user.save();
+
+      return res.status(400).json({
+        success: false,
+        message: "OTP expired. Please request a new one.",
+      });
+    }
+
+    if (user.otpAttempts > MAX_OTP_ATTEMPTS) {
+      user.otp = null;
+      user.otpExpiry = null;
+      await user.save();
+
+      return res.status(429).json({
+        success: false,
+        message: "Too many attempts. Please request a new OTP.",
+      });
+    }
+
+    const isValid = await bcrypt.compare(String(otp), user.otp);
 
     if (!isValid) {
+      const left = Math.max(MAX_OTP_ATTEMPTS - user.otpAttempts, 0);
       return res.status(400).json({
         success: false,
-        message: "Invalid OTP",
+        message:
+          left > 0
+            ? `Invalid OTP. ${left} attempt${left === 1 ? "" : "s"} left.`
+            : "Invalid OTP. Please request a new one.",
       });
     }
 
-    if (Date.now() > existingUser.otpExpiry) {
-      existingUser.otp = null;
-      existingUser.otpExpiry = null;
+    user.otp = null;
+    user.otpExpiry = null;
+    user.otpAttempts = 0;
+    await user.save();
 
-      await existingUser.save();
-      return res.status(400).json({
-        success: false,
-        message: "OTP expired",
-      });
-    }
-
-    existingUser.otp = null;
-    existingUser.otpExpiry = null;
-    await existingUser.save();
-
-    const token = jwt.sign(
-      {
-        id: existingUser._id,
-      },
-      process.env.JWT_SECRET,
-      {
-        expiresIn: "7d",
-      }
-    );
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "7d",
+    });
 
     return res.status(200).json({
       success: true,

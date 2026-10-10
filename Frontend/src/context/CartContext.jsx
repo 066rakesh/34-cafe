@@ -13,6 +13,13 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem("cart", JSON.stringify(cartItems));
   }, [cartItems]);
 
+  useEffect(() => {
+    const handleLogout = () => setCartItems([]);
+
+    window.addEventListener("auth:logout", handleLogout);
+    return () => window.removeEventListener("auth:logout", handleLogout);
+  }, []);
+
   const addToCart = (food, variant = null) => {
     setCartItems((currentItems) => {
       const cartItemId = variant ? `${food._id}_${variant._id}` : food._id;

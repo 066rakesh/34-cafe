@@ -64,6 +64,25 @@ export const AddressProvider = ({ children }) => {
     };
   }, [userLocation]);
 
+  useEffect(() => {
+    const handleLogout = () => {
+      setUserAddresses([]);
+      setSelectedAddress(null);
+      setUserLocation(null);
+      setLocationData(null);
+      setAddress({
+        houseNumber: "",
+        locality: "",
+        landmark: "",
+        addressType: "",
+        isDefault: false,
+      });
+    };
+
+    window.addEventListener("auth:logout", handleLogout);
+    return () => window.removeEventListener("auth:logout", handleLogout);
+  }, []);
+
   const getAddresses = async () => {
     try {
       setGetAddressesLoading(true);

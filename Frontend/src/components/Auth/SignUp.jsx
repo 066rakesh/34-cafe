@@ -49,7 +49,7 @@ export const SignUp = () => {
 
     if (signData.email.trim() === "") {
       newErrors.email = "Email is required";
-    } else if (!/^[^\s@]+@gmail\.com$/.test(signData.email)) {
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(signData.email)) {
       newErrors.email = "Enter a valid email";
     }
 

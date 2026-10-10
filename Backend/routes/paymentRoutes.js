@@ -11,6 +11,4 @@ router.post("/create-order", authMiddleware, createOrder);
 
 router.post("/verify-payment", authMiddleware, verifyPayment);
 
-// router.post("/webhook", razorpayWebhook);
-
 export default router;

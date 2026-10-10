@@ -12,9 +12,9 @@ export const MenuSection = () => {
   const navigate = useNavigate();
   const { products, productsLoading, productsError, fetchProducts } =
     useContext(ProductContext);
-  const chefSpecials = products.filter((item) => item.isChefSpecial);
+  const chefSpecials = products?.filter((item) => item.isChefSpecial);
 
-  const craving = products.filter((item) => item.isCraving);
+  const craving = products?.filter((item) => item.isCraving);
 
   return (
     <div className={styles.menu}>
@@ -43,10 +43,10 @@ export const MenuSection = () => {
               },
             }}
           >
-            {chefSpecials.map((item) => (
+            {chefSpecials?.map((item) => (
               <SwiperSlide key={item._id} className={styles.categoriesSlide}>
                 <div
-                  onClick={() => navigate(`menu/food/${item._id}`)}
+                  onClick={() => navigate(`/menu/food/${item._id}`)}
                   className={styles.categoriesCard}
                 >
                   <div className={styles.categoriesImage}>
@@ -86,7 +86,7 @@ export const MenuSection = () => {
               },
             }}
           >
-            {craving.map((food) => (
+            {craving?.map((food) => (
               <SwiperSlide className={styles.dishSlide} key={food._id}>
                 <div
                   className={styles.card}
