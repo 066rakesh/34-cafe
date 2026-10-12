@@ -3,14 +3,29 @@ import crypto from "crypto";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { sendOtpEmail } from "../services/emailService.js";
+import { signupSchema } from "../validation/authSchema.js";
 
 const OTP_VALID_MS = 5 * 60 * 1000;
 const OTP_RESEND_COOLDOWN_MS = 60 * 1000;
 const MAX_OTP_ATTEMPTS = 5;
 
 export const signup = async (req, res) => {
+  const result = signupSchema.safeParse(req.body);
+
+  if (!result.success) {
+    const errors = result?.error?.issues?.map((err) => ({
+      field: err.path[0],
+      message: err.message,
+    }));
+
+    return res.status(400).json({
+      success: false,
+      errors,
+    });
+  }
+
   try {
-    const { phone, name, email } = req.body;
+    const { phone, name, email } = result.data;
 
     const existingUser = await User.findOne({
       $or: [{ phone }, { email }],
@@ -112,12 +127,12 @@ export const verifyOtp = async (req, res) => {
     if (
       typeof email !== "string" ||
       !email.trim() ||
-      otp === undefined ||
-      otp === null
+      typeof otp !== "string" ||
+      !/^\d{6}$/.test(otp.trim())
     ) {
       return res.status(400).json({
         success: false,
-        message: "Email and OTP are required",
+        message: "Invalid email and OTP",
       });
     }
 

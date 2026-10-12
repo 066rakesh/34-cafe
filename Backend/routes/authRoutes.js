@@ -10,7 +10,7 @@ import rateLimit from "express-rate-limit";
 
 const otpLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 10,
+  limit: 10,
   standardHeaders: true,
   legacyHeaders: false,
   message: {

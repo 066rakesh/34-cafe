@@ -16,10 +16,22 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 import jwt from "jsonwebtoken";
 import { handleRazorpayWebhook } from "./controllers/paymentController.js";
+import rateLimit from "express-rate-limit";
 
 const app = express();
 
 app.set("trust proxy", 1);
+
+const globalLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 100,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: {
+    success: false,
+    message: "Too many requests. Please try again later.",
+  },
+});
 
 const PORT = process.env.PORT || 5000;
 
@@ -50,6 +62,7 @@ app.post(
 );
 
 app.use(express.json());
+app.use(globalLimiter);
 
 const httpServer = createServer(app);
 

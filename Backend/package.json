@@ -5,10 +5,10 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-  "test": "node --test",
-  "dev": "node --watch server.js",
-  "start": "node server.js"
-},
+    "test": "node --test",
+    "dev": "node --watch server.js",
+    "start": "node server.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -30,7 +30,8 @@
     "nodemailer": "^9.0.5",
     "razorpay": "^2.9.8",
     "redis": "^6.2.1",
-    "socket.io": "^4.8.4"
+    "socket.io": "^4.8.4",
+    "zod": "^4.6.6"
   },
   "devDependencies": {
     "jest": "^30.5.0"

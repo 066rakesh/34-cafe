@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import { RxCross2 } from "../../assets/icons/icon";
 import { signupUser } from "../../services/authService";
 import { AuthContext } from "../../context/AuthContext";
+import toast from "react-hot-toast";
 
 export const SignUp = () => {
   const [loading, setLoading] = useState(false);
@@ -37,17 +38,17 @@ export const SignUp = () => {
     e.preventDefault();
     const newErrors = {};
 
-    if (signData.phone.trim() === "") {
+    if (!signData.phone.trim()) {
       newErrors.phone = "Phone number is required";
     } else if (!/^\d{10}$/.test(signData.phone)) {
       newErrors.phone = "Enter a valid 10-digit phone number";
     }
 
-    if (signData.name.trim() === "") {
+    if (!signData.name.trim()) {
       newErrors.name = "Name is required";
     }
 
-    if (signData.email.trim() === "") {
+    if (!signData.email.trim()) {
       newErrors.email = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(signData.email)) {
       newErrors.email = "Enter a valid email";
@@ -59,6 +60,7 @@ export const SignUp = () => {
     try {
       setLoading(true);
       await signupUser(signData);
+      toast.success("Account created successfully");
       setSignData({
         phone: "",
         name: "",
@@ -67,20 +69,27 @@ export const SignUp = () => {
       setAuthMode("login");
     } catch (error) {
       if (error?.response) {
-        const field = error?.response?.data?.field || "email";
-        setErrors((prev) => ({
-          ...prev,
-          [field]: error?.response?.data?.message,
-        }));
+        const data = error.response.data;
+
+        if (Array.isArray(data?.errors)) {
+          const serverErrors = {};
+          data.errors.forEach((err) => {
+            if (!serverErrors[err.field]) serverErrors[err.field] = err.message;
+          });
+          setErrors((prev) => ({ ...prev, ...serverErrors }));
+        } else {
+          const field = data?.field || "email";
+          setErrors((prev) => ({ ...prev, [field]: data?.message }));
+        }
       } else if (error?.request) {
         setErrors((prev) => ({
           ...prev,
-          email: error?.response?.data?.message,
+          email: "Network error. Please check your connection.",
         }));
       } else {
         setErrors((prev) => ({
           ...prev,
-          email: error?.response?.data?.message,
+          email: "Something went wrong. Please try again.",
         }));
       }
     } finally {

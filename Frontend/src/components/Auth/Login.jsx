@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import { loginUser, verifyOtp } from "../../services/authService";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export const Login = () => {
   const { setIsAuthOpen, setAuthMode, fetchUser } = useContext(AuthContext);
@@ -60,6 +61,7 @@ export const Login = () => {
         email,
         otp,
       });
+      toast.success("Logged in successfully!");
       const { token } = response.data;
       localStorage.setItem("token", token);
       await fetchUser();
